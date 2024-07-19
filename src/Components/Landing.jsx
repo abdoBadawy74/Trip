@@ -1,5 +1,9 @@
 import React from "react";
 import video from "../assets/Lnading-video.mp4";
+import Header from "./Header";
+import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Landing() {
   return (
@@ -32,10 +36,12 @@ export default function Landing() {
           style={{
             zIndex: "1",
             color: "white",
+            height: "100%",
           }}
         >
-          <h1>WELCOME TO THE LANDING PAGE</h1>
-          <p>Here you can add your content to the landing page</p>
+            <Header />
+          {/* <h1>WELCOME TO THE LANDING PAGE</h1>
+          <p>Here you can add your content to the landing page</p> */}
         </div>
       </div>
     </>
