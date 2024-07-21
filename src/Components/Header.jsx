@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import "./Header.css";
 export default function Header() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(true);
   const [selectedLanguage, setSelectedLanguage] = useState("English");
 
   const toggleDropdown = () => {
@@ -59,8 +59,8 @@ export default function Header() {
                 <i
                   className={`${
                     isDropdownOpen
-                      ? "fa-solid fa-chevron-up"
-                      : "fa-solid fa-chevron-down"
+                      ? "fa-solid fa-chevron-down"
+                      : "fa-solid fa-chevron-up"
                   } ms-1`}
                 ></i>
               </button>
