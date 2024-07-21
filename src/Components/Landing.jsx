@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
+import "./Landing.css";
 import video from "../assets/Lnading-video.mp4";
 import video2 from "../assets/landing-video2.mp4";
 import Header from "./Header";
@@ -34,19 +35,37 @@ export default function Landing() {
           autoPlay
           muted
           loop
-          id="bg-video"
           className="position-absolute w-100 h-100"
           style={{
             top: "0",
             left: "0",
             objectFit: "cover",
-            zIndex: "-1",
+            zIndex: selectedCity === "Dubai" ? "-1" : "-2",
+            opacity: selectedCity === "Dubai" ? "1" : "0",
+            transition: "opacity 0.5s ease-in-out",
           }}
-          ref={videoRef}
         >
           <source src={video} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        <video
+          autoPlay
+          muted
+          loop
+          className="position-absolute w-100 h-100"
+          style={{
+            top: "0",
+            left: "0",
+            objectFit: "cover",
+            zIndex: selectedCity === "Abu Dhabi" ? "-1" : "-2",
+            opacity: selectedCity === "Abu Dhabi" ? "1" : "0",
+            transition: "opacity 0.5s ease-in-out",
+          }}
+        >
+          <source src={video2} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
         <Header />
 
         <div
