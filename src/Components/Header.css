@@ -25,35 +25,30 @@
 .navbar-nav .nav-link.active {
   color: #f77a40 !important;
 }
-.navbar-nav .nav-item::after{
+.navbar-nav .nav-item::after {
   content: "";
   position: absolute;
   bottom: 5px;
-  left: 5px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #f77a40;
   width: 0px;
   height: 2px;
   transition: all 0.3s;
 }
-.navbar-nav .nav-item:hover::after{
-  content: "";
-  position: absolute;
-  bottom: 5px;
-  left: 7px;
-  background-color: #f77a40;
+.navbar-nav .nav-item:hover::after {
   width: 50px;
-  height: 2px;
-  transition: all 0.3s;
 }
-.navbar-nav .nav-item:last-child:hover:after{
+.navbar-nav .nav-item:last-child:hover:after {
   width: 65px;
 }
 
-.navbar-nav .nav-item.active:after{
+.navbar-nav .nav-item.active:after {
   content: "";
   position: absolute;
   bottom: 5px;
-  left: 5px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #f77a40;
   width: 50px;
   height: 2px;
@@ -96,6 +91,17 @@
     color: #f77a40 !important;
     transition: all 0.3s;
   }
+  .navbar-nav .nav-item.active:after{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .navbar-nav .nav-item::after{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  /* .navbar-nav .nav-item:hover::after{
+    left:50% ;
+  } */
 }
 .navbar-collapse.show {
   transform: translateY(0);
@@ -117,7 +123,7 @@
   background-color: #f8f9fa !important;
   color: #f77a40 !important;
 }
-.nav-btn:hover{
+.nav-btn:hover {
   background-color: #cf490b !important;
   color: #fff;
   transition: all 0.3s;

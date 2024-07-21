@@ -141,7 +141,7 @@ export default function Header() {
           </ul>
 
           <ul className="navbar-nav m-2 mb-lg-0">
-            <li>
+            <li className="m-auto">
               <Link
                 className="btn text-white m-2 order-lg-last nav-btn"
                 to="/login"
