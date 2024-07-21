@@ -42,7 +42,7 @@ export default function Landing() {
             objectFit: "cover",
             zIndex: selectedCity === "Dubai" ? "-1" : "-2",
             opacity: selectedCity === "Dubai" ? "1" : "0",
-            transition: "opacity 0.5s ease-in-out",
+            transition: "opacity 1s ease-in-out",
           }}
         >
           <source src={video} type="video/mp4" />
@@ -59,7 +59,7 @@ export default function Landing() {
             objectFit: "cover",
             zIndex: selectedCity === "Abu Dhabi" ? "-1" : "-2",
             opacity: selectedCity === "Abu Dhabi" ? "1" : "0",
-            transition: "opacity 0.5s ease-in-out",
+            transition: "opacity 1s ease-in-out",
           }}
         >
           <source src={video2} type="video/mp4" />
