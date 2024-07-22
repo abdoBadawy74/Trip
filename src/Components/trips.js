@@ -27,7 +27,15 @@ export const trips = [
       images: [
         {
           id: 1,
-          url: "https://infinity-places.fivesolutions.net/uploads/trips/media_669cb2ca8aacd.png"
+          url: "https://picsum.photos/150"
+        },
+        {
+          id:2,
+          url: "https://picsum.photos/200"
+        },
+        {
+          id: 3,
+          url: "https://picsum.photos/100"
         }
       ]
     },
@@ -59,7 +67,11 @@ export const trips = [
       images: [
         {
           id: 2,
-          url: "../assets/download (1).jpeg"
+          url: "https://picsum.photos/300"
+        },
+        {
+          id: 3,
+          url: "https://picsum.photos/400"
         }
       ]
     },
@@ -91,7 +103,15 @@ export const trips = [
       images: [
         {
           id: 3,
-          url: "../assets/download (3).jpeg"
+          url: "https://picsum.photos/500"
+        },
+        {
+          id: 4,
+          url: "https://picsum.photos/600"
+        },
+        {
+          id: 5,
+          url: "https://picsum.photos/700"
         }
       ]
     },
@@ -123,7 +143,11 @@ export const trips = [
       images: [
         {
           id: 4,
-          url: "../assets/download (2).jpeg"
+          url: "https://picsum.photos/800"
+        },
+        {
+          id: 5,
+          url: "https://picsum.photos/900"
         }
       ]
     },
@@ -155,7 +179,15 @@ export const trips = [
       images: [
         {
           id: 5,
-          url: "../assets/download (4).jpeg"
+          url: "https://picsum.photos/1000"
+        },
+        {
+          id: 6,
+          url: "https://picsum.photos/1100"
+        },
+        {
+          id: 7,
+          url: "https://picsum.photos/1200"
         }
       ]
     }
