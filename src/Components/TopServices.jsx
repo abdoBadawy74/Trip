@@ -1,24 +1,40 @@
 import React, { useEffect, useState } from "react";
 import "./TopServices.css";
-import { trips } from "./trips";
 import Book from "../assets/Book.svg";
 import Bookarrow from "../assets/Bookarrow.svg";
 import { Link } from "react-router-dom";
 import ellipse from "../assets/topelipse1.svg";
 import ellipse2 from "../assets/topelipse2.svg";
+import axios from "axios";
+import { BASE } from "./../API/Api";
 
 export default function TopServices() {
+  const [topServices, setTopServices] = useState([]);
   const [state, setState] = useState("Dubai");
-  const [category, setCategory] = useState("tours");
+  const [category, setCategory] = useState("tour");
   const [filteredTrips, setFilteredTrips] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // getting data from api
+  useEffect(() => {
+    axios
+      .get(`${BASE}/trips/top-booked`)
+      .then((res) => {
+        console.log(res.data);
+        setTopServices(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   useEffect(() => {
     filterTrips();
-  }, [state, category]);
+  }, [state, category, topServices]);
+  console.log(topServices);
 
   const filterTrips = () => {
-    let stateTrips = trips.filter((trip) => trip.state.name === state);
+    let stateTrips = topServices.filter((trip) => trip.state.name === state);
     let categoryTrips = stateTrips.filter(
       (trip) => trip.trip_category.name === category
     );
@@ -114,9 +130,9 @@ export default function TopServices() {
               className="cat"
               style={{
                 cursor: "pointer",
-                color: category === "tours" ? "#000" : "",
+                color: category === "tour" ? "#000" : "",
               }}
-              onClick={() => setCategory("tours")}
+              onClick={() => setCategory("tour")}
             >
               Tours
             </span>
@@ -124,9 +140,9 @@ export default function TopServices() {
               className="cat"
               style={{
                 cursor: "pointer",
-                color: category === "tickets" ? "#000" : "",
+                color: category === "ticket" ? "#000" : "",
               }}
-              onClick={() => setCategory("tickets")}
+              onClick={() => setCategory("ticket")}
             >
               Tickets
             </span>
@@ -148,7 +164,7 @@ export default function TopServices() {
                 <div
                   className="d-flex col-12 col-md-6 flex-column gap-5 justify-content-between"
                   style={{
-                    height: "400px",
+                    minHeight: "400px",
                   }}
                 >
                   <div>
