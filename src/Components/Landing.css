@@ -64,3 +64,20 @@ li.AbuDhabi-active::after {
 .hide {
   display: none;
 }
+
+@media (max-width:992px) {
+  .dubai-content h1,
+  .abuDhabi-content h1 {
+    font-size: 70px !important;
+    padding: 0 10px !important;
+
+  }
+  .icons .icon{
+    width: 100px !important;
+    height: 100px !important;
+  }
+  .abuDhabi-content .form
+ {
+    width: 90% !important;
+  }
+}
