@@ -3,15 +3,53 @@ import "./Hotels.css";
 import { Link } from "react-router-dom";
 import hotel_img from "../assets/hotel-img.jpeg";
 import locationIcon from "../assets/location-icon.svg";
+import elipse1 from "../assets/hotel-elipse1.svg";
+import elipse2 from "../assets/hotel-elipse2.svg";
 
 export default function Hotels() {
   return (
     <div
-      className="hotels py-5"
+      className="hotels py-5 position-relative"
       style={{
         backgroundColor: "#42A7C31A",
       }}
     >
+      <img
+        src={elipse1}
+        className="elipse1 position-absolute d-md-block d-none"
+        alt="elipse1"
+        style={{
+          right: "25%",
+          top: "10px",
+        }}
+      />
+      <img
+        src={elipse2}
+        className="elipse2 position-absolute"
+        alt="elipse2"
+        style={{
+          right: "34%",
+          top: "96px",
+        }}
+      />
+      <img
+        src={elipse2}
+        className="elipse2 position-absolute"
+        alt="elipse2"
+        style={{
+          right: "30px",
+          top: "35%",
+        }}
+      />
+      <img
+        src={elipse2}
+        className="elipse2 position-absolute d-none d-sm-block"
+        alt="elipse2"
+        style={{
+          left: "30px",
+          bottom: "80px",
+        }}
+      />
       <div className="container">
         <h3
           className="fw-bold text-uppercase"
@@ -42,7 +80,7 @@ export default function Hotels() {
             all hotels
           </Link>
         </div>
-        <div className="content d-flex gap-2 my-3">
+        <div className="content d-flex flex-wrap flex-md-nowrap gap-4 my-3 justify-content-center">
           <div className="box col-md-4 bg-white p-2 rounded">
             <div className="image p-2">
               <img src={hotel_img} className="w-100 rounded" alt="hotel" />
