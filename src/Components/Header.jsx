@@ -19,7 +19,7 @@ export default function Header() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-transparent p-0  m-0">
+    <nav className="navbar navbar-expand-lg b-orange bgi-transparent p-0  m-0 ">
       <div className="container-fluid flex-nowrap px-4 align-items-center">
         <Link className="navbar-brand" to="/">
           <span className="fs-2 bebas-neue-bold" style={{
@@ -27,9 +27,7 @@ export default function Header() {
             textTransform: "uppercase",
           }}>
             Infinity
-            <span style={{
-              color: "#F77A40",
-            }}>
+            <span className="b-rosas">
               palc<span style={{
                 color: "#FFF",
               }}>e</span>s
@@ -143,9 +141,9 @@ export default function Header() {
           <ul className="navbar-nav m-2 mb-lg-0">
             <li className="m-auto">
               <Link
-                className="btn text-white m-2 order-lg-last nav-btn"
+                className="btn m-2 order-lg-last nav-btn"
                 to="/login"
-                style={{ backgroundColor: "#F77A40" }}
+             
               >
                 Contact Us
               </Link>
