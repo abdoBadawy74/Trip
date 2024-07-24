@@ -6,13 +6,13 @@ export default function Fields() {
   return (
     <div>
       <div
-        className="d-flex p-5 justify-content-between align-items-center position-relative"
+        className="d-flex p-5 flex-wrap justify-content-center justify-content-md-between align-items-center position-relative"
         style={{
           backgroundImage: `url(${bg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          height: "300px",
+          
         }}
       >
         <div
@@ -67,7 +67,7 @@ export default function Fields() {
           </p>
         </div>
         <div
-          className="mx-5"
+          className="mx-5 d-flex flex-column align-items-center justify-content-center"
           style={{
             zIndex: "1",
           }}
@@ -75,7 +75,7 @@ export default function Fields() {
           <img
             src={arrow}
             alt="arrow-right"
-            className="mb-4"
+            className="mb-2"
             style={{
               cursor: "pointer",
             }}

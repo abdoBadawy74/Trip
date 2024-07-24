@@ -5,6 +5,7 @@ import TopServices from './Components/TopServices'
 import Insights from './Components/Insights'
 import Hotels from './Components/Hotels'
 import Fields from './Components/Fields'
+import Testimonials from './Components/Testimonials'
 
 export default function LandingPage() {
   return (
@@ -15,6 +16,7 @@ export default function LandingPage() {
         <Insights/>
         <Hotels/>
         <Fields/>
+        <Testimonials/>
     </div>
   )
 }

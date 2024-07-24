@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./Hotels.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE } from "../API/Api";
