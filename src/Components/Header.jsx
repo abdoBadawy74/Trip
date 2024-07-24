@@ -17,21 +17,38 @@ export default function Header() {
     // For example, can use local storage, context, or a state management library
   };
 
-  // getting active link
   useEffect(() => {
-    if (window.location.pathname === "/hotels") {
-      document.querySelector(".nav-link.active").classList.remove("active");
-      document.querySelector('a[href="/hotels"]').classList.add("active");
-    } else if (
-      window.location.pathname === "/home" ||
-      window.location.pathname === "/"
-    ) {
-      document.querySelector(".nav-link.active").classList.remove("active");
-      document.querySelector('a[href="/home"]').classList.add("active");
-    } else if (window.location.pathname === "travels") {
-      document.querySelector(".nav-link.active").classList.remove("active");
-      document.querySelector('a[href="/travels"]').classList.add("active");
-    }
+    const updateActiveLink = () => {
+      // Get the hash fragment, removing the leading '#' character
+      const hash = window.location.hash.substring(1);
+
+      // Clear the current active link
+      const activeLink = document.querySelector(".nav-link.active");
+      if (activeLink) {
+        activeLink.classList.remove("active");
+      }
+      console.log(hash);
+
+      // Add the 'active' class to the new active link based on the hash
+      if (hash === "/hotels") {
+        document.querySelector('a[href="#/hotels"]').classList.add("active");
+      } else if (hash === "/home" || hash === "") {
+        document.querySelector('a[href="#/home"]').classList.add("active");
+      } else if (hash === "/travels") {
+        document.querySelector('a[href="#/travels"]').classList.add("active");
+      }
+    };
+
+    // Update active link on component mount
+    updateActiveLink();
+
+    // Update active link on hash change
+    window.addEventListener("hashchange", updateActiveLink);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("hashchange", updateActiveLink);
+    };
   }, []);
 
   return (
@@ -46,9 +63,12 @@ export default function Header() {
             }}
           >
             Infinity
-            <span className="grey" style={{
-              color:"#F77A40"
-            }}>
+            <span
+              className="grey"
+              style={{
+                color: "#F77A40",
+              }}
+            >
               palc
               <span
                 style={{
