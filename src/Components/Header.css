@@ -123,8 +123,22 @@
   background-color: #f8f9fa !important;
   color: #f77a40 !important;
 }
+
 .nav-btn:hover {
   background-color: #cf490b !important;
   color: #fff;
   transition: all 0.3s;
 }
+
+/* my work  */
+nav .b-rosas{
+  color: #F77A40;
+}
+nav .nav-btn {
+  background-color: #F77A40 ;
+  color: #fff;
+}
+/* .navbar.bgi-transparent {
+  --bs-bg-opacity: 1;
+  background-color: transparent !important;
+} */
