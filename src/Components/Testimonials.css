@@ -1,14 +1,27 @@
-.testimonials .box {
-  transition: opacity 0.5s ease-in-out;
+.testimonials {
+    margin-bottom: 40px !important;
 }
-.testimonials .box.inactive {
-  opacity: 0;
-}
-.testimonials .box.active {
-  opacity: 1;
-}
-@media (max-width: 600px) {
-  .testimonials .box {
-    width: 300px !important ;
+ .testimonials .box {
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    transform: scale(0.8) rotate(0deg);
   }
-}
+  
+  .testimonials .box.active {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    z-index: 2;
+  }
+  
+  .testimonials .box.next {
+    opacity: 0.5;
+    transform: translate(15%,30%) scale(0.9) rotate(0deg);
+    z-index: 1;
+  }
+  
+  .testimonials .box.inactive {
+    opacity: 0;
+    transform: scale(0.8) rotate(0deg);
+    z-index: 0;
+  }
+  
