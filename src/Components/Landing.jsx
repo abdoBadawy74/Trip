@@ -27,7 +27,7 @@ export default function Landing() {
       <div
         className="landing-section position-relative w-100"
         style={{
-          minHeight: "100vh",
+          height: "100vh",
           overflow: "hidden",
         }}
       >
@@ -82,6 +82,7 @@ export default function Landing() {
               padding: "5px",
               width: "300px",
               left: "-130px",
+              zIndex:444
             }}
           >
             <ul className="p-0 d-flex  ">
