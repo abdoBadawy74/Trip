@@ -82,7 +82,6 @@ export default function Landing() {
               padding: "5px",
               width: "300px",
               left: "-130px",
-              zIndex: "4335",
             }}
           >
             <ul className="p-0 d-flex  ">

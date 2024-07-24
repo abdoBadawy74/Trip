@@ -13,19 +13,19 @@
   font-weight: 700;
   text-transform: uppercase;
 }
-@media (max-width:992px) {
-    .insights h2::before{
-        font-size: 150px;
-        top: -50px;
-        letter-spacing: 15px;
-    }
+@media (max-width: 992px) {
+  .insights h2::before {
+    font-size: 150px;
+    top: -50px;
+    letter-spacing: 15px;
+  }
 }
-@media (max-width:767px) {
-    .insights h2::before{
-        font-size: 70px;
-        top: -15px;
-        text-align: center;
-    
-        letter-spacing: 15px;
-    }
+@media (max-width: 767px) {
+  .insights h2::before {
+    font-size: 70px;
+    top: -15px;
+    text-align: center;
+
+    letter-spacing: 15px;
+  }
 }

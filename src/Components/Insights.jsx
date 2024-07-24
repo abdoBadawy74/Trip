@@ -60,14 +60,14 @@ export default function Insights() {
               Place Name
             </div>
           </div>
-          
-          
-          
-          <div className="position-relative rounded overflow-hidden"
+
+          <div
+            className="position-relative rounded overflow-hidden"
             style={{
               height: "40%",
-            }}>
-          <img
+            }}
+          >
+            <img
               src={img2}
               alt="insight-img"
               style={{
@@ -121,15 +121,15 @@ export default function Insights() {
               Place Name
             </div>
           </div>
-          
-          
-          
-          <div className="position-relative rounded overflow-hidden"
+
+          <div
+            className="position-relative rounded overflow-hidden"
             style={{
               height: "33%",
-            }}>
-          <img
-              src={img2}
+            }}
+          >
+            <img
+              src={img4}
               alt="insight-img"
               style={{
                 width: "100%",
@@ -149,11 +149,13 @@ export default function Insights() {
             </div>
           </div>
 
-          <div className="position-relative rounded overflow-hidden"
+          <div
+            className="position-relative rounded overflow-hidden"
             style={{
               height: "45%",
-            }}>
-          <img
+            }}
+          >
+            <img
               src={img5}
               alt="insight-img"
               style={{
@@ -173,9 +175,7 @@ export default function Insights() {
               Place Name
             </div>
           </div>
-
         </div>
-
 
         <div
           className="col-11 col-md-6 col-lg-3  d-flex flex-column gap-2 py-2"
@@ -209,14 +209,14 @@ export default function Insights() {
               Place Name
             </div>
           </div>
-          
-          
-          
-          <div className="position-relative rounded overflow-hidden"
+
+          <div
+            className="position-relative rounded overflow-hidden"
             style={{
               height: "70%",
-            }}>
-          <img
+            }}
+          >
+            <img
               src={img7}
               alt="insight-img"
               style={{
@@ -237,11 +237,6 @@ export default function Insights() {
             </div>
           </div>
         </div>
-
-
-
-
-
       </div>
     </div>
   );
