@@ -2,3 +2,39 @@
 html {
   scroll-behavior: smooth;
 }
+/* 
+
+my work 
+
+*/
+
+.hotels .navbar.b-orange{
+  background-color: #F77A40;
+}
+.hotels .b-rosas  {
+  color: #D9D9D9;
+}
+.hotels .navbar-nav .nav-link {
+  padding: 10px 0;
+  color:  #D9D9D9;
+}
+
+.hotels .navbar-nav .nav-link.active {
+  color: #fff !important;
+}
+.hotels .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+.hotels nav .nav-btn {
+  background-color: #fff;
+  color: #F77A40; 
+}
+.hotels nav .nav-btn:hover {
+  color: #fff; 
+}
+@media (max-width: 992px) {
+  .hotels nav .nav-btn {
+    background-color: #F77A40;
+    color: #fff; 
+  }
+}
