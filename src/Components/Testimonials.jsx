@@ -47,8 +47,8 @@ export default function Testimonials() {
   };
 
   return (
-    <div className="testimonials my-5 container p-4 d-flex justify-content-center justify-content-md-between flex-wrap gap-4">
-      <div className="position-relative w-50">
+    <div className="testimonials container p-4 d-flex justify-content-center justify-content-md-between flex-wrap gap-4 ">
+      <div className="text position-relative w-50">
         <img
           src={quote}
           alt="quote"
@@ -90,9 +90,6 @@ export default function Testimonials() {
       </div>
       <div
         className="slider position-relative flex-grow-1 "
-        style={{
-          marginBottom: "50px",
-        }}
       >
         {testimonialsData.map((testimonial, index) => (
           <div

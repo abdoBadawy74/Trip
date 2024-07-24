@@ -46,7 +46,9 @@ export default function Header() {
             }}
           >
             Infinity
-            <span className="grey">
+            <span className="grey" style={{
+              color:"#F77A40"
+            }}>
               palc
               <span
                 style={{

@@ -6,6 +6,7 @@ import locationIcon from "../assets/location-icon.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { motion } from "framer-motion";
 import Header from "./Header";
+import Footer from "./Footer";
 
 function Hotels() {
   const [hotels, setHotels] = useState([]);
@@ -167,6 +168,7 @@ function Hotels() {
           ))}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
