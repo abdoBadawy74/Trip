@@ -286,7 +286,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import "./Landing.css";
-import video from "../assets/Lnading-video.mp4";
+import video from "../assets/landing-video1.mp4";
 import video2 from "../assets/landing-video2.mp4";
 import Header from "./Header";
 import transfer from "../assets/transfer.svg";
