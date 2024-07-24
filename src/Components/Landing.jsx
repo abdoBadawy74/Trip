@@ -300,16 +300,14 @@ export default function Landing() {
   const videoRef2 = useRef(null);
 
   useEffect(() => {
-    const handlePlay = (videoRef) => {
-      videoRef.current.play().catch((error) => {
-        console.log("Error playing video: ", error);
-      });
-    };
-
     if (selectedCity === "Dubai" && videoRef1.current) {
-      handlePlay(videoRef1);
+      videoRef1.current.play().catch((error) => {
+        console.log("Error playing video 1: ", error);
+      });
     } else if (selectedCity === "Abu Dhabi" && videoRef2.current) {
-      handlePlay(videoRef2);
+      videoRef2.current.play().catch((error) => {
+        console.log("Error playing video 2: ", error);
+      });
     }
   }, [selectedCity]);
 
@@ -338,7 +336,7 @@ export default function Landing() {
             top: "0",
             left: "0",
             objectFit: "cover",
-            zIndex: selectedCity === "Dubai" ? "-1" : "-2",
+            zIndex: selectedCity === "Dubai" ? "1" : "0",
             opacity: selectedCity === "Dubai" ? "1" : "0",
             transition: "opacity 1s ease-in-out",
           }}
@@ -357,7 +355,7 @@ export default function Landing() {
             top: "0",
             left: "0",
             objectFit: "cover",
-            zIndex: selectedCity === "Abu Dhabi" ? "-1" : "-2",
+            zIndex: selectedCity === "Abu Dhabi" ? "1" : "0",
             opacity: selectedCity === "Abu Dhabi" ? "1" : "0",
             transition: "opacity 1s ease-in-out",
           }}
@@ -371,7 +369,7 @@ export default function Landing() {
         <div
           className="landing-content position-relative text-white"
           style={{
-            zIndex: "1",
+            zIndex: "2",
             height: "100%",
           }}
         >
