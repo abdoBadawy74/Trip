@@ -22,7 +22,7 @@
   color: #fff;
 }
 
-.navbar-nav .nav-link.active {
+.landing-section .navbar-nav .nav-link.active {
   color: #f77a40 !important;
 }
 .navbar-nav .nav-item::after {
@@ -43,7 +43,7 @@
   width: 65px;
 }
 
-.navbar-nav .nav-item.active:after {
+.navbar-nav .active:after {
   content: "";
   position: absolute;
   bottom: 5px;

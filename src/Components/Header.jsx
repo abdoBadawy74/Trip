@@ -17,6 +17,23 @@ export default function Header() {
     // For example, can use local storage, context, or a state management library
   };
 
+  // getting active link
+  useEffect(() => {
+    if (window.location.pathname === "/hotels") {
+      document.querySelector(".nav-link.active").classList.remove("active");
+      document.querySelector('a[href="/hotels"]').classList.add("active");
+    } else if (
+      window.location.pathname === "/home" ||
+      window.location.pathname === "/"
+    ) {
+      document.querySelector(".nav-link.active").classList.remove("active");
+      document.querySelector('a[href="/home"]').classList.add("active");
+    } else if (window.location.pathname === "travels") {
+      document.querySelector(".nav-link.active").classList.remove("active");
+      document.querySelector('a[href="/travels"]').classList.add("active");
+    }
+  }, []);
+
   return (
     <nav className="navbar navbar-expand-lg b-orange bgi-transparent p-0  m-0 ">
       <div className="container-fluid flex-nowrap px-4 align-items-center">
@@ -29,7 +46,7 @@ export default function Header() {
             }}
           >
             Infinity
-            <span className="b-rosas">
+            <span className="grey">
               palc
               <span
                 style={{
@@ -124,10 +141,10 @@ export default function Header() {
               justifyContent: "center",
             }}
           >
-            <li className="nav-item active">
-              <NavLink className="nav-link active" to="/home">
+            <li className="nav-item">
+              <Link className="nav-link active" to="/home">
                 Home
-              </NavLink>
+              </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/hotels">

@@ -7,7 +7,7 @@ import elipse from "../assets/aboutElipse.svg";
 export default function About() {
   return (
     <>
-      <div className="position-relative p-4">
+      <div className="position-relative p-4" id="about">
         <img src={elipse} alt="elipse" className="d-none" />
         <h4
           className="text-center fw-bold my-2"
@@ -42,7 +42,6 @@ export default function About() {
         </p>
 
         <div className="offers my-4 d-flex justify-content-center align-items-center flex-wrap gap-5">
-          
           <div
             className="box text-center my-3 p-4"
             style={{
@@ -58,9 +57,11 @@ export default function About() {
             >
               All You Needs
             </h3>
-            <p style={{
+            <p
+              style={{
                 color: "#8A8A8A",
-            }}>
+              }}
+            >
               From flights, stays, to sights, just count on our complete
               products.
             </p>
@@ -81,9 +82,11 @@ export default function About() {
             >
               Flexible Booking
             </h3>
-            <p style={{
+            <p
+              style={{
                 color: "#8A8A8A",
-            }}>
+              }}
+            >
               From flights, stays, to sights, just count on our complete
               products.
             </p>
@@ -104,15 +107,15 @@ export default function About() {
             >
               Secure Payment
             </h3>
-            <p style={{
+            <p
+              style={{
                 color: "#8A8A8A",
-            }}>
+              }}
+            >
               From flights, stays, to sights, just count on our complete
               products.
             </p>
           </div>
-
-          
         </div>
       </div>
     </>

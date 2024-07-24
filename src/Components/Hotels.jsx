@@ -41,6 +41,7 @@ export default function Hotels() {
       style={{
         backgroundColor: "#42A7C31A",
       }}
+      id="hotels"
     >
       <img
         src={elipse1}
@@ -99,11 +100,12 @@ export default function Hotels() {
             slogan here 5 words
           </h2>
           <Link
-            to=""
-            className="text-uppercase fs-5"
+            
+            className="text-uppercase fs-5 "
             style={{
               color: "#42A7C3",
             }}
+            to={"/hotels"}
           >
             all hotels
           </Link>
