@@ -64,3 +64,8 @@ li.AbuDhabi-active::after {
 .hide {
   display: none;
 }
+@media (max-width:992px) {
+  .landing-section{
+    height: 140vh !important;
+  }
+}
