@@ -7,16 +7,10 @@ import Walaa from "./Components/Walaa";
 function App() {
   return (
     <div className="App">
-
-<div class="hotels">
-<Header/>
-<Walaa/>
-</div>
-
-
-
-
-
+      <div className="hotels">
+        <Header />
+        <Walaa />
+      </div>
 
       {/* <LandingPage /> */}
     </div>
