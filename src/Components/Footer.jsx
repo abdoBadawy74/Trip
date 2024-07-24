@@ -5,6 +5,7 @@ import icon3 from "../assets/instgram-icon.svg";
 import icon4 from "../assets/facebook-icon.svg";
 import icon5 from "../assets/telegram-icon.svg";
 import arrowPlane from "../assets/Plane.svg";
+import "./Footer.css";
 
 export default function Footer() {
   return (
@@ -14,8 +15,9 @@ export default function Footer() {
         backgroundColor: "#42A7C3",
         padding: "50px 50px 10px 50px",
       }}
-      className="position-relative overflow-hidden"
+      className="position-relative overflow-hidden footer"
     >
+      
       <img
         src={arrowPlane}
         alt="arrowPlane"
@@ -87,7 +89,7 @@ export default function Footer() {
             <li>Contact us</li>
           </ul>
 
-          <div className="d-flex gap-2">
+          <div className="d-flex gap-2 social">
             <img
               src={icon1}
               alt="icon"
@@ -126,7 +128,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="d-flex justify-content-between flex-wrap mt-2">
-          <span className="text-white">
+          <span className="text-white copy">
             Copyright ® 2024 InfinityPlaces All rights Perceived
           </span>
           <div

@@ -1,12 +1,13 @@
 import React from "react";
 import arrow from "../assets/arrow-right.svg";
 import bg from "../assets/fields-bg.jpeg";
+import "./Fields.css";
 
 export default function Fields() {
   return (
     <div>
       <div
-        className="d-flex p-5 flex-wrap justify-content-center justify-content-md-between align-items-center position-relative"
+        className="d-flex p-5 flex-wrap justify-content-center justify-content-md-between align-items-center position-relative fields"
         style={{
           backgroundImage: `url(${bg})`,
           backgroundSize: "cover",

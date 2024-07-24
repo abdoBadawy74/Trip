@@ -1,0 +1,8 @@
+@media (max-width:992px) {
+    .fields {
+        padding: 10px !important;
+    }
+    .fields h2{
+        font-size: 35px !important;
+    }
+}

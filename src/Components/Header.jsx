@@ -52,7 +52,12 @@ export default function Header() {
   }, []);
 
   return (
-    <nav className="navbar navbar-expand-lg b-orange bgi-transparent p-0  m-0 ">
+    <nav
+      className="navbar navbar-expand-lg b-orange bgi-transparent p-0  m-0 position-relative"
+      style={{
+        zIndex: 22,
+      }}
+    >
       <div className="container-fluid flex-nowrap px-4 align-items-center">
         <Link className="navbar-brand" to="/">
           <span
@@ -83,16 +88,16 @@ export default function Header() {
         </Link>
 
         <button
-          className="navbar-toggler"
+          className="navbar-toggler "
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-          style={{ width: "fit-content" }}
+          style={{ width: "fit-content", borderColor: "#EEE" }}
         >
-          <span className="navbar-toggler-icon"></span>
+          <i className="fa-solid fa-bars text-light"></i>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">

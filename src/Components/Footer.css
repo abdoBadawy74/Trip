@@ -1,0 +1,36 @@
+@media (max-width: 992px) {
+    .footer{
+        padding: 20px !important;
+    }
+    .footer .container {
+        padding: 20px !important;
+    }
+    .footer h3 {
+        font-size: 35px !important;
+    }
+    .footer .container:nth-child(3){
+        position: relative !important;
+        z-index: 3333 !important;
+    }
+    .footer .container:nth-child(3) h2 {
+        font-size: 35px !important;
+        margin-top: 0px !important;
+    }
+    .footer ul {
+        gap: 10px !important;
+        justify-content: center !important;
+        margin: 10px auto !important;
+    }
+    .footer .social{
+        margin: 10px auto !important;
+        gap: 10px !important;
+    }
+    .footer span{
+        font-size: 14px;
+        text-align: center;
+    }
+    .footer div:last-child{
+        justify-content: center !important;
+        margin-top: 10px !important;
+    }
+}

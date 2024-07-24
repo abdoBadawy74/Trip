@@ -172,7 +172,7 @@ export default function TopServices() {
                       {filteredTrips[0].place.name}
                     </h2>
                     <p
-                      className="w-75"
+                      className="w-75 desc"
                       style={{
                         color: "#1F1F1F",
                       }}

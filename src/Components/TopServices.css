@@ -2,3 +2,25 @@
     color: black !important;
     transition: 0.3s ease-in-out;
 }
+@media  (max-width: 1300px) {
+    #travels img:nth-child(2){
+        right: -40px !important;
+    }
+    #travels img:nth-child(1){
+        top: 70px !important;
+    }
+}
+@media screen and (max-width: 1024px) {
+    #travels img:nth-child(2){
+        display: none !important;
+    }
+    
+}
+@media  (max-width: 767px) {
+    #travels img:nth-child(1){
+        top: 120px !important;
+    }
+    #travels .desc{
+        width: 100% !important;
+    }
+}
