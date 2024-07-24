@@ -4,6 +4,7 @@ import About from './Components/About'
 import TopServices from './Components/TopServices'
 import Insights from './Components/Insights'
 import Hotels from './Components/Hotels'
+import Fields from './Components/Fields'
 
 export default function LandingPage() {
   return (
@@ -13,6 +14,7 @@ export default function LandingPage() {
         <TopServices/>
         <Insights/>
         <Hotels/>
+        <Fields/>
     </div>
   )
 }
