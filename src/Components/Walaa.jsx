@@ -1,138 +1,3 @@
-// import { useEffect, useState } from "react";
-// import "./Walaa.css";
-// import { BASE } from '/src/API/Api.js';
-// import locationIcon from "../assets/location-icon.svg";
-
-// //  import { motion } from "framer-motion"
-
-// function Walaa() {
-
-//     console.log(BASE);
-//     const[products , setproducts] = useState([]);
-
-//     // const[Catogery , setCatogery] = useState([]);
-
-//     const getdata = () => {
-//         axios.get(`${BASE}/hotels`).then((res)=>{
-//             setproducts(data);
-//             console.log(res.data);
-//         }).catch((err)=>{
-//             console.log(err)
-//         })
-//     }
-
-//     // const getdata = () => {
-//     //     axios.get(`${BASE}/hotels`).then((res)=>{
-//     //         setproducts(data);
-//     //         console.log(res.data);
-//     //     }).catch((err)=>{
-//     //         console.log(err)
-//     //     })
-//     // }
-//     // useEffect(()=>{
-//     //     axios.get(`${BASE}/hotels`).then((res)=>{
-//     //         setproducts(data);
-//     //         console.log(res.data);
-//     //     }).catch((err)=>{
-//     //         console.log(err)
-//     //     })
-
-//     // })
-//     useEffect (()=> {
-//         getdata();
-//  },[])
-
-//     return (
-
-//         <>
-//     <div className="container">
-
-// {/* {Catogery.map((cat) =>{
-//             return(
-//           <motion.button
-
-//               layout
-//               animate={{ transform: "scale(1)" }}
-//               initial={{ transform: "scale(0)" }}
-//               transition={{ type: "spring" ,damping:8}}
-//                key={cat} onClick={() => {
-//                 getproductcatogry(cat)
-//               }}
-
-//               className="btn btn-primary namm">  {cat}</motion.button>
-
-//             );
-//         }) } */}
-
-// <div className="row">
-
-// <p>uuuu</p>
-
-// {products.map((product, index) => (
-//                 <div key={index}>
-
-//                     {/* <p>{product.data[0].description}</p>
-//                     <p>Location: {product.location}</p>
-//                     <p>Rating: {product.rating}</p>
-//                     <p>Price: {product.ticket_price_from} - {product.ticket_price_to}</p>
-//                     <div>
-//                         {product.images.map(image => (
-//                             <img key={image.id} src={image.url} alt={product.name} />
-//                         ))}
-//                     </div> */}
-//     <div className="content d-flex flex-wrap flex-md-nowrap gap-4 my-3 justify-content-center">
-//           <div className="box col-md-4 bg-white p-2 rounded">
-//             <div className="image p-2">
-//                     {product.data[index].images[index].map(image => (
-//                             <img key={image.id} src={image.url} alt={product.name} className="w-100 rounded"/>
-//                         ))}
-//             </div>
-//             <div className="text px-2">
-//               <div className="d-flex align-items-center">
-//                 <h3 className="fw-bold">{product.data[index].name}</h3>
-//                 <p
-//                   className="ms-auto fs-2 fw-bold"
-//                   style={{
-//                     color: "#F77A40",
-//                   }}
-//                 >
-//                   45 DH
-//                 </p>
-//               </div>
-//               <p
-//                 style={{
-//                   color: "#6B7A85",
-//                 }}
-//               >
-//                 <img src={locationIcon} className="px-1" alt="location" />
-//                 {product.data[index].location}
-//               </p>
-//               <div className="rating">
-//                 <div>
-//                   <i className="fa-solid fa-star text-warning mx-1"></i>
-//                   <i className="fa-solid fa-star text-warning mx-1"></i>
-//                   <i className="fa-solid fa-star text-warning mx-1"></i>
-//                   <i className="fa-solid fa-star text-warning mx-1"></i>
-//                   <i className="fa-solid fa-star mx-1 text-secondary"></i>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-
-//         </div>
-
-//                 </div>
-//             ))}
-
-//   </div>
-//   </div>
-//         </>
-//     )
-
-// }
-
-// export default Walaa;
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Walaa.css";
@@ -140,22 +5,23 @@ import { BASE } from "/src/API/Api.js";
 import locationIcon from "../assets/location-icon.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { motion } from "framer-motion";
+import Header from "./Header";
 
 function Walaa() {
-  const [products, setProducts] = useState([]);
+  const [hotels, setHotels] = useState([]);
   const [state, setState] = useState("Abu Dhabi");
   const [searchState, setSearchState] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredHotels, setfilteredHotels] = useState([]);
 
   const getData = () => {
     axios
       .get(`${BASE}/hotels`)
       .then((res) => {
-        setProducts(res.data.data);
+        setHotels(res.data.data);
         const initialFiltered = res.data.data.filter(
-          (product) => product.state.name === state
+          (hotel) => hotel.state.name === state
         );
-        setFilteredProducts(initialFiltered);
+        setfilteredHotels(initialFiltered);
       })
       .catch((err) => {
         console.log(err);
@@ -167,26 +33,42 @@ function Walaa() {
   }, []);
 
   useEffect(() => {
-    const filtered = products.filter((product) => product.state.name === state);
-    setFilteredProducts(filtered);
-  }, [state, products]);
+    const filtered = hotels.filter((hotel) => hotel.state.name === state);
+    setfilteredHotels(filtered);
+  }, [state, hotels]);
 
   const handleSearch = () => {
     if (searchState === "") {
-      const filtered = products.filter(
-        (product) => product.state.name === state
-      );
-      setFilteredProducts(filtered);
+      const filtered = hotels.filter((hotel) => hotel.state.name === state);
+      setfilteredHotels(filtered);
     } else {
-      const filtered = products.filter((product) =>
-        product.state.name.toLowerCase().includes(searchState.toLowerCase())
+      const filtered = hotels.filter((hotel) =>
+        hotel.state.name.toLowerCase().includes(searchState.toLowerCase())
       );
-      setFilteredProducts(filtered);
+      setfilteredHotels(filtered);
     }
+  };
+
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <i
+          key={i}
+          className={`fa-solid fa-star mx-1 ${
+            i <= rating ? "text-warning" : "text-secondary"
+          }`}
+        ></i>
+      );
+    }
+    return stars;
   };
 
   return (
     <div className="walaa">
+      <div className="hotels">
+        <Header />
+      </div>
       <div className="container">
         <div className="row">
           <div className="d-flex justify-content-between align-items-start mb-4 mt-4 pt-4">
@@ -230,8 +112,6 @@ function Walaa() {
               placeholder="Search by state"
               style={{
                 backgroundColor: " #F8F9F9",
-                border: "none",
-                outline: "none",
               }}
               value={searchState}
               onChange={(e) => setSearchState(e.target.value)}
@@ -245,7 +125,7 @@ function Walaa() {
             </button>
           </div>
 
-          {filteredProducts.map((product, index) => (
+          {filteredHotels.map((hotel, index) => (
             <motion.div
               layout
               animate={{ transform: "scale(1)" }}
@@ -254,19 +134,19 @@ function Walaa() {
               className="col-md-4 pt-4"
               key={index}
             >
-              <div className="box bg-white p-2 rounded">
+              <div className="box bg-white rounded shadow p-3">
                 <div className="image p-2">
-                  {product.images.length > 0 && (
+                  {hotel.images.length > 0 && (
                     <img
-                      src={product.images[0].url}
-                      alt={product.name}
+                      src={hotel.images[0].url}
+                      alt={hotel.name}
                       className="w-100 rounded"
                     />
                   )}
                 </div>
                 <div className="text px-2">
                   <div className="d-flex align-items-center">
-                    <h3 className="fw-bold">{product.name}</h3>
+                    <h3 className="fw-bold">{hotel.name}</h3>
                     <p
                       className="ms-auto fs-2 fw-bold"
                       style={{ color: "#F77A40" }}
@@ -276,21 +156,11 @@ function Walaa() {
                   </div>
                   <p style={{ color: "#6B7A85" }}>
                     <img src={locationIcon} className="px-1" alt="location" />
-                    {product.location}
+                    {hotel.location}
                   </p>
-                  <div className="rating">
-                    <div>
-                      {[...Array(5)].map((star, i) => (
-                        <i
-                          key={i}
-                          className={`fa-solid fa-star ${
-                            i < product.rating
-                              ? "text-warning"
-                              : "text-secondary"
-                          } mx-1`}
-                        ></i>
-                      ))}
-                    </div>
+                  <div className="rating d-flex fw-bold fs-6 gap-1 align-items-center">
+                    {renderStars(hotel.rating)}
+                    {hotel.rating} ({hotel.number_of_ratings})
                   </div>
                 </div>
               </div>

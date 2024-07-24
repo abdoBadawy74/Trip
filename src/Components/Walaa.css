@@ -1,16 +1,60 @@
-.walaa .box {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 
-        0px 2.46px 4.19px 0px #00000001,
-        0px 10.84px 8.67px 0px #00000002,
-        0px 26.6px 17.29px 0px #00000003,
-        0px 51.23px 33.89px 0px #00000003,
-        0px 86.21px 62.32px 0px #00000004,
-        0px 133.01px 106.41px 0px #00000005;
+.hotels .dropdown-item {
+  color: #000 !important;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
 }
-.search .form-control{
-    width: 35%;
-    
+
+.hotels .dropdown-item:hover {
+  background-color: #f77a40 !important;
+  color: #fff !important;
+}
+
+.hotels .navbar.b-orange {
+  background-color: #f77a40 !important;
+}
+.hotels .b-rosas {
+  color: #d9d9d9;
+}
+.hotels .navbar-nav .nav-link {
+  padding: 10px 0;
+  color: #d9d9d9;
+}
+
+.hotels .navbar-nav .nav-link.active {
+  color: #fff !important;
+}
+.hotels .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+.hotels nav .nav-btn {
+  background-color: #fff;
+  color: #f77a40;
+}
+.hotels nav .nav-btn:hover {
+  color: #fff;
+}
+@media (max-width: 992px) {
+  .hotels nav .nav-btn {
+    background-color: #f77a40;
+    color: #fff;
+  }
+}
+
+.walaa .box {
+  /* background-color: white; */
+  /* padding: 20px; */
+  /* border-radius: 8px; */
+  /* box-shadow: 0px 2.46px 4.19px 0px #00000001, 0px 10.84px 8.67px 0px #00000002,
+    0px 26.6px 17.29px 0px #00000003, 0px 51.23px 33.89px 0px #00000003,
+    0px 86.21px 62.32px 0px #00000004, 0px 133.01px 106.41px 0px #00000005; */
+}
+.search .form-control {
+  width: 35%;
+  border: 0;
+}
+.search .form-control:focus {
+  border: 1px solid #f77a40;
+
+  box-shadow: none;
 }

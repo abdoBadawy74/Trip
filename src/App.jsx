@@ -7,12 +7,12 @@ import Walaa from "./Components/Walaa";
 function App() {
   return (
     <div className="App">
-      <div className="hotels">
-        <Header />
-        <Walaa />
-      </div>
-
-      {/* <LandingPage /> */}
+      {/* <Header /> */}
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<LandingPage />} />
+        <Route path="/hotels" element={<Walaa />} />
+      </Routes>
     </div>
   );
 }

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/logo.png";
 import "./Header.css";
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
@@ -22,15 +21,24 @@ export default function Header() {
     <nav className="navbar navbar-expand-lg b-orange bgi-transparent p-0  m-0 ">
       <div className="container-fluid flex-nowrap px-4 align-items-center">
         <Link className="navbar-brand" to="/">
-          <span className="fs-2 bebas-neue-bold" style={{
-            color: "#FFF",
-            textTransform: "uppercase",
-          }}>
+          <span
+            className="fs-2 bebas-neue-bold"
+            style={{
+              color: "#FFF",
+              textTransform: "uppercase",
+            }}
+          >
             Infinity
             <span className="b-rosas">
-              palc<span style={{
-                color: "#FFF",
-              }}>e</span>s
+              palc
+              <span
+                style={{
+                  color: "#FFF",
+                }}
+              >
+                e
+              </span>
+              s
             </span>
           </span>
         </Link>
@@ -140,11 +148,7 @@ export default function Header() {
 
           <ul className="navbar-nav m-2 mb-lg-0">
             <li className="m-auto">
-              <Link
-                className="btn m-2 order-lg-last nav-btn"
-                to="/login"
-             
-              >
+              <Link className="btn m-2 order-lg-last nav-btn" to="/login">
                 Contact Us
               </Link>
             </li>
