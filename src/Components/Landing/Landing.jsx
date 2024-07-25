@@ -284,14 +284,14 @@
 //   );
 // }
 
-import  { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./Landing.css";
-import video from "../../assets/landing-video1.mp4";
-import video2 from "../../assets/landing-video2.mp4";
-import Header from "../Header/Header";
-import transfer from "../../assets/transfer.svg";
-import ticket from "../../assets/ticket.svg";
-import tour from "../../assets/tour.svg";
+import video from "../assets/Lnading-video.mp4";
+import video2 from "../assets/landing-video2.mp4";
+import Header from "./Header";
+import transfer from "../assets/transfer.svg";
+import ticket from "../assets/ticket.svg";
+import tour from "../assets/tour.svg";
 
 export default function Landing() {
   const [selectedCity, setSelectedCity] = useState("Dubai");
@@ -302,11 +302,11 @@ export default function Landing() {
   useEffect(() => {
     if (selectedCity === "Dubai" && videoRef1.current) {
       videoRef1.current.play().catch((error) => {
-        console.log("Error playing video 1: ", error);
+        console.error("Error playing video 1: ", error);
       });
     } else if (selectedCity === "Abu Dhabi" && videoRef2.current) {
       videoRef2.current.play().catch((error) => {
-        console.log("Error playing video 2: ", error);
+        console.error("Error playing video 2: ", error);
       });
     }
   }, [selectedCity]);
@@ -331,6 +331,7 @@ export default function Landing() {
           muted
           loop
           playsInline
+          preload="auto"
           className="position-absolute w-100 h-100"
           style={{
             top: "0",
@@ -350,6 +351,7 @@ export default function Landing() {
           muted
           loop
           playsInline
+          preload="auto"
           className="position-absolute w-100 h-100"
           style={{
             top: "0",
