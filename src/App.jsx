@@ -3,6 +3,7 @@ import "./App.css";
 import LandingPage from "./Pages/LandingPage";
 import Hotles from "./Pages/Hotels/HotelPage";
 import Travels from "./Pages/Travels/Travels";
+import HotelDetails from "./Pages/Hotels/HotelDetails";
 
 function App() {
   return (
@@ -12,6 +13,11 @@ function App() {
         <Route path="/home" element={<LandingPage />} />
         <Route path="/hotels" element={<Hotles />} />
         <Route path="/travels" element={<Travels/>} />
+        
+        <Route path="hotels/:hotelId" element={<>
+          <HotelDetails/>
+        </>} />
+
       </Routes>
     </div>
   );
