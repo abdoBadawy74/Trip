@@ -16,22 +16,24 @@ export default function TopServices() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // getting data from api
-  useEffect(() => {
+  function gettingData() {
     axios
       .get(`${BASE}/trips/top-booked`)
       .then((res) => {
-        console.log(res.data);
         setTopServices(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  useEffect(() => {
+    gettingData();
   }, []);
 
   useEffect(() => {
     filterTrips();
   }, [state, category, topServices]);
-  console.log(topServices);
 
   const filterTrips = () => {
     let stateTrips = topServices.filter((trip) => trip.state.name === state);

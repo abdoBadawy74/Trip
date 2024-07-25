@@ -31,12 +31,7 @@ function Hotels() {
 
   useEffect(() => {
     getData();
-  }, []);
-
-  useEffect(() => {
-    const filtered = hotels.filter((hotel) => hotel.state.name === state);
-    setfilteredHotels(filtered);
-  }, [state, hotels]);
+  }, [state]);
 
   const handleSearch = () => {
     if (searchState === "") {
