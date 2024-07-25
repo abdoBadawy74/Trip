@@ -35,15 +35,18 @@ function Hotels() {
 
   const handleSearch = () => {
     if (searchState === "") {
-      const filtered = hotels.filter((hotel) => hotel.state.name === state);
+      const filtered = filteredHotels.filter(
+        (hotel) => hotel.state.name === state
+      );
       setfilteredHotels(filtered);
     } else {
-      const filtered = hotels.filter((hotel) =>
-        hotel.state.name.toLowerCase().includes(searchState.toLowerCase())
+      const filtered = filteredHotels.filter((hotel) =>
+        hotel.name.toLowerCase().includes(searchState.toLowerCase())
       );
       setfilteredHotels(filtered);
     }
   };
+  console.log(filteredHotels);
 
   const renderStars = (rating) => {
     const stars = [];
