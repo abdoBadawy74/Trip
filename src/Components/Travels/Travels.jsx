@@ -125,68 +125,79 @@ export default function Travels() {
           </button>
         </div>
         <div className="content my-3">
-          {filteredservices.map((service, i) => (
-            <div className={`d-flex gap-3 flex-wrap my-3 ${i % 2 !== 0 ? 'flex-row-reverse' : 'flex-row'}`} key={i}>
-              <img
-                src={img}
-                alt="image"
-                style={{
-                  width: "400px",
-                  height: "300px",
-                  objectFit: "cover",
-                }}
-                className="p-0 rounded"
-              />
-              <div className={`text py-3 ${i%2 !== 0 ? 'flex-grow-1' : ''}`}>
-                <h3 className="fw-bold fs-2" style={{}}>
-                  Old City Tour
-                </h3>
-                <p
+          {filteredservices.length > 0 ? (
+            filteredservices.map((service, i) => (
+              <div
+                className={`d-flex gap-3 flex-wrap my-3 ${
+                  i % 2 !== 0 ? "flex-row-reverse" : "flex-row"
+                }`}
+                key={i}
+              >
+                <img
+                  src={img}
+                  alt="image"
                   style={{
-                    color: "#1F1F1F",
-                    opacity: "0.6",
+                    width: "400px",
+                    height: "300px",
+                    objectFit: "cover",
                   }}
+                  className="p-0 rounded"
+                />
+                <div
+                  className={`text py-3 ${i % 2 !== 0 ? "flex-grow-1" : ""}`}
                 >
-                  Explore the streets of Old Dubai on a guided walking tour.
-                  Have the option to choose between a shared or private tour.
-                </p>
-                <p
-                  style={{
-                    color: "#F77A40",
-                    fontSize: "20px",
-                    fontWeight: "700",
-                  }}
-                >
-                  2100 DH - 1542 DH
-                </p>
-                <div className="d-flex gap-2 fw-bold align-items-center my-3">
-                  <img src={clock} alt="clock" />
-                  <p className="m-0">2 Days 3 Nights - 2 Hours</p>
-                </div>
-                <div className="d-flex gap-3 py-4">
-                  <button
-                    className="btn text-white py-2 px-3 d-flex gap-2 align-items-center"
+                  <h3 className="fw-bold fs-2" style={{}}>
+                    Old City Tour
+                  </h3>
+                  <p
                     style={{
-                      backgroundColor: "#FF6B00",
-                      cursor: "pointer",
+                      color: "#1F1F1F",
+                      opacity: "0.6",
                     }}
                   >
-                    <img src={Book} alt="Book Now" /> Book Now
-                  </button>
-                  <img
-                    src={Bookarrow}
-                    alt="book-arrow"
+                    Explore the streets of Old Dubai on a guided walking tour.
+                    Have the option to choose between a shared or private tour.
+                  </p>
+                  <p
                     style={{
-                      cursor: "pointer",
+                      color: "#F77A40",
+                      fontSize: "20px",
+                      fontWeight: "700",
                     }}
-                  />
+                  >
+                    2100 DH - 1542 DH
+                  </p>
+                  <div className="d-flex gap-2 fw-bold align-items-center my-3">
+                    <img src={clock} alt="clock" />
+                    <p className="m-0">2 Days 3 Nights - 2 Hours</p>
+                  </div>
+                  <div className="d-flex gap-3 py-4">
+                    <button
+                      className="btn text-white py-2 px-3 d-flex gap-2 align-items-center"
+                      style={{
+                        backgroundColor: "#FF6B00",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <img src={Book} alt="Book Now" /> Book Now
+                    </button>
+                    <img
+                      src={Bookarrow}
+                      alt="book-arrow"
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <h1 className="text-center p-5 fw-bold">No services found !</h1>
+          )}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
