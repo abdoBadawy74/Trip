@@ -67,7 +67,7 @@ function Hotels() {
 
   return (
     <div className="Hotels">
-      <div className="hotels">
+      <div className="bg-orange">
         <Header />
       </div>
       <div className="container">
@@ -151,7 +151,7 @@ function Hotels() {
                       className="ms-auto fs-2 fw-bold"
                       style={{ color: "#F77A40" }}
                     >
-                      45HD
+                      {Math.round(hotel.ticket_price_from)} DH
                     </p>
                   </div>
                   <p style={{ color: "#6B7A85" }}>
@@ -168,7 +168,7 @@ function Hotels() {
           ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

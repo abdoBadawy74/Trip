@@ -1,41 +1,41 @@
-.hotels .dropdown-item {
+.bg-orange .dropdown-item {
   color: #000 !important;
   border: none;
   border-radius: 10px;
   margin-top: 10px;
 }
 
-.hotels .dropdown-item:hover {
+.bg-orange .dropdown-item:hover {
   background-color: #f77a40 !important;
   color: #fff !important;
 }
 
-.hotels .navbar.b-orange {
+.bg-orange .navbar.b-orange {
   background-color: #f77a40 !important;
 }
-.hotels .grey {
+.bg-orange .grey {
   color: #d9d9d9 !important;
 }
-.hotels .navbar-nav .nav-link {
+.bg-orange .navbar-nav .nav-link {
   padding: 10px 0;
   color: #d9d9d9;
 }
 
-.hotels .navbar-nav .nav-link.active {
+.bg-orange .navbar-nav .nav-link.active {
   color: #fff ;
 }
-.hotels .navbar-nav .nav-link:hover {
+.bg-orange .navbar-nav .nav-link:hover {
   color: #fff;
 }
-.hotels nav .nav-btn {
+.bg-orange nav .nav-btn {
   background-color: #fff;
   color: #f77a40;
 }
-.hotels nav .nav-btn:hover {
+.bg-orange nav .nav-btn:hover {
   color: #fff;
 }
 @media (max-width: 992px) {
-  .hotels nav .nav-btn {
+  .bg-orange nav .nav-btn {
     background-color: #f77a40;
     color: #fff;
   }
@@ -56,7 +56,7 @@
   .navbar-nav .nav-link {
     color: #000 !important;
   }
-  hotels .navbar-nav .nav-link.active {
+  bg-orange .navbar-nav .nav-link.active {
     color: #20120c !important;
   }
 
