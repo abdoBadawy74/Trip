@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import quote from "../assets/quote.svg";
-import person from "../assets/person.png";
+import  { useState } from "react";
+import quote from "../../assets/quote.svg";
+import person from "../../assets/person.png";
 import "./Testimonials.css";
 
 const testimonialsData = [

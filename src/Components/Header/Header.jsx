@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+
 import "./Header.css";
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
@@ -27,7 +27,6 @@ export default function Header() {
       if (activeLink) {
         activeLink.classList.remove("active");
       }
-      console.log(hash);
 
       // Add the 'active' class to the new active link based on the hash
       if (hash === "/hotels") {

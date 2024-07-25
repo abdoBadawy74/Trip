@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./TopServices.css";
-import Book from "../assets/Book.svg";
-import Bookarrow from "../assets/Bookarrow.svg";
+import Book from "../../assets/Book.svg";
+import Bookarrow from "../../assets/Bookarrow.svg";
 import { Link } from "react-router-dom";
-import ellipse from "../assets/topelipse1.svg";
-import ellipse2 from "../assets/topelipse2.svg";
+import ellipse from "../../assets/topelipse1.svg";
+import ellipse2 from "../../assets/topelipse2.svg";
 import axios from "axios";
-import { BASE } from "./../API/Api";
+import { BASE } from "../../API/Api";
 
 export default function TopServices() {
   const [topServices, setTopServices] = useState([]);

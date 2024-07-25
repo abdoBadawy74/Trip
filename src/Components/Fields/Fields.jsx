@@ -1,6 +1,6 @@
 import React from "react";
-import arrow from "../assets/arrow-right.svg";
-import bg from "../assets/fields-bg.jpeg";
+import arrow from "../../assets/arrow-right.svg";
+import bg from "../../assets/fields-bg.jpeg";
 import "./Fields.css";
 
 export default function Fields() {

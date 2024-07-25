@@ -1,12 +1,11 @@
-import React from "react";
 import "./Insights.css";
-import img1 from "../assets/insight1.jpeg";
-import img2 from "../assets/insight2.jpeg";
-import img3 from "../assets/insight3.jpeg";
-import img4 from "../assets/insight4.jpeg";
-import img5 from "../assets/insight5.jpeg";
-import img6 from "../assets/insight6.jpeg";
-import img7 from "../assets/insight7.jpeg";
+import img1 from "../../assets/insight1.jpeg";
+import img2 from "../../assets/insight2.jpeg";
+import img3 from "../../assets/insight3.jpeg";
+import img4 from "../../assets/insight4.jpeg";
+import img5 from "../../assets/insight5.jpeg";
+import img6 from "../../assets/insight6.jpeg";
+import img7 from "../../assets/insight7.jpeg";
 
 export default function Insights() {
   return (

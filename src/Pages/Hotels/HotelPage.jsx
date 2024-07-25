@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./HotelPage.css";
 import { BASE } from "/src/API/Api.js";
-import locationIcon from "../assets/location-icon.svg";
+import locationIcon from "../../assets/location-icon.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { motion } from "framer-motion";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../../Components/Header/Header";
+import Footer from "../../Components/Footer/Footer";
 
 function Hotels() {
   const [hotels, setHotels] = useState([]);

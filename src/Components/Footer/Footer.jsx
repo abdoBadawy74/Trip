@@ -1,10 +1,9 @@
-import React from "react";
-import icon1 from "../assets/x-icon.svg";
-import icon2 from "../assets/youtube-icon.svg";
-import icon3 from "../assets/instgram-icon.svg";
-import icon4 from "../assets/facebook-icon.svg";
-import icon5 from "../assets/telegram-icon.svg";
-import arrowPlane from "../assets/Plane.svg";
+import icon1 from "../../assets/x-icon.svg";
+import icon2 from "../../assets/youtube-icon.svg";
+import icon3 from "../../assets/instgram-icon.svg";
+import icon4 from "../../assets/facebook-icon.svg";
+import icon5 from "../../assets/telegram-icon.svg";
+import arrowPlane from "../../assets/Plane.svg";
 import "./Footer.css";
 
 export default function Footer() {

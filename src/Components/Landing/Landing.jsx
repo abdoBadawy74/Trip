@@ -284,14 +284,14 @@
 //   );
 // }
 
-import React, { useState, useRef, useEffect } from "react";
+import  { useState, useRef, useEffect } from "react";
 import "./Landing.css";
-import video from "../assets/landing-video1.mp4";
-import video2 from "../assets/landing-video2.mp4";
-import Header from "./Header";
-import transfer from "../assets/transfer.svg";
-import ticket from "../assets/ticket.svg";
-import tour from "../assets/tour.svg";
+import video from "../../assets/landing-video1.mp4";
+import video2 from "../../assets/landing-video2.mp4";
+import Header from "../Header/Header";
+import transfer from "../../assets/transfer.svg";
+import ticket from "../../assets/ticket.svg";
+import tour from "../../assets/tour.svg";
 
 export default function Landing() {
   const [selectedCity, setSelectedCity] = useState("Dubai");

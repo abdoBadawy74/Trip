@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import LandingPage from "./LandingPage";
-import Hotles from "./Components/HotelPage";
+import LandingPage from "./Pages/LandingPage";
+import Hotles from "./Pages/Hotels/HotelPage";
 
 function App() {
   return (
