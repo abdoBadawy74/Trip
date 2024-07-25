@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 import "./Header.css";
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
   const [selectedLanguage, setSelectedLanguage] = useState("English");
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -13,42 +16,48 @@ export default function Header() {
   const handleLanguageChange = (language) => {
     setSelectedLanguage(language);
     setIsDropdownOpen(false);
-    // Store the selected language in a variable for later use
-    // For example, can use local storage, context, or a state management library
   };
 
   useEffect(() => {
     const updateActiveLink = () => {
-      // Get the hash fragment, removing the leading '#' character
       const hash = window.location.hash.substring(1);
 
-      // Clear the current active link
       const activeLink = document.querySelector(".nav-link.active");
       if (activeLink) {
         activeLink.classList.remove("active");
       }
 
-      // Add the 'active' class to the new active link based on the hash
-      if (hash === "/hotels") {
+      if (hash === "hotels") {
         document.querySelector('a[href="#/hotels"]').classList.add("active");
-      } else if (hash === "/home" || hash === "") {
+      } else if (hash === "home" || hash === "") {
         document.querySelector('a[href="#/home"]').classList.add("active");
-      } else if (hash === "/travels") {
+      } else if (hash === "travels") {
         document.querySelector('a[href="#/travels"]').classList.add("active");
       }
     };
 
-    // Update active link on component mount
     updateActiveLink();
-
-    // Update active link on hash change
     window.addEventListener("hashchange", updateActiveLink);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("hashchange", updateActiveLink);
     };
   }, []);
+
+  useEffect(() => {
+    if (location.hash === "#about") {
+      scroll.scrollTo(document.getElementById("about").offsetTop, {
+        duration: 500,
+        delay: 0,
+        smooth: "easeInOutQuart",
+      });
+    }
+  }, [location]);
+
+  const handleScrollToAbout = (e) => {
+    e.preventDefault();
+    navigate("/#about");
+  };
 
   return (
     <nav
@@ -183,7 +192,11 @@ export default function Header() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/hotels">
+              <Link
+                className="nav-link"
+                to="/#about"
+                onClick={handleScrollToAbout}
+              >
                 About Us
               </Link>
             </li>
