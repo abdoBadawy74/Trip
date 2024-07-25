@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./Pages/LandingPage";
 import Hotles from "./Pages/Hotels/HotelPage";
-import Travels from "./Components/Travels/Travels";
+import Travels from "./Pages/Travels/Travels";
 
 function App() {
   return (
