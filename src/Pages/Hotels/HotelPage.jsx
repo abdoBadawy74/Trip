@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { motion } from "framer-motion";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
+import { Link } from "react-router-dom";
+
 
 function Hotels() {
   const [hotels, setHotels] = useState([]);
@@ -144,7 +146,11 @@ function Hotels() {
                 </div>
                 <div className="text px-2">
                   <div className="d-flex align-items-center">
-                    <h3 className="fw-bold">{hotel.name}</h3>
+                  <h3 className="fw-bold ">
+                        <Link className="fw-bold " to={`/hotels/${hotel.id}`}>
+                            {hotel.name}
+                        </Link>
+                    </h3>
                     <p
                       className="ms-auto fs-2 fw-bold"
                       style={{ color: "#F77A40" }}
