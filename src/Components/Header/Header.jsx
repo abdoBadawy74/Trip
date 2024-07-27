@@ -61,7 +61,7 @@ export default function Header() {
 
   return (
     <nav
-      className="navbar navbar-expand-lg b-orange bgi-transparent p-0  m-0 position-relative"
+      className="navbar navbar-expand-lg b-orange bg-transparent p-0  m-0 position-relative"
       style={{
         zIndex: 22,
       }}
