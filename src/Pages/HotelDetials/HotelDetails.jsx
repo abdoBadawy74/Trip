@@ -59,7 +59,7 @@ function HotelDetails() {
         </div>
 
         <div
-          className="imgs d-flex gap-2 justify-content-start align-items-end p-3"
+          className="imgs d-flex gap-2 justify-content-between align-items-end px-5 py-3"
           style={{
             backgroundImage: `url(${backgroundImage})`,
             backgroundSize: "cover",
@@ -68,25 +68,52 @@ function HotelDetails() {
             width: "100%",
           }}
         >
-          {hotel?.images.map((img, index) => {
-            return (
-              <img
-                key={index}
-                src={img.url}
-                alt="image1"
-                height={"75px"}
-                width={"90px"}
-                className="rounded active"
-                onClick={() => setBackgroundImage(img.url)}
-                style={{
-                  cursor: "pointer",
-                  border:
-                    backgroundImage === img.url ? "2px solid #fff" : "none",
-                  padding: backgroundImage === img.url ? "2px" : "none",
-                }}
-              />
-            );
-          })}
+          <div className="d-flex gap-2 position-relative">
+            {hotel?.images.map((img, index) => {
+              return (
+                <img
+                  key={index}
+                  src={img.url}
+                  alt="image1"
+                  height={"75px"}
+                  width={"90px"}
+                  onClick={() => setBackgroundImage(img.url)}
+                  style={{
+                    cursor: "pointer",
+                    borderRadius: "10px",
+                    border:
+                      backgroundImage === img.url ? "2px solid #fff" : "none",
+                    padding: backgroundImage === img.url ? "2px" : "none",
+                  }}
+                />
+              );
+            })}
+          </div>
+          <div
+            style={{
+              position: "relative",
+              zIndex: "1",
+            }}
+          >
+            {hotel?.images.map((img, index) => {
+              return (
+                <span
+                  key={index}
+                  style={{
+                    display: "inline-block",
+                    width: "23px",
+                    height: "8px",
+                    backgroundColor: "#fff",
+                    opacity: backgroundImage === img.url ? "1" : "0.5",
+                    borderRadius: "5px",
+                    margin: "0 3px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setBackgroundImage(img.url)}
+                ></span>
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className="carddetails">
@@ -170,7 +197,7 @@ function HotelDetails() {
                 <p>Loading...</p>
               )}
             </div>
-            <Calendar/>
+            <Calendar />
           </div>
 
           <p
