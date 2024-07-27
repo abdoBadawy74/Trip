@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./HotelPage.css";
+import "./HotelsPage.css";
 import { BASE } from "/src/API/Api.js";
 import locationIcon from "../../assets/location-icon.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,9 +9,7 @@ import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import { Link } from "react-router-dom";
 
-
 function Hotels() {
-  const [hotels, setHotels] = useState([]);
   const [state, setState] = useState("Abu Dhabi");
   const [searchState, setSearchState] = useState("");
   const [filteredHotels, setfilteredHotels] = useState([]);
@@ -20,7 +18,6 @@ function Hotels() {
     axios
       .get(`${BASE}/hotels`)
       .then((res) => {
-        setHotels(res.data.data);
         const initialFiltered = res.data.data.filter(
           (hotel) => hotel.state.name === state
         );
@@ -146,10 +143,10 @@ function Hotels() {
                 </div>
                 <div className="text px-2">
                   <div className="d-flex align-items-center">
-                  <h3 className="fw-bold ">
-                        <Link className="fw-bold " to={`/hotels/${hotel.id}`}>
-                            {hotel.name}
-                        </Link>
+                    <h3 className="fw-bold ">
+                      <Link className="fw-bold " to={`/hotels/${hotel.id}`}>
+                        {hotel.name}
+                      </Link>
                     </h3>
                     <p
                       className="ms-auto fs-2 fw-bold"

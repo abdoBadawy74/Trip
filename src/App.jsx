@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./Pages/LandingPage";
-import Hotles from "./Pages/Hotels/HotelPage";
 import Travels from "./Pages/Travels/Travels";
-import HotelDetails from "./Pages/Hotels/HotelDetails";
+import Hotels from "./Pages/Hotels/HotelsPage";
+import HotelDetails from "./Pages/HotelDetials/HotelDetails";
 
 function App() {
   return (
@@ -11,13 +11,17 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<LandingPage />} />
-        <Route path="/hotels" element={<Hotles />} />
-        <Route path="/travels" element={<Travels/>} />
-        
-        <Route path="hotels/:hotelId" element={<>
-          <HotelDetails/>
-        </>} />
+        <Route path="/hotels" element={<Hotels />} />
+        <Route path="/travels" element={<Travels />} />
 
+        <Route
+          path="hotels/:hotelId"
+          element={
+            <>
+              <HotelDetails />
+            </>
+          }
+        />
       </Routes>
     </div>
   );
