@@ -121,40 +121,45 @@ function Hotels() {
                 className="col-md-4 pt-4"
                 key={index}
               >
-                <div className="box bg-white rounded shadow p-3">
-                  <div className="image p-2">
-                    {hotel.images.length > 0 && (
-                      <img
-                        src={hotel.images[0].url}
-                        alt={hotel.name}
-                        className="w-100 rounded"
-                      />
-                    )}
-                  </div>
-                  <div className="text px-2">
-                    <div className="d-flex align-items-center">
-                      <h3 className="fw-bold ">
-                        <Link className="fw-bold " to={`/hotels/${hotel.id}`}>
-                          {hotel.name}
-                        </Link>
-                      </h3>
-                      <p
-                        className="ms-auto fs-2 fw-bold"
-                        style={{ color: "#F77A40" }}
-                      >
-                        {Math.round(hotel.ticket_price_from)} DH
+                <Link
+                  className="text-decoration-none text-dark"
+                  to={`/hotels/${hotel.id}`}
+                >
+                  <div className="box bg-white rounded shadow p-3 ">
+                    <div className="image p-2">
+                      {hotel.images.length > 0 && (
+                        <img
+                          src={hotel.images[0].url}
+                          alt={hotel.name}
+                          className="w-100 rounded"
+                        />
+                      )}
+                    </div>
+                    <div className="text px-2">
+                      <div className="d-flex align-items-center">
+                        <h3 className="fw-bold ">{hotel.name}</h3>
+                        <p
+                          className="ms-auto fs-2 fw-bold"
+                          style={{ color: "#F77A40" }}
+                        >
+                          {Math.round(hotel.ticket_price_from)} DH
+                        </p>
+                      </div>
+                      <p style={{ color: "#6B7A85" }}>
+                        <img
+                          src={locationIcon}
+                          className="px-1"
+                          alt="location"
+                        />
+                        {hotel.location}
                       </p>
-                    </div>
-                    <p style={{ color: "#6B7A85" }}>
-                      <img src={locationIcon} className="px-1" alt="location" />
-                      {hotel.location}
-                    </p>
-                    <div className="rating d-flex fw-bold fs-6 gap-1 align-items-center">
-                      {renderStars(hotel.rating)}
-                      {hotel.rating} ({hotel.number_of_ratings})
+                      <div className="rating d-flex fw-bold fs-6 gap-1 align-items-center">
+                        {renderStars(hotel.rating)}
+                        {hotel.rating} ({hotel.number_of_ratings})
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>
