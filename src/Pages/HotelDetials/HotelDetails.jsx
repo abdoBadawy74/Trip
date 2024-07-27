@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import HotelsContext from "../../context/HotelsContext";
 import "./HotelDetails.css";
 import Header from "../../Components/Header/Header";
+import Calendar from "../../Components/Calendar/Calendar";
 
 function HotelDetails() {
   const { hotelId } = useParams();
@@ -90,7 +91,7 @@ function HotelDetails() {
       </div>
       <div className="carddetails">
         <div className="container mt-4 pt-4">
-          <div className="d-flex">
+          <div className="d-flex gap-4">
             <div className="card-body-details">
               {hotel ? (
                 <>
@@ -169,7 +170,7 @@ function HotelDetails() {
                 <p>Loading...</p>
               )}
             </div>
-            <p> calender</p>
+            <Calendar/>
           </div>
 
           <p
