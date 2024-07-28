@@ -6,8 +6,11 @@ import clock from "../../assets/clock-icon.svg";
 import Book from "../../assets/Book.svg";
 import Bookarrow from "../../assets/Bookarrow.svg";
 import Footer from "../../Components/Footer/Footer";
+import { Link, Outlet } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function Travels() {
+  const location = useLocation();
   const [state, setState] = useState("Abu Dhabi");
   const [category, setCategory] = useState("tour");
   const [services, setServices] = useState([]);
@@ -66,147 +69,156 @@ export default function Travels() {
     width: "100px",
     outline: "0",
   };
+  console.log(filteredservices);
   return (
     <div>
-      <div className="bg-orange">
-        <Header />
-      </div>
-      <div className="container ">
-        <div className="d-flex justify-content-between align-items-start mb-4 mt-4 pt-4">
-          <div>
-            <h2
-              className="text-uppercase fw-bold"
-              style={{
-                letterSpacing: "2px",
-                fontSize: "24px",
-                color: " #42A7C3",
-              }}
-            >
-              All Services
-            </h2>
+      {location.pathname === "/travels" && (
+        <div>
+          <div className="bg-orange">
+            <Header />
           </div>
-          <div>
-            <button
-              className={`btn ${
-                state === "Abu Dhabi" ? "bg-dark text-white" : "btn-light"
-              } mx-2`}
-              onClick={() => setState("Abu Dhabi")}
-            >
-              Abu Dhabi
-            </button>
-            <button
-              className={`btn ${
-                state === "Dubai" ? "bg-dark text-white" : "btn-light"
-              } mx-2`}
-              onClick={() => setState("Dubai")}
-            >
-              Dubai
-            </button>
-          </div>
-        </div>
-
-        <div className="search container mt-5 d-flex ">
-          <select
-            className="border-0 text-uppercase outline-0"
-            style={selectStyle}
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option value="tour">tour</option>
-            <option value="transfer">transfer</option>
-            <option value="ticket">ticket</option>
-          </select>
-          <input
-            type="text"
-            className="form-control m-2"
-            placeholder="Search by state"
-            style={{
-              backgroundColor: " #F8F9F9",
-            }}
-            value={searchState}
-            onChange={(e) => setSearchState(e.target.value)}
-          />
-          <button
-            className="btn m-2"
-            style={{ backgroundColor: "#42A7C3", color: "#ffff" }}
-            onClick={handleSearch}
-          >
-            Search
-          </button>
-        </div>
-        <div className="content my-3">
-          {filteredservices.length > 0 ? (
-            filteredservices.map((service, i) => (
-              <div
-                className={`d-flex gap-3 flex-wrap justify-content-center justify-content-lg-between my-3 ${
-                  i % 2 !== 0 ? "flex-row-reverse" : "flex-row"
-                }`}
-                key={i}
-              >
-                <img
-                  src={service.images[0].url}
-                  alt="image"
+          <div className="container ">
+            <div className="d-flex justify-content-between align-items-start mb-4 mt-4 pt-4">
+              <div>
+                <h2
+                  className="text-uppercase fw-bold"
                   style={{
-                    width: "400px",
-                    height: "300px",
-                    objectFit: "cover",
+                    letterSpacing: "2px",
+                    fontSize: "24px",
+                    color: " #42A7C3",
                   }}
-                  className="p-0 rounded col-12 col-lg-6"
-                />
-                <div
-                  className={`text text-center text-lg-start col-12 col-lg-6 py-3 ${
-                    i % 2 !== 0 ? "flex-grow-1" : "flex-grow-1"
-                  }`}
                 >
-                  <h3 className="fw-bold fs-2">{service.place.name}</h3>
-                  <p
-                    style={{
-                      color: "#1F1F1F",
-                      opacity: "0.6",
-                    }}
-                  >
-                    {service.description}
-                  </p>
-                  <p
-                    style={{
-                      color: "#F77A40",
-                      fontSize: "20px",
-                      fontWeight: "700",
-                    }}
-                  >
-                    {service.ticket_price_from} DH - {service.ticket_price_to}{" "}
-                    DH
-                  </p>
-                  <div className="d-flex gap-2 fw-bold justify-content-center justify-content-lg-start  my-3">
-                    <img src={clock} alt="clock" />
-                    <p className="m-0">{service.duration}</p>
-                  </div>
-                  <div className="d-flex gap-3 py-4 justify-content-center justify-content-lg-start">
-                    <button
-                      className="btn text-white py-2 px-3 d-flex gap-2 align-items-center"
-                      style={{
-                        backgroundColor: "#FF6B00",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <img src={Book} alt="Book Now" /> Book Now
-                    </button>
-                    <img
-                      src={Bookarrow}
-                      alt="book-arrow"
-                      style={{
-                        cursor: "pointer",
-                      }}
-                    />
-                  </div>
-                </div>
+                  All Services
+                </h2>
               </div>
-            ))
-          ) : (
-            <h1 className="text-center p-5 fw-bold">No services found !</h1>
-          )}
+              <div>
+                <button
+                  className={`btn ${
+                    state === "Abu Dhabi" ? "bg-dark text-white" : "btn-light"
+                  } mx-2`}
+                  onClick={() => setState("Abu Dhabi")}
+                >
+                  Abu Dhabi
+                </button>
+                <button
+                  className={`btn ${
+                    state === "Dubai" ? "bg-dark text-white" : "btn-light"
+                  } mx-2`}
+                  onClick={() => setState("Dubai")}
+                >
+                  Dubai
+                </button>
+              </div>
+            </div>
+
+            <div className="search container mt-5 d-flex ">
+              <select
+                className="border-0 text-uppercase outline-0"
+                style={selectStyle}
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value="tour">tour</option>
+                <option value="transfer">transfer</option>
+                <option value="ticket">ticket</option>
+              </select>
+              <input
+                type="text"
+                className="form-control m-2"
+                placeholder="Search by state"
+                style={{
+                  backgroundColor: " #F8F9F9",
+                }}
+                value={searchState}
+                onChange={(e) => setSearchState(e.target.value)}
+              />
+              <button
+                className="btn m-2"
+                style={{ backgroundColor: "#42A7C3", color: "#ffff" }}
+                onClick={handleSearch}
+              >
+                Search
+              </button>
+            </div>
+            <div className="content my-3">
+              {filteredservices.length > 0 ? (
+                filteredservices.map((service, i) => (
+                  <Link
+                    to={`/travels/${service.id}`}
+                    className={`d-flex gap-3 flex-wrap justify-content-center justify-content-lg-between my-3 text-decoration-none text-dark ${
+                      i % 2 !== 0 ? "flex-row-reverse" : "flex-row"
+                    }`}
+                    key={i}
+                  >
+                    <img
+                      src={service.images[0].url}
+                      alt="image"
+                      style={{
+                        width: "400px",
+                        height: "300px",
+                        objectFit: "cover",
+                      }}
+                      className="p-0 rounded col-12 col-lg-6"
+                    />
+                    <div
+                      className={`text text-center text-lg-start col-12 col-lg-6 py-3 ${
+                        i % 2 !== 0 ? "flex-grow-1" : "flex-grow-1"
+                      }`}
+                    >
+                      <h3 className="fw-bold fs-2">{service.place.name}</h3>
+                      <p
+                        style={{
+                          color: "#1F1F1F",
+                          opacity: "0.6",
+                        }}
+                      >
+                        {service.description}
+                      </p>
+                      <p
+                        style={{
+                          color: "#F77A40",
+                          fontSize: "20px",
+                          fontWeight: "700",
+                        }}
+                      >
+                        {service.ticket_price_from} DH -{" "}
+                        {service.ticket_price_to} DH
+                      </p>
+                      <div className="d-flex gap-2 fw-bold justify-content-center justify-content-lg-start  my-3">
+                        <img src={clock} alt="clock" />
+                        <p className="m-0">{service.duration}</p>
+                      </div>
+                      <div className="d-flex gap-3 py-4 justify-content-center justify-content-lg-start">
+                        <button
+                          className="btn text-white py-2 px-3 d-flex gap-2 align-items-center"
+                          style={{
+                            backgroundColor: "#FF6B00",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <img src={Book} alt="Book Now" /> Book Now
+                        </button>
+                        <img
+                          src={Bookarrow}
+                          alt="book-arrow"
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <h1 className="text-center p-5 fw-bold">No services found !</h1>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
+
+      <Outlet />
+
       <Footer />
     </div>
   );
