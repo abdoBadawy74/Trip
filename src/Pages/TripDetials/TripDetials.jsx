@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import locationIcon from "../../assets/location-icon.svg";
 import tripdet from "../../assets/hotrldetals.svg";
 import more from "../../assets/infomore.svg";
 import { useContext, useEffect, useState } from "react";

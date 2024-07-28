@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Header from "../../Components/Header/Header";
 import axios from "axios";
 import { BASE } from "../../API/Api";
@@ -8,59 +8,38 @@ import Bookarrow from "../../assets/Bookarrow.svg";
 import Footer from "../../Components/Footer/Footer";
 import { Link, Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import TripsContext from "../../context/TripsContext";
 
 export default function Travels() {
+  const { trips } = useContext(TripsContext);
+
   const location = useLocation();
   const [state, setState] = useState("Abu Dhabi");
   const [category, setCategory] = useState("tour");
-  const [services, setServices] = useState([]);
   const [searchState, setSearchState] = useState("");
-  const [filteredservices, setFilteredservices] = useState([]);
-
-  const getData = () => {
-    axios
-      .get(`${BASE}/trips`)
-      .then((res) => {
-        setServices(res.data.data);
-
-        const initialFiltered = res.data.data.filter(
-          (service) =>
-            service.state.name === state &&
-            service.trip_category.name === category
-        );
-        setFilteredservices(initialFiltered);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const [filteredtrips, setFilteredTrips] = useState([]);
 
   useEffect(() => {
-    getData();
-    handleSearch();
-  }, [category, state]);
-
-  useEffect(() => {
-    const filtered = services.filter(
-      (service) =>
-        service.state.name === state && service.trip_category.name === category
+    const filtered = trips.filter(
+      (trip) =>
+        trip.state.name === state && trip.trip_category.name === category
     );
-    setFilteredservices(filtered);
-  }, [state, category, services]);
+    setFilteredTrips(filtered);
+  }, [state, category, trips]);
 
   const handleSearch = () => {
     if (searchState === "") {
-      const filtered = services.filter(
+      const filtered = trips.filter(
         (service) =>
           service.state.name === state &&
           service.trip_category.name === category
       );
-      setFilteredservices(filtered);
+      setFilteredTrips(filtered);
     } else {
-      const filtered = filteredservices.filter((service) =>
+      const filtered = filteredtrips.filter((service) =>
         service.place.name.toLowerCase().includes(searchState.toLowerCase())
       );
-      setFilteredservices(filtered);
+      setFilteredTrips(filtered);
       setSearchState("");
     }
   };
@@ -69,7 +48,7 @@ export default function Travels() {
     width: "100px",
     outline: "0",
   };
-  console.log(filteredservices);
+  console.log(filteredtrips);
   return (
     <div>
       {location.pathname === "/travels" && (
@@ -88,7 +67,7 @@ export default function Travels() {
                     color: " #42A7C3",
                   }}
                 >
-                  All Services
+                  All trips
                 </h2>
               </div>
               <div>
@@ -141,8 +120,8 @@ export default function Travels() {
               </button>
             </div>
             <div className="content my-3">
-              {filteredservices.length > 0 ? (
-                filteredservices.map((service, i) => (
+              {filteredtrips.length > 0 ? (
+                filteredtrips.map((service, i) => (
                   <Link
                     to={`/travels/${service.id}`}
                     className={`d-flex gap-3 flex-wrap justify-content-center justify-content-lg-between my-3 text-decoration-none text-dark ${
@@ -210,7 +189,7 @@ export default function Travels() {
                   </Link>
                 ))
               ) : (
-                <h1 className="text-center p-5 fw-bold">No services found !</h1>
+                <h1 className="text-center p-5 fw-bold">No trips found !</h1>
               )}
             </div>
           </div>
