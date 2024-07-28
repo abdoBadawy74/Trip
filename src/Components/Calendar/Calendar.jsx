@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import icon from "../../assets/calendar-icon.svg";
 import "./Calendar.css";
 import {
   addMonths,
@@ -11,12 +12,17 @@ import {
   addDays,
   isSameMonth,
   isSameDay,
-  isWithinInterval
+  isWithinInterval,
 } from "date-fns";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [selectedRange, setSelectedRange] = useState({ start: null, end: null });
+  const [selectedRange, setSelectedRange] = useState({
+    start: null,
+    end: null,
+  });
+
+  console.log(selectedRange);
 
   const nextMonth = () => {
     setCurrentMonth(addMonths(currentMonth, 1));
@@ -27,10 +33,19 @@ const Calendar = () => {
   };
 
   const onDateClick = (day) => {
+    const formattedDay = format(day, "yyyy-MM-dd");
+
     if (!selectedRange.start || (selectedRange.start && selectedRange.end)) {
-      setSelectedRange({ start: day, end: null });
+      setSelectedRange({ start: formattedDay, end: null });
     } else if (selectedRange.start && !selectedRange.end) {
-      setSelectedRange({ start: selectedRange.start, end: day });
+      const formattedStart = selectedRange.start;
+      const parsedStart = new Date(formattedStart);
+
+      if (day < parsedStart) {
+        setSelectedRange({ start: formattedDay, end: formattedStart });
+      } else {
+        setSelectedRange({ start: formattedStart, end: formattedDay });
+      }
     }
   };
 
@@ -41,8 +56,12 @@ const Calendar = () => {
           <span>{format(currentMonth, "MMMM yyyy")}</span>
         </div>
         <div className="col col-end">
-          <div className="icon" onClick={prevMonth}>{"<"}</div>
-          <div className="icon" onClick={nextMonth}>{">"}</div>
+          <div className="icon" onClick={prevMonth}>
+            {"<"}
+          </div>
+          <div className="icon" onClick={nextMonth}>
+            {">"}
+          </div>
         </div>
       </div>
     );
@@ -79,22 +98,26 @@ const Calendar = () => {
       for (let i = 0; i < 7; i++) {
         formattedDate = format(day, "d");
         const cloneDay = day;
+        const formattedCloneDay = format(cloneDay, "yyyy-MM-dd");
 
         let className = "col cell";
         if (!isSameMonth(day, monthStart)) {
           className += " disabled";
-        } else if (isSameDay(day, selectedRange.start) && !selectedRange.end) {
+        } else if (
+          isSameDay(day, new Date(selectedRange.start)) &&
+          !selectedRange.end
+        ) {
           className += " selected one-day";
-        } else if (isSameDay(day, selectedRange.start)) {
+        } else if (isSameDay(day, new Date(selectedRange.start))) {
           className += " selected range-start";
-        } else if (isSameDay(day, selectedRange.end)) {
+        } else if (isSameDay(day, new Date(selectedRange.end))) {
           className += " selected range-end";
         } else if (
           selectedRange.start &&
           selectedRange.end &&
           isWithinInterval(day, {
-            start: selectedRange.start,
-            end: selectedRange.end,
+            start: new Date(selectedRange.start),
+            end: new Date(selectedRange.end),
           })
         ) {
           className += " selected range-middle";
@@ -103,12 +126,12 @@ const Calendar = () => {
         days.push(
           <div
             className={className}
-            key={day}
+            key={formattedCloneDay}
             onClick={() => onDateClick(cloneDay)}
             style={{ opacity: isSameMonth(day, monthStart) ? 1 : 0.4 }}
           >
             <span className="number">{formattedDate}</span>
-            <span className="bg">{format(day, "yyyy-MM-dd")}</span>
+            <span className="bg">{formattedCloneDay}</span>
           </div>
         );
         day = addDays(day, 1);
@@ -123,7 +146,8 @@ const Calendar = () => {
     return <div className="body">{rows}</div>;
   };
 
-  const isButtonEnabled = selectedRange.start && selectedRange.end;
+  const isButtonEnabled =
+    selectedRange.start || (selectedRange.start && selectedRange.end);
 
   return (
     <div className="calendar">
@@ -135,7 +159,7 @@ const Calendar = () => {
         style={{ opacity: isButtonEnabled ? 1 : 0.2 }}
         disabled={!isButtonEnabled}
       >
-        Choose Check-out
+        <img src={icon} alt=" icon" /> Choose Check-out
       </button>
     </div>
   );

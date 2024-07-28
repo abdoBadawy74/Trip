@@ -117,8 +117,8 @@ function HotelDetails() {
         </div>
       </div>
       <div className="carddetails">
-        <div className="container mt-4 pt-4">
-          <div className="d-flex gap-4">
+        <div className="container-fluid mt-4 pt-4">
+          <div className="d-flex flex-wrap justify-content-center px-2">
             <div className="card-body-details">
               {hotel ? (
                 <>
