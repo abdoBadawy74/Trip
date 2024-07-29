@@ -1,5 +1,6 @@
 .calendar {
   /* width: 350px; */
+  width: fit-content;
   margin: 0 auto;
   font-size: 16px;
 }
@@ -74,7 +75,11 @@
 }
 
 .checkout-button {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
   width: 100%;
   padding: 10px;
   background-color: #f77a40;
