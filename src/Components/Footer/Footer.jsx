@@ -4,7 +4,10 @@ import icon3 from "../../assets/instgram-icon.svg";
 import icon4 from "../../assets/facebook-icon.svg";
 import icon5 from "../../assets/telegram-icon.svg";
 import arrowPlane from "../../assets/Plane.svg";
+import { Link} from "react-router-dom";
+
 import "./Footer.css";
+
 
 export default function Footer() {
   return (
@@ -136,8 +139,14 @@ export default function Footer() {
               opacity: 0.5,
             }}
           >
-            <span>Privacy Policy</span>
-            <span>Terms</span>
+            <span>
+            <Link  to="/privacy">
+            Privacy Policy
+              </Link> 
+                </span>
+
+
+            <span>Terms </span>
           </div>
         </div>
       </div>
