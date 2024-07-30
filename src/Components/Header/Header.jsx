@@ -194,8 +194,8 @@ export default function Header() {
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to="/#about"
-                onClick={handleScrollToAbout}
+                to="/about"
+                //  onClick={handleScrollToAbout}
               >
                 About Us
               </Link>
