@@ -7,6 +7,7 @@ import PhoneInput from "react-phone-number-input";
 import "./Payment.css";
 import axios from "axios";
 import { BASE } from "./../../API/Api";
+import img from "../../assets/recipt.jpg";
 
 export default function Payment() {
   const [show1, setShow1] = useState(true);
@@ -22,7 +23,12 @@ export default function Payment() {
   const [total, setTotal] = useState(0);
   const [adultCost, setAdultCost] = useState(0);
   const [minorCost, setMinorCost] = useState(0);
+  const [paymentMethods, setPaymentMethods] = useState([]);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
+  const [uploadedFile, setUploadedFile] = useState(null);
+  const [previewSrc, setPreviewSrc] = useState(null);
 
+  //   get price for age categories
   useEffect(() => {
     axios.get(`${BASE}/booking-age-categories`).then((res) => {
       console.log(res.data);
@@ -37,18 +43,40 @@ export default function Payment() {
     });
   }, []);
 
+  //   get payment methods
+  useEffect(() => {
+    axios
+      .get(`${BASE}/payment-types`)
+      .then((res) => {
+        setPaymentMethods(res.data);
+        console.log(paymentMethods);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // Handler for selecting a payment method
+  const handlePaymentMethodChange = (event) => {
+    setSelectedPaymentMethod(event.target.value);
+  };
+
+  //   handle number of adults
   const handleAdultChange = (delta) => {
     setAdults((prev) => Math.max(0, prev + delta));
   };
 
+  //   handle number of minors
   const handleMinorChange = (delta) => {
     setMinors((prev) => Math.max(0, prev + delta));
   };
 
+  //   get total cost
   const getTotalCost = () => {
     return adults * adultCost + minors * minorCost;
   };
 
+  //   update the selected range to show it in the payment page
   useEffect(() => {
     if (selectedRange.start) {
       const startDate = parseISO(selectedRange.start);
@@ -62,7 +90,34 @@ export default function Payment() {
     }
   }, [selectedRange]);
 
-  console.log(adultCost, minorCost);
+  //   function to copy text to clipboard
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        console.log(`Copied: ${text}`);
+        // Optionally, you can show a toast or alert to indicate that the text has been copied
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
+  };
+
+  //   handle file upload and preview
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0]; // Corrected to access the first file selected
+    setUploadedFile(file);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewSrc(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div className="payment">
@@ -533,6 +588,202 @@ export default function Payment() {
             </div>
           </div>
         )}
+
+        <div className="method">
+          <div className="d-flex gap-3 justify-content-center justify-content-md-start flex-wrap">
+            <div className="d-flex flex-column col-12 col-md-3">
+              <label
+                htmlFor="first-name"
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  marginBottom: "5px",
+                }}
+              >
+                Payment
+              </label>
+              <select
+                id="payment-method"
+                value={selectedPaymentMethod}
+                onChange={handlePaymentMethodChange}
+                className="mb-3 border-0 outline-0 p-2"
+                style={{
+                  borderRadius: "8px",
+                  backgroundColor: "#F8F9F9",
+                  width: "100%",
+                }}
+              >
+                <option value="">Select a method</option>
+                {paymentMethods.map((method) => (
+                  <option key={method.id} value={method.name}>
+                    {method.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="d-flex flex-column col-12 col-md-3">
+              <label
+                htmlFor="first-name"
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  marginBottom: "5px",
+                }}
+              >
+                Promo code
+              </label>
+              <div
+                className="border-0 outline-0 p-2 d-flex gap-3 px-2"
+                style={{
+                  borderRadius: "8px",
+                  backgroundColor: "#F8F9F9",
+                  width: "100%",
+                }}
+              >
+                <input
+                  type="text"
+                  className=" border-0 outline-0 bg-transparent  flex-grow-1"
+                />
+                <button
+                  className="border-0 outline-0 text-white py-1 px-3 rounded"
+                  style={{
+                    backgroundColor: "#F77A40",
+                  }}
+                >
+                  Apply
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="">
+            <div>
+              <div className="d-flex flex-column col-12 col-md-3 position-relative my-3">
+                <span
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: "600",
+                    marginBottom: "5px",
+                  }}
+                >
+                  Account name
+                </span>
+                <span
+                  style={{
+                    color: "#8A8A8A",
+                    fontSize: "16px",
+                  }}
+                  id="accountName"
+                >
+                  Commercial international bank of egypt
+                </span>
+                <i
+                  className="fa-regular fa-copy position-absolute end-0"
+                  style={{
+                    fontSize: "20px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    cursor: "pointer",
+                  }}
+                  onClick={() =>
+                    copyToClipboard(
+                      document.getElementById("accountName").textContent
+                    )
+                  }
+                ></i>
+              </div>
+
+              <div className="d-flex flex-column col-12 col-md-3 position-relative my-3">
+                <span
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: "600",
+                    marginBottom: "5px",
+                  }}
+                >
+                  Account number
+                </span>
+                <span
+                  style={{
+                    color: "#8A8A8A",
+                    fontSize: "16px",
+                  }}
+                  id="accountNumber"
+                >
+                  123456789023
+                </span>
+                <i
+                  className="fa-regular fa-copy position-absolute end-0"
+                  style={{
+                    fontSize: "20px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    cursor: "pointer",
+                  }}
+                  onClick={() =>
+                    copyToClipboard(
+                      document.getElementById("accountNumber").textContent
+                    )
+                  }
+                ></i>
+              </div>
+              <div className="d-flex flex-column col-12 col-md-3 position-relative my-3">
+                <span
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: "600",
+                    marginBottom: "5px",
+                  }}
+                >
+                  Company name
+                </span>
+                <span
+                  style={{
+                    color: "#8A8A8A",
+                    fontSize: "16px",
+                  }}
+                  id="companyName"
+                >
+                  InfinityPlaces
+                </span>
+                <i
+                  className="fa-regular fa-copy position-absolute end-0"
+                  style={{
+                    fontSize: "20px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    cursor: "pointer",
+                  }}
+                  onClick={() =>
+                    copyToClipboard(
+                      document.getElementById("companyName").textContent
+                    )
+                  }
+                ></i>
+              </div>
+              <div className="file">
+                <label htmlFor="receipt-img">
+                  <img
+                    src={img}
+                    alt="receipt-img"
+                    style={{
+                      width: "360px",
+                      borderRadius: "10px",
+                    }}
+                  />
+                </label>
+                <input
+                  type="file"
+                  //   accept="image/*"
+                  hidden
+                  id="receipt-img"
+                  onChange={handleFileChange}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
