@@ -12,7 +12,7 @@ export default function TripDetials() {
   const { travelId } = useParams();
   const { trips } = useContext(TripsContext);
   const trip = trips.find((trip) => trip.id === parseInt(travelId));
-  console.log(trip);
+
   const [discoveredTrips, setDiscoveredTrips] = useState([]);
   const [backgroundImage, setBackgroundImage] = useState();
 

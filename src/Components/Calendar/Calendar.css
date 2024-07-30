@@ -4,7 +4,9 @@
   margin: 0 auto;
   font-size: 16px;
 }
-
+.payment .calendar {
+  margin: 0;
+}
 .calendar-header {
   display: flex;
   justify-content: space-between;

@@ -1,0 +1,47 @@
+.PhoneInput {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  width: 400px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0 10px;
+}
+.PhoneInputCountry {
+  display: flex;
+  flex-direction: row-reverse;
+
+  align-items: center;
+}
+.PhoneInputCountrySelect {
+  width: 20px;
+  border: none;
+  height: 100%;
+  outline: none;
+}
+.PhoneInputCountryIconImg {
+  width: 40px;
+}
+.PhoneInputInput {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+}
+
+/* form */
+.form label{
+    position: relative;
+    width: fit-content;
+}
+.form label::before  {
+    content: "*";
+    color: red;
+    position: absolute;
+    top: 0;
+    right: -6px;
+    font-size: 14px;
+    font-weight: 600;
+}
