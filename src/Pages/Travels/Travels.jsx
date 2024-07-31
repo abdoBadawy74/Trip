@@ -48,7 +48,7 @@ export default function Travels() {
     width: "100px",
     outline: "0",
   };
-  console.log(filteredtrips);
+  // console.log(filteredtrips);
   return (
     <div>
       {location.pathname === "/travels" && (

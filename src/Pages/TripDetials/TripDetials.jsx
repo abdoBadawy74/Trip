@@ -23,8 +23,8 @@ export default function TripDetials() {
       setDiscoveredTrips(trips.filter((h) => h.id !== trips.id));
     }
   }, [trips, trips]);
-  console.log(location.hash.slice(2, location.hash.length - 2));
-
+  
+console.log(discoveredTrips);
   if (!trip) {
     return (
       <div className="bg-orange">
@@ -199,7 +199,7 @@ export default function TripDetials() {
                       <div className="text px-2">
                         <div className="align-items-center">
                           <h4 style={{ fontWeight: "600" }}>
-                            <a>{trip.name}</a>
+                            <a>{trip.place.name}</a>
                           </h4>
                           <p
                             style={{
