@@ -100,7 +100,6 @@ export default function Hotels() {
             slogan here 5 words
           </h2>
           <Link
-            
             className="text-uppercase fs-5 "
             style={{
               color: "#42A7C3",
@@ -112,7 +111,11 @@ export default function Hotels() {
         </div>
         <div className="content d-flex flex-wrap flex-md-nowrap gap-4 my-3 justify-content-center">
           {hotels.slice(0, 3).map((hotel, i) => (
-            <div key={i} className="box col-md-4 bg-white p-2 rounded">
+            <Link
+              to={`/hotels/${hotel.id}`}
+              key={i}
+              className="box col-md-4 bg-white p-2 rounded text-decoration-none text-dark"
+            >
               <div className="image p-2">
                 <img
                   src={hotel.images[0].url}
@@ -129,7 +132,7 @@ export default function Hotels() {
                       color: "#F77A40",
                     }}
                   >
-                   {Math.round(hotel.ticket_price_from)} DH
+                    {Math.round(hotel.ticket_price_from)} DH
                   </p>
                 </div>
                 <p
@@ -145,7 +148,7 @@ export default function Hotels() {
                   {hotel.rating} ({hotel.number_of_ratings})
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

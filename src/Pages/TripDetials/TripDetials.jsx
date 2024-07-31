@@ -4,7 +4,6 @@ import more from "../../assets/infomore.svg";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TripsContext from "../../context/TripsContext";
-import "./TripDetials.css";
 import Header from "../../Components/Header/Header";
 import Calendar from "../../Components/Calendar/Calendar";
 
@@ -17,7 +16,7 @@ export default function TripDetials() {
   const [backgroundImage, setBackgroundImage] = useState();
 
   useEffect(() => {
-    // window.scroll(0,0);
+    window.scroll(0,0);
     if (trip) {
       setBackgroundImage(trip.images[0].url);
       setDiscoveredTrips(trips.filter((h) => h.id !== trips.id));
@@ -118,7 +117,7 @@ console.log(discoveredTrips);
                         }}
                       >
                         <h1 className="card-title-details fw-bold">
-                          {trip.name}
+                          {trip.place.name}
                         </h1>
                       </div>
 
@@ -215,7 +214,8 @@ console.log(discoveredTrips);
 
                           <Link
                             className="d-flex text-decoration-none"
-                            to={`/trips/${trip.id}`}
+                            to={`/travels/${trip.id}`}
+                            onClick={() => window.scroll(0, 0)}
                           >
                             <p
                               className="mb-4"

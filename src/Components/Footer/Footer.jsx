@@ -4,10 +4,9 @@ import icon3 from "../../assets/instgram-icon.svg";
 import icon4 from "../../assets/facebook-icon.svg";
 import icon5 from "../../assets/telegram-icon.svg";
 import arrowPlane from "../../assets/Plane.svg";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./Footer.css";
-
 
 export default function Footer() {
   return (
@@ -19,7 +18,6 @@ export default function Footer() {
       }}
       className="position-relative overflow-hidden footer"
     >
-      
       <img
         src={arrowPlane}
         alt="arrowPlane"
@@ -129,22 +127,19 @@ export default function Footer() {
             />
           </div>
         </div>
-        <div className="d-flex justify-content-between flex-wrap mt-2">
+        <div className="d-flex justify-content-between flex-wrap mt-2 align-items-center">
           <span className="text-white copy">
             Copyright ® 2024 InfinityPlaces All rights Perceived
           </span>
           <div
-            className="d-flex gap-3 text-white"
+            className="d-flex gap-3 text-white m-0"
             style={{
               opacity: 0.5,
             }}
           >
             <span>
-            <Link  to="/privacy">
-            Privacy Policy
-              </Link> 
-                </span>
-
+              <Link to="/privacy">Privacy Policy</Link>
+            </span>
 
             <span>Terms </span>
           </div>

@@ -179,7 +179,7 @@ export default function Payment() {
           },
         });
 
-        console.log(response);
+        console.log("form hotels", response);
         setStatus(response.status);
       }
     } catch (error) {
@@ -474,7 +474,7 @@ export default function Payment() {
         )}
 
         {show2 && (
-          <div className="form my-4 d-flex px-5 flex-wrap gap-5">
+          <div className="form my-4 d-flex px-5 flex-wrap gap-5 justify-content-center">
             <div className="col-12 col-md-8">
               <div className="d-flex gap-4 flex-wrap">
                 <div className="d-flex flex-column col-12 col-md-4">
@@ -877,7 +877,7 @@ export default function Payment() {
               </div>
             </div>
 
-            <div className="d-flex justify-content-between flex-wrap">
+            <div className="d-flex justify-content-between flex-wrap gap-3">
               {selectedPaymentMethod === "Upload Receipt" && !previewSrc && (
                 <div className="my-2 col-12 col-md-4">
                   <div className="d-flex flex-column position-relative my-3">
@@ -985,7 +985,7 @@ export default function Payment() {
                     ></i>
                   </div>
 
-                  <div className="file">
+                  <div className="file text-center">
                     <label htmlFor="receipt-img">
                       <img
                         src={img}
@@ -1007,8 +1007,8 @@ export default function Payment() {
                 </div>
               )}
 
-              {previewSrc && (
-                <div className="d-flex gap-5 col-md-5 px-4 align-items-center">
+              {previewSrc && selectedPaymentMethod !== "Online" && (
+                <div className="d-flex gap-5 col-md-5 px-4 align-items-center  justify-content-center flex-row-reverse flex-md-row flex-wrap">
                   <div className="d-flex flex-column justify-content-between">
                     <p
                       style={{

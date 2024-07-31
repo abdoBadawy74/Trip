@@ -196,15 +196,16 @@ export default function TopServices() {
                     </p>
 
                     <div className="d-flex gap-3">
-                      <button
+                      <Link
                         className="btn text-white py-2 px-3 d-flex gap-2 align-items-center"
                         style={{
                           backgroundColor: "#FF6B00",
                           cursor: "pointer",
                         }}
+                        to={`travels/${filteredTrips[0].id}`}
                       >
                         <img src={Book} alt="Book Now" /> Book Now
-                      </button>
+                      </Link>
                       <img
                         src={Bookarrow}
                         alt="book-arrow"
@@ -219,8 +220,9 @@ export default function TopServices() {
                       style={{
                         color: "#42A7C3",
                       }}
+                      to="/travels"
                     >
-                      {" "}
+                      
                       See More Travels
                     </Link>
                     <div

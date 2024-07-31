@@ -1,4 +1,3 @@
-
 import address from "../../assets/address.svg";
 import call from "../../assets/call.svg";
 import mess from "../../assets/mess.svg";
@@ -15,7 +14,10 @@ function Contact() {
         <div className="bg-orange">
           <Header />
         </div>
-        <div className="container container-contact d-flex" style={{}}>
+        <div
+          className="container container-contact d-flex flex-wrap justify-content-center"
+          style={{}}
+        >
           <div
             className="one  position-relative"
             style={{
