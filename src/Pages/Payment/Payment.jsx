@@ -9,6 +9,7 @@ import axios from "axios";
 import { BASE } from "./../../API/Api";
 import img from "../../assets/recipt.jpg";
 import { useNavigate, useParams } from "react-router-dom";
+import reviewIcon from "../../assets/Receipt.svg";
 
 export default function Payment() {
   const { travelId, hotelId } = useParams();
@@ -241,8 +242,75 @@ export default function Payment() {
     }
   };
 
+  //   handle error msg for required fields
+  const handleErrors = () => {
+    if (!firstName || !lastName || !email || !phone || adults <= 0) {
+      console.log("handleErrors called");
+      let toastBox = document.querySelector("#toastBox");
+      if (!toastBox) {
+        console.error("#toastBox not found in DOM.");
+        return;
+      }
+      let errorMsg =
+        '<i class="fas fa-times-circle"></i> Please fill all required fields';
+      let toast = document.createElement("div");
+      toast.classList.add("toast");
+      toast.innerHTML = errorMsg;
+      toastBox.appendChild(toast);
+      console.log("Error message appended to #toastBox");
+
+      setTimeout(() => {
+        toast.remove();
+        console.log("Toast removed");
+      }, 3000);
+    }
+  };
+
+  //   toast for Promo code
+
+  function promoCodeToast() {
+    if (isValidPromo) {
+      let toastBox = document.querySelector("#toastBox");
+      if (!toastBox) {
+        console.error("#toastBox not found in DOM.");
+        return;
+      }
+      let errorMsg =
+        '<i class="fas fa-check-circle"></i> Promo code applied successfully';
+      let toast = document.createElement("div");
+      toast.classList.add("toast", "success");
+      toast.innerHTML = errorMsg;
+      toastBox.appendChild(toast);
+      console.log("Success message appended to #toastBox");
+
+      setTimeout(() => {
+        toast.remove();
+        console.log("Toast removed");
+      }, 3000);
+    } else {
+      let toastBox = document.querySelector("#toastBox");
+      if (!toastBox) {
+        console.error("#toastBox not found in DOM.");
+        return;
+      }
+      let errorMsg =
+        '<i class="fas fa-times-circle"></i> Promo code is not valid';
+      let toast = document.createElement("div");
+      toast.classList.add("toast");
+      toast.innerHTML = errorMsg;
+      toastBox.appendChild(toast);
+      console.log("Error message appended to #toastBox");
+
+      setTimeout(() => {
+        toast.remove();
+        console.log("Toast removed");
+      }, 3000);
+    }
+  }
+
   return (
     <div className="payment">
+      <div id="toastBox"></div>
       <div className="bg-orange">
         <Header />
       </div>
@@ -711,7 +779,7 @@ export default function Payment() {
                   if (firstName && lastName && email && phone && adults > 0) {
                     setShow2(false);
                     setShow3(true);
-                  }
+                  } else handleErrors();
                 }}
               >
                 Next
@@ -783,7 +851,10 @@ export default function Payment() {
                     style={{
                       backgroundColor: "#F77A40",
                     }}
-                    onClick={applyPromoCode}
+                    onClick={() => {
+                      applyPromoCode();
+                      promoCodeToast();
+                    }}
                   >
                     Apply
                   </button>
@@ -792,7 +863,7 @@ export default function Payment() {
             </div>
 
             <div className="d-flex justify-content-between flex-wrap">
-              {selectedPaymentMethod === "Upload Receipt" && (
+              {selectedPaymentMethod === "Upload Receipt" && !previewSrc && (
                 <div className="my-2 col-12 col-md-4">
                   <div className="d-flex flex-column position-relative my-3">
                     <span
@@ -920,6 +991,47 @@ export default function Payment() {
                   </div>
                 </div>
               )}
+
+              {previewSrc && (
+                <div className="d-flex gap-5 col-md-5 px-4 align-items-center">
+                  <div className="d-flex flex-column justify-content-between">
+                    <p
+                      style={{
+                        fontSize: "16px",
+                        fontWeight: "600",
+                        textAlign: "center",
+                      }}
+                    >
+                      reviewing the receipt info
+                    </p>
+                    <img src={reviewIcon} alt="reviewIcon" />
+                    <button
+                      className="d-block w-100 border-0 outline-0  btn bg-dark text-white"
+                      style={{
+                        padding: "10px 30px",
+                      }}
+                      onClick={() => {
+                        setUploadedFile(null);
+                        setPreviewSrc(null);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                  <div>
+                    <img
+                      src={previewSrc}
+                      alt="reciept"
+                      style={{
+                        width: "203px",
+                        height: "300px",
+                        borderRadius: "10px",
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+
               {selectedPaymentMethod === "Online" && (
                 <div className="col-12 col-md-5">
                   <h1>Wait until Dealing with Payment Gateway..</h1>
@@ -955,28 +1067,32 @@ export default function Payment() {
                 </div>
                 <div className="total fw-bold d-flex justify-content-between pt-3">
                   <span>Total</span>
-                  <span>{discount ?  getTotalCost() - discount : getTotalCost()} </span>
+                  <span>
+                    {discount ? getTotalCost() - discount : getTotalCost()}{" "}
+                  </span>
                 </div>
-                <button
-                  style={{
-                    backgroundColor: "#F77A40",
-                    color: "#fff",
-                    fontSize: "20px",
-                    fontWeight: "500",
-                    padding: "10px 50px",
-                    borderRadius: "8px",
-                    border: "none",
-                    outline: "none",
-                    display: "block",
-                    margin: "50px auto",
-                    width: "100%",
-                  }}
-                  onClick={() => {
-                    submitBookingData();
-                  }}
-                >
-                  pay
-                </button>
+                {previewSrc && (
+                  <button
+                    style={{
+                      backgroundColor: "#F77A40",
+                      color: "#fff",
+                      fontSize: "20px",
+                      fontWeight: "500",
+                      padding: "10px 50px",
+                      borderRadius: "8px",
+                      border: "none",
+                      outline: "none",
+                      display: "block",
+                      margin: "50px auto",
+                      width: "100%",
+                    }}
+                    onClick={() => {
+                      submitBookingData();
+                    }}
+                  >
+                    pay
+                  </button>
+                )}
               </div>
             </div>
           </div>
