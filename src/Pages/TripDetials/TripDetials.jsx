@@ -17,7 +17,7 @@ export default function TripDetials() {
   const [backgroundImage, setBackgroundImage] = useState();
 
   useEffect(() => {
-    window.scroll(0, 0);
+    // window.scroll(0,0);
     if (trip) {
       setBackgroundImage(trip.images[0].url);
       setDiscoveredTrips(trips.filter((h) => h.id !== trips.id));

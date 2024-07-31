@@ -10,12 +10,14 @@ import { BASE } from "./../../API/Api";
 import img from "../../assets/recipt.jpg";
 import { useNavigate, useParams } from "react-router-dom";
 import reviewIcon from "../../assets/Receipt.svg";
+import successIcon from "../../assets/Success.svg";
 
 export default function Payment() {
   const { travelId, hotelId } = useParams();
   const [show1, setShow1] = useState(true);
   const [show2, setShow2] = useState(false);
   const [show3, setShow3] = useState(false);
+  const [show4, setShow4] = useState(false);
   const { selectedRange, setSelectedRange } = useContext(SelectedRangeContext);
   const [startDay, setStartDay] = useState("");
   const [startMonthYear, setStartMonthYear] = useState("");
@@ -23,7 +25,7 @@ export default function Payment() {
   const [endMonthYear, setEndMonthYear] = useState("");
   const [adults, setAdults] = useState(0);
   const [minors, setMinors] = useState(0);
-  const [total, setTotal] = useState(0);
+
   const [adultCost, setAdultCost] = useState(0);
   const [minorCost, setMinorCost] = useState(0);
   const [paymentMethods, setPaymentMethods] = useState([]);
@@ -37,7 +39,9 @@ export default function Payment() {
   const [phone, setPhone] = useState();
   const [promoCode, setPromoCode] = useState("");
   const [isValidPromo, setIsValidPromo] = useState(false);
+  const [promoId, setPromoId] = useState(null);
   const [discount, setDiscount] = useState(0);
+  const [status, setStatus] = useState(false);
 
   console.log(selectedRange);
 
@@ -77,7 +81,7 @@ export default function Payment() {
       .then((res) => {
         setPaymentMethods(res.data);
         console.log(res.data);
-        setSelectedPaymentMethod(res.data[1].name);
+        setSelectedPaymentMethod(res.data[0].name);
       })
       .catch((err) => {
         console.log(err);
@@ -93,7 +97,6 @@ export default function Payment() {
     console.log(paymentId);
   };
 
-  const [promoId, setPromoId] = useState(null);
   //   apply promo code
   const applyPromoCode = async () => {
     if (window.location.href.includes("/travels/")) {
@@ -163,6 +166,7 @@ export default function Payment() {
         });
 
         console.log(response);
+        setStatus(response.status);
       } else if (window.location.href.includes("/hotels/")) {
         // Post to hotel booking API
         formData.append("booking_date_from", selectedRange.start);
@@ -175,11 +179,18 @@ export default function Payment() {
           },
         });
 
-        console.log(response.data);
+        console.log(response);
+        setStatus(response.status);
       }
     } catch (error) {
       console.error("Error during booking submission:", error);
       // Optionally handle the error, e.g., show an error message to the user
+    }
+    if (status === 201) {
+      setTimeout(() => {
+        setShow4(true);
+        setShow3(false);
+      }, 2000);
     }
   };
 
@@ -315,7 +326,11 @@ export default function Payment() {
         <Header />
       </div>
       <div className="container py-4">
-        <div className="d-flex gap-1 align-items-md-center flex-column flex-md-row ">
+        <div
+          className={`gap-1 align-items-md-center flex-column flex-md-row ${
+            show4 ? "d-none" : "d-flex"
+          }`}
+        >
           <div className="d-flex gap-2 align-items-center">
             <p
               style={{
@@ -1093,6 +1108,160 @@ export default function Payment() {
                     pay
                   </button>
                 )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {show4 && (
+          <div className="d-flex justify-content-around p-4 align-items-center">
+            <div className="d-flex flex-column align-items-center gap-3">
+              <img src={successIcon} alt="successIcon" />
+              <p
+                style={{
+                  fontSize: "32px",
+                  color: "#1F1F1F",
+                }}
+              >
+                Payment Success!
+              </p>
+            </div>
+            <div className="col-12 col-md-5 ">
+              <div className="d-flex justify-content-between align-items-center">
+                <p
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "600",
+                  }}
+                >
+                  <span
+                    style={{
+                      color: "#F77A40",
+                      fontSize: "64px",
+                    }}
+                  >
+                    {startDay} {endDay ? " - " + endDay : ""}
+                  </span>{" "}
+                  {startMonthYear} {endMonthYear ? " - " + endMonthYear : ""}
+                </p>
+                <p
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "600",
+                  }}
+                >
+                  <span
+                    style={{
+                      color: "#42A7C3",
+                      fontSize: "64px",
+                    }}
+                  >
+                    {adults + minors}
+                  </span>{" "}
+                  Tickets
+                </p>
+              </div>
+
+              <div className="d-flex justify-content-between align-items-center">
+                <p
+                  style={{
+                    color: "#A5A5A5",
+                    fontSize: "20px",
+                    fontWeight: "500",
+                  }}
+                >
+                  Name
+                </p>
+                <p
+                  style={{
+                    color: "#535355",
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  }}
+                >
+                  {firstName} {lastName}
+                </p>
+              </div>
+
+              <div className="d-flex justify-content-between align-items-center">
+                <p
+                  style={{
+                    color: "#A5A5A5",
+                    fontSize: "20px",
+                    fontWeight: "500",
+                  }}
+                >
+                  Email
+                </p>
+                <p
+                  style={{
+                    color: "#535355",
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  }}
+                >
+                  {email}
+                </p>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <p
+                  style={{
+                    color: "#A5A5A5",
+                    fontSize: "20px",
+                    fontWeight: "500",
+                  }}
+                >
+                  Phone
+                </p>
+                <p
+                  style={{
+                    color: "#535355",
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  }}
+                >
+                  {phone}
+                </p>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <p
+                  style={{
+                    color: "#A5A5A5",
+                    fontSize: "20px",
+                    fontWeight: "500",
+                  }}
+                >
+                  Number of people
+                </p>
+                <p
+                  style={{
+                    color: "#535355",
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  }}
+                >
+                  {adults} adults, {minors} minors
+                </p>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <p
+                  style={{
+                    color: "#A5A5A5",
+                    fontSize: "20px",
+                    fontWeight: "500",
+                  }}
+                >
+                  total price
+                </p>
+                <p
+                  style={{
+                    color: "#535355",
+                    fontSize: "20px",
+                    fontWeight: "600",
+                  }}
+                >
+                  {getTotalCost() - discount}$
+                </p>
               </div>
             </div>
           </div>
