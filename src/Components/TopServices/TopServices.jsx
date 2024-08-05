@@ -7,8 +7,13 @@ import ellipse from "../../assets/topelipse1.svg";
 import ellipse2 from "../../assets/topelipse2.svg";
 import axios from "axios";
 import { BASE } from "../../API/Api";
+// translation
+import t from "../../Translation/translation"
+import  useLanguage  from "../../context/useLanguage";
 
 export default function TopServices() {
+  // translation
+  const { language, setLanguage } = useLanguage();
   const [topServices, setTopServices] = useState([]);
   const [state, setState] = useState("Dubai");
   const [category, setCategory] = useState("tour");
@@ -88,7 +93,7 @@ export default function TopServices() {
                   letterSpacing: "0.1em",
                 }}
               >
-                Top Services
+                {t[language].top}
               </h4>
               <h2
                 className="text-uppercase"
@@ -98,7 +103,7 @@ export default function TopServices() {
                   fontSize: "2.5em",
                 }}
               >
-                slogan here 5 words
+                {t[language].slogan} 
               </h2>
             </div>
             <div>
@@ -108,7 +113,7 @@ export default function TopServices() {
                 } mx-2`}
                 onClick={() => setState("Abu Dhabi")}
               >
-                Abu Dhabi
+                {t[language].city1} 
               </button>
               <button
                 className={`btn ${
@@ -116,7 +121,7 @@ export default function TopServices() {
                 } mx-2`}
                 onClick={() => setState("Dubai")}
               >
-                Dubai
+                {t[language].city2} 
               </button>
             </div>
           </div>
@@ -136,7 +141,7 @@ export default function TopServices() {
               }}
               onClick={() => setCategory("tour")}
             >
-              Tours
+              {t[language].Tour} 
             </span>
             <span
               className="cat"
@@ -146,7 +151,7 @@ export default function TopServices() {
               }}
               onClick={() => setCategory("ticket")}
             >
-              Tickets
+              {t[language].Ticket} 
             </span>
             <span
               className="cat"
@@ -156,7 +161,7 @@ export default function TopServices() {
               }}
               onClick={() => setCategory("transfer")}
             >
-              Transfer
+              {t[language].Transfer} 
             </span>
           </div>
 
@@ -187,8 +192,8 @@ export default function TopServices() {
                         color: "#FF6B00",
                       }}
                     >
-                      {filteredTrips[0].ticket_price_from} DH -{" "}
-                      {filteredTrips[0].ticket_price_to} DH
+                      {filteredTrips[0].ticket_price_from} {t[language].DH} -{" "}
+                      {filteredTrips[0].ticket_price_to} {t[language].DH}
                     </p>
                     <p className="fs-5">
                       <i className="fa-regular fa-clock text-secondary"></i>{" "}
@@ -204,7 +209,7 @@ export default function TopServices() {
                         }}
                         to={`/travels/${filteredTrips[0].id}`}
                       >
-                        <img src={Book} alt="Book Now" /> Book Now
+                        <img src={Book} alt="Book Now" /> {t[language].BookNow}
                       </Link>
                       <img
                         src={Bookarrow}
@@ -222,7 +227,7 @@ export default function TopServices() {
                       }}
                       to="/travels"
                     >
-                      See More Travels
+                      {t[language].see}
                     </Link>
                     <div
                       className="d-flex gap-5 flex-grow-1 justify-content-end"
@@ -263,7 +268,7 @@ export default function TopServices() {
               </>
             ) : (
               <div className="col-md-6">
-                <h2 className="fw-bolder mb-3 fs-1">No trips available</h2>
+                <h2 className="fw-bolder mb-3 fs-1">{t[language].noTrips}</h2>
               </div>
             )}
           </div>

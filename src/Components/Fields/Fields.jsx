@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import arrow from "../../assets/arrow-right.svg";
 import bg from "../../assets/fields-bg.jpeg";
 import "./Fields.css";
+// translation
+import t from "../../Translation/translation";
+import useLanguage from "../../context/useLanguage";
 
 export default function Fields() {
+  // translation
+  const { language, setLanguage } = useLanguage();
+
   return (
     <div>
       <div
@@ -13,19 +19,19 @@ export default function Fields() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          
         }}
       >
         <div
           className="overlay position-absolute start-0 end-0 top-0 bottom-0 bg-dark"
           style={{
             opacity: "0.8",
+            zIndex: "1",
           }}
         ></div>
         <div
           className="text-white flex-grow- mx-4"
           style={{
-            zIndex: "1",
+            zIndex: "1222",
           }}
         >
           <h2
@@ -36,15 +42,15 @@ export default function Fields() {
               fontWeight: "700",
             }}
           >
-            Find the special places <br /> and{" "}
+            {t[language].find} <br /> {t[language].and}{" "}
             <span
               style={{
                 color: "#F77A40",
               }}
             >
-              book
+              {t[language].book}
             </span>{" "}
-            now!
+            {t[language].now}
           </h2>
           <p
             style={{
@@ -54,7 +60,7 @@ export default function Fields() {
               textTransform: "capitalize",
             }}
           >
-            special offers{" "}
+            {t[language].specilOffers}{" "}
             <span
               className="btn"
               style={{
@@ -63,7 +69,7 @@ export default function Fields() {
                 padding: "2px 5px",
               }}
             >
-              10% OFF
+              10% {t[language].off}
             </span>
           </p>
         </div>
@@ -81,7 +87,7 @@ export default function Fields() {
               cursor: "pointer",
             }}
           />
-          <p className="text-white text-uppercase">BOOK NOW</p>
+          <p className="text-white text-uppercase">{t[language].BookNow} </p>
         </div>
       </div>
     </div>

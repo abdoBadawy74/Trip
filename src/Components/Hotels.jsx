@@ -5,8 +5,13 @@ import { BASE } from "../API/Api";
 import locationIcon from "../assets/location-icon.svg";
 import elipse1 from "../assets/hotel-elipse1.svg";
 import elipse2 from "../assets/hotel-elipse2.svg";
+// translation
+import t from "../Translation/translation";
+import useLanguage from "../context/useLanguage";
 
 export default function Hotels() {
+  // translation
+  const { language, setLanguage } = useLanguage();
   const [hotels, setHotels] = useState([]);
 
   useEffect(() => {
@@ -87,7 +92,7 @@ export default function Hotels() {
             color: "#42A7C3",
           }}
         >
-          hotels
+          {t[language].hotels}
         </h3>
         <div className="d-flex justify-content-between align-items-center">
           <h2
@@ -97,7 +102,7 @@ export default function Hotels() {
               letterSpacing: "1.5px",
             }}
           >
-            slogan here 5 words
+            {t[language].slogan}{" "}
           </h2>
           <Link
             className="text-uppercase fs-5 "
@@ -106,7 +111,7 @@ export default function Hotels() {
             }}
             to={"/hotels"}
           >
-            all hotels
+            {t[language].allHotels}
           </Link>
         </div>
         <div className="content d-flex flex-wrap flex-md-nowrap gap-4 my-3 justify-content-center">
@@ -132,7 +137,7 @@ export default function Hotels() {
                       color: "#F77A40",
                     }}
                   >
-                    {Math.round(hotel.ticket_price_from)} DH
+                    {Math.round(hotel.ticket_price_from)} {t[language].DH}
                   </p>
                 </div>
                 <p

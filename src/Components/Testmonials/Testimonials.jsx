@@ -1,7 +1,10 @@
-import  { useState } from "react";
+import { useState } from "react";
 import quote from "../../assets/quote.svg";
 import person from "../../assets/person.png";
 import "./Testimonials.css";
+// translation
+import t from "../../Translation/translation";
+import useLanguage from "../../context/useLanguage";
 
 const testimonialsData = [
   {
@@ -17,22 +20,24 @@ const testimonialsData = [
     location: "beni suef, Egypt",
     img: person,
   },
-    {
+  {
     quote: "“Another testimonial text here. It can be longer or shorter3.”",
     name: "Jane Doe",
     location: "Qana, Egypt",
     img: person,
-    },
-    {
+  },
+  {
     quote: "“Another testimonial text here. It can be longer or shorter4.”",
     name: "Jane Doe",
     location: "location, Egypt",
     img: person,
-    },
-    
+  },
 ];
 
 export default function Testimonials() {
+  // translation
+  const { language, setLanguage } = useLanguage();
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handlePrev = () => {
@@ -62,7 +67,7 @@ export default function Testimonials() {
             color: "#42A7C3",
           }}
         >
-          testimonials
+          {t[language].testimonials}
         </h3>
         <p
           className="text-uppercase"
@@ -71,8 +76,8 @@ export default function Testimonials() {
             fontWeight: "600",
           }}
         >
-          What people say
-          <br /> about Us.
+          {t[language].say}
+          <br /> {t[language].about}
         </p>
         <div className="bullets d-flex gap-1">
           {testimonialsData.map((_, index) => (
@@ -88,9 +93,7 @@ export default function Testimonials() {
           ))}
         </div>
       </div>
-      <div
-        className="slider position-relative flex-grow-1 "
-      >
+      <div className="slider position-relative flex-grow-1 ">
         {testimonialsData.map((testimonial, index) => (
           <div
             key={index}

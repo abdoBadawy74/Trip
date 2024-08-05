@@ -5,10 +5,15 @@ import icon4 from "../../assets/facebook-icon.svg";
 import icon5 from "../../assets/telegram-icon.svg";
 import arrowPlane from "../../assets/Plane.svg";
 import { Link } from "react-router-dom";
+// translation
+import t from "../../Translation/translation";
+import useLanguage from "../../context/useLanguage";
 
 import "./Footer.css";
 
 export default function Footer() {
+  // translation
+  const { language, setLanguage } = useLanguage();
   return (
     <div
       style={{
@@ -32,22 +37,24 @@ export default function Footer() {
         }}
       >
         <div className="text col-12 col-lg-4">
-          <p className="fs-3 text-capitalize">need to know !!!</p>
+          <p className="fs-3 text-capitalize">{t[language].need}</p>
           <h3
             style={{
               fontSize: "48px",
             }}
           >
-            need to know !!!
+            {t[language].need}
           </h3>
         </div>
         <div className="d-flex flex-column gap-3  justify-self-end col-12 col-lg-3 ">
           <input
             type="email"
-            placeholder="Email address..."
+            placeholder={t[language].email}
             className="text-muted p-2 rounded border-0 outline-0 w-100"
           />
-          <button className="btn btn-dark p-2 w-100">Subscribe</button>
+          <button className="btn btn-dark p-2 w-100">
+            {t[language].subscribe}
+          </button>
         </div>
       </div>
       <div className="container my-3">
@@ -83,10 +90,10 @@ export default function Footer() {
               fontWeight: "500",
             }}
           >
-            <li>Hotels</li>
-            <li>Travels</li>
-            <li>About Us</li>
-            <li>Contact us</li>
+            <li>{t[language].hotels} </li>
+            <li>{t[language].travels}</li>
+            <li>{t[language].aboutUs}</li>
+            <li>{t[language].contactUs}</li>
           </ul>
 
           <div className="d-flex gap-2 social">
@@ -128,9 +135,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="d-flex justify-content-between flex-wrap mt-2 align-items-center">
-          <span className="text-white copy">
-            Copyright ® 2024 InfinityPlaces All rights Perceived
-          </span>
+          <span className="text-white copy">{t[language].copyRight}</span>
           <div
             className="d-flex gap-3 text-white m-0"
             style={{
@@ -138,10 +143,10 @@ export default function Footer() {
             }}
           >
             <span>
-              <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/privacy">{t[language].policy}</Link>
             </span>
 
-            <span>Terms </span>
+            <span>{t[language].terms} </span>
           </div>
         </div>
       </div>
