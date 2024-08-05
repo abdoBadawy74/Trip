@@ -202,7 +202,7 @@ export default function TopServices() {
                           backgroundColor: "#FF6B00",
                           cursor: "pointer",
                         }}
-                        to={`travels/${filteredTrips[0].id}`}
+                        to={`/travels/${filteredTrips[0].id}`}
                       >
                         <img src={Book} alt="Book Now" /> Book Now
                       </Link>
@@ -222,7 +222,6 @@ export default function TopServices() {
                       }}
                       to="/travels"
                     >
-                      
                       See More Travels
                     </Link>
                     <div

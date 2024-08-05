@@ -36,7 +36,7 @@ const Calendar = () => {
 
     const formattedDay = format(day, "yyyy-MM-dd");
 
-    if (!selectedRange.start || (selectedRange.start && selectedRange.end)) {
+    if (!selectedRange?.start || (selectedRange?.start && selectedRange?.end)) {
       setSelectedRange({ start: formattedDay, end: null });
     } else if (selectedRange.start && !selectedRange.end) {
       const formattedStart = selectedRange.start;
@@ -105,17 +105,17 @@ const Calendar = () => {
         if (!isSameMonth(day, monthStart)) {
           className += " disabled";
         } else if (
-          isSameDay(day, new Date(selectedRange.start)) &&
+          isSameDay(day, new Date(selectedRange?.start)) &&
           !selectedRange.end
         ) {
           className += " selected one-day";
-        } else if (isSameDay(day, new Date(selectedRange.start))) {
+        } else if (isSameDay(day, new Date(selectedRange?.start))) {
           className += " selected range-start";
-        } else if (isSameDay(day, new Date(selectedRange.end))) {
+        } else if (isSameDay(day, new Date(selectedRange?.end))) {
           className += " selected range-end";
         } else if (
-          selectedRange.start &&
-          selectedRange.end &&
+          selectedRange?.start &&
+          selectedRange?.end &&
           isWithinInterval(day, {
             start: new Date(selectedRange.start),
             end: new Date(selectedRange.end),
@@ -163,11 +163,11 @@ const Calendar = () => {
       <button
         className="checkout-button my-2"
         style={{
-          opacity: selectedRange.start ? 1 : 0.2,
+          opacity: selectedRange?.start ? 1 : 0.2,
           display: isPaymentPage ? "none" : "block",
         }}
         onClick={handleCheckoutClick}
-        disabled={!selectedRange.start}
+        disabled={!selectedRange?.start}
       >
         <img src={icon} alt="icon" /> Choose Check-out
       </button>

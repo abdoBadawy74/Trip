@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 const SelectedRangeContext = createContext();
 
@@ -7,6 +7,8 @@ export const SelectedRangeProvider = ({ children }) => {
     start: null,
     end: null,
   });
+
+
 
   return (
     <SelectedRangeContext.Provider value={{ selectedRange, setSelectedRange }}>

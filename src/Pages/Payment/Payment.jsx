@@ -11,6 +11,7 @@ import img from "../../assets/recipt.jpg";
 import { useNavigate, useParams } from "react-router-dom";
 import reviewIcon from "../../assets/Receipt.svg";
 import successIcon from "../../assets/Success.svg";
+import { Toast } from "react-bootstrap";
 
 export default function Payment() {
   const { travelId, hotelId } = useParams();
@@ -42,6 +43,10 @@ export default function Payment() {
   const [promoId, setPromoId] = useState(null);
   const [discount, setDiscount] = useState(0);
   const [status, setStatus] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   console.log(selectedRange);
 
@@ -157,6 +162,9 @@ export default function Payment() {
     });
 
     try {
+      setLoading(true); // Show loading overlay
+      await new Promise((resolve) => setTimeout(resolve, 3000)); // Delay for 3 seconds
+
       if (window.location.href.includes("/travels/")) {
         // Post to trip booking API
         const response = await axios.post(`${BASE}/trips/booking`, formData, {
@@ -166,7 +174,14 @@ export default function Payment() {
         });
 
         console.log(response);
-        setStatus(response.status);
+        if (response.status === 201) {
+          setShow4(true);
+          setShow3(false);
+        } else {
+          // If response is not 201, show an error toast
+          setToastMessage("An error occurred during booking submission.");
+          setShowToast(true);
+        }
       } else if (window.location.href.includes("/hotels/")) {
         // Post to hotel booking API
         formData.append("booking_date_from", selectedRange.start);
@@ -180,17 +195,21 @@ export default function Payment() {
         });
 
         console.log("form hotels", response);
-        setStatus(response.status);
+        if (response.status === 201) {
+          setShow4(true);
+          setShow3(false);
+        } else {
+          // If response is not 201, show an error toast
+          setToastMessage("An error occurred during booking submission.");
+          setShowToast(true);
+        }
       }
     } catch (error) {
       console.error("Error during booking submission:", error);
-      // Optionally handle the error, e.g., show an error message to the user
-    }
-    if (status === 201) {
-      setTimeout(() => {
-        setShow4(true);
-        setShow3(false);
-      }, 2000);
+      setToastMessage("An error occurred during booking submission.");
+      setShowToast(true);
+    } finally {
+      setLoading(false); // Hide loading overlay
     }
   };
 
@@ -319,8 +338,31 @@ export default function Payment() {
     }
   }
 
+  useEffect(() => {
+    return () => {
+      // Clear selectedRange when the component unmounts
+      setSelectedRange(null);
+    };
+  }, [setSelectedRange]);
   return (
     <div className="payment">
+      {loading && (
+        <div className="overlay">
+          <div className="spinner"></div>
+          <p>Loading...</p>
+        </div>
+      )}
+
+      <Toast
+        onClose={() => setShowToast(false)}
+        show={showToast}
+        delay={3000}
+        autohide
+        style={{ position: "absolute", top: 20, right: 20 }}
+      >
+        <Toast.Body>{toastMessage}</Toast.Body>
+      </Toast>
+
       <div id="toastBox"></div>
       <div className="bg-orange">
         <Header />
@@ -1114,156 +1156,191 @@ export default function Payment() {
         )}
 
         {show4 && (
-          <div className="d-flex justify-content-around p-4 align-items-center">
-            <div className="d-flex flex-column align-items-center gap-3">
-              <img src={successIcon} alt="successIcon" />
-              <p
+          <div>
+            <div className="d-flex justify-content-around p-4 align-items-center">
+              <div className="d-flex flex-column align-items-center gap-3">
+                <img src={successIcon} alt="successIcon" />
+                <p
+                  style={{
+                    fontSize: "32px",
+                    color: "#1F1F1F",
+                  }}
+                >
+                  Payment Success!
+                </p>
+              </div>
+              <div className="col-12 col-md-5 ">
+                <div className="d-flex justify-content-between align-items-center">
+                  <p
+                    style={{
+                      fontSize: "24px",
+                      fontWeight: "600",
+                      textAlign: "center",
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: "#F77A40",
+                        fontSize: "64px",
+                      }}
+                    >
+                      {startDay} {endDay ? " - " + endDay : ""}
+                    </span>{" "}
+                    <br />
+                    {startMonthYear} {endMonthYear ? " - " + endMonthYear : ""}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "24px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: "#42A7C3",
+                        fontSize: "64px",
+                      }}
+                    >
+                      {adults + minors}
+                    </span>{" "}
+                    Tickets
+                  </p>
+                </div>
+
+                <div className="d-flex justify-content-between align-items-center">
+                  <p
+                    style={{
+                      color: "#A5A5A5",
+                      fontSize: "20px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Name
+                  </p>
+                  <p
+                    style={{
+                      color: "#535355",
+                      fontSize: "20px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {firstName} {lastName}
+                  </p>
+                </div>
+
+                <div className="d-flex justify-content-between align-items-center">
+                  <p
+                    style={{
+                      color: "#A5A5A5",
+                      fontSize: "20px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Email
+                  </p>
+                  <p
+                    style={{
+                      color: "#535355",
+                      fontSize: "20px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {email}
+                  </p>
+                </div>
+                <div className="d-flex justify-content-between align-items-center">
+                  <p
+                    style={{
+                      color: "#A5A5A5",
+                      fontSize: "20px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Phone
+                  </p>
+                  <p
+                    style={{
+                      color: "#535355",
+                      fontSize: "20px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {phone}
+                  </p>
+                </div>
+                <div className="d-flex justify-content-between align-items-center">
+                  <p
+                    style={{
+                      color: "#A5A5A5",
+                      fontSize: "20px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Number of people
+                  </p>
+                  <p
+                    style={{
+                      color: "#535355",
+                      fontSize: "20px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {adults} adults, {minors} minors
+                  </p>
+                </div>
+                <div className="d-flex justify-content-between align-items-center">
+                  <p
+                    style={{
+                      color: "#A5A5A5",
+                      fontSize: "20px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    total price
+                  </p>
+                  <p
+                    style={{
+                      color: "#535355",
+                      fontSize: "20px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {getTotalCost() - discount}$
+                  </p>
+                </div>
+              </div>
+            </div>
+          
+
+            {
+              window.location.href.includes("/travels/") &&
+                <button
                 style={{
-                  fontSize: "32px",
-                  color: "#1F1F1F",
+                  backgroundColor: "#F77A40",
+                  color: "#fff",
+                  fontSize: "20px",
+                  fontWeight: "500",
+                  padding: "10px 50px",
+                  borderRadius: "8px",
+                  border: "none",
+                  outline: "none",
+                  display: "block",
+                  margin: "50px auto",
+                  width: "100%",
+                }}
+                onClick={() => {
+                  navigate(-1);
                 }}
               >
-                Payment Success!
-              </p>
-            </div>
-            <div className="col-12 col-md-5 ">
-              <div className="d-flex justify-content-between align-items-center">
-                <p
-                  style={{
-                    fontSize: "24px",
-                    fontWeight: "600",
-                  }}
-                >
-                  <span
-                    style={{
-                      color: "#F77A40",
-                      fontSize: "64px",
-                    }}
-                  >
-                    {startDay} {endDay ? " - " + endDay : ""}
-                  </span>{" "}
-                  {startMonthYear} {endMonthYear ? " - " + endMonthYear : ""}
-                </p>
-                <p
-                  style={{
-                    fontSize: "24px",
-                    fontWeight: "600",
-                  }}
-                >
-                  <span
-                    style={{
-                      color: "#42A7C3",
-                      fontSize: "64px",
-                    }}
-                  >
-                    {adults + minors}
-                  </span>{" "}
-                  Tickets
-                </p>
-              </div>
+                Done
+              </button>
+              }
+            
 
-              <div className="d-flex justify-content-between align-items-center">
-                <p
-                  style={{
-                    color: "#A5A5A5",
-                    fontSize: "20px",
-                    fontWeight: "500",
-                  }}
-                >
-                  Name
-                </p>
-                <p
-                  style={{
-                    color: "#535355",
-                    fontSize: "20px",
-                    fontWeight: "600",
-                  }}
-                >
-                  {firstName} {lastName}
-                </p>
-              </div>
 
-              <div className="d-flex justify-content-between align-items-center">
-                <p
-                  style={{
-                    color: "#A5A5A5",
-                    fontSize: "20px",
-                    fontWeight: "500",
-                  }}
-                >
-                  Email
-                </p>
-                <p
-                  style={{
-                    color: "#535355",
-                    fontSize: "20px",
-                    fontWeight: "600",
-                  }}
-                >
-                  {email}
-                </p>
-              </div>
-              <div className="d-flex justify-content-between align-items-center">
-                <p
-                  style={{
-                    color: "#A5A5A5",
-                    fontSize: "20px",
-                    fontWeight: "500",
-                  }}
-                >
-                  Phone
-                </p>
-                <p
-                  style={{
-                    color: "#535355",
-                    fontSize: "20px",
-                    fontWeight: "600",
-                  }}
-                >
-                  {phone}
-                </p>
-              </div>
-              <div className="d-flex justify-content-between align-items-center">
-                <p
-                  style={{
-                    color: "#A5A5A5",
-                    fontSize: "20px",
-                    fontWeight: "500",
-                  }}
-                >
-                  Number of people
-                </p>
-                <p
-                  style={{
-                    color: "#535355",
-                    fontSize: "20px",
-                    fontWeight: "600",
-                  }}
-                >
-                  {adults} adults, {minors} minors
-                </p>
-              </div>
-              <div className="d-flex justify-content-between align-items-center">
-                <p
-                  style={{
-                    color: "#A5A5A5",
-                    fontSize: "20px",
-                    fontWeight: "500",
-                  }}
-                >
-                  total price
-                </p>
-                <p
-                  style={{
-                    color: "#535355",
-                    fontSize: "20px",
-                    fontWeight: "600",
-                  }}
-                >
-                  {getTotalCost() - discount}$
-                </p>
-              </div>
-            </div>
+
+
+
           </div>
         )}
       </div>
