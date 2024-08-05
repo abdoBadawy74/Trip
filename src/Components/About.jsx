@@ -4,8 +4,13 @@ import offer2 from "../assets/offer2.svg";
 import offer3 from "../assets/offer3.svg";
 import elipse from "../assets/aboutElipse.svg";
 import { Element } from "react-scroll";
+// translation
+import t from "../Translation/translation"
+import  useLanguage  from "../context/useLanguage";
 
 export default function About() {
+    // translation
+    const { language, setLanguage } = useLanguage();
   return (
     <>
       <Element name="about" id="about">
@@ -18,7 +23,8 @@ export default function About() {
               letterSpacing: "3px",
             }}
           >
-            OFFERS
+            {t[language].OFFERS}
+            
           </h4>
           <h2
             className="text-center my-2"
@@ -27,7 +33,7 @@ export default function About() {
               fontSize: "45px",
             }}
           >
-            We Offer Best Services
+            {t[language].Best}
           </h2>
           <p
             className="text-center"
@@ -36,10 +42,10 @@ export default function About() {
               fontSize: "20px",
             }}
           >
-            Hay! Travelo there to help you find your dream holiday.
+            {t[language].offer_head}
             <br />
             <span className="fw-bold">
-              Easy you just find where you want to go and buy the ticket.
+            {t[language].offer_head2}
             </span>
           </p>
 
@@ -57,15 +63,14 @@ export default function About() {
                   color: "#1F1F1F",
                 }}
               >
-                All You Needs
+                {t[language].all}
               </h3>
               <p
                 style={{
                   color: "#8A8A8A",
                 }}
               >
-                From flights, stays, to sights, just count on our complete
-                products.
+                {t[language].all_p}
               </p>
             </div>
 
@@ -82,15 +87,14 @@ export default function About() {
                   color: "#1F1F1F",
                 }}
               >
-                Flexible Booking
+                {t[language].flex}
               </h3>
               <p
                 style={{
                   color: "#8A8A8A",
                 }}
               >
-                From flights, stays, to sights, just count on our complete
-                products.
+                {t[language].flex_p}
               </p>
             </div>
 
@@ -107,15 +111,14 @@ export default function About() {
                   color: "#1F1F1F",
                 }}
               >
-                Secure Payment
+                {t[language].payment}
               </h3>
               <p
                 style={{
                   color: "#8A8A8A",
                 }}
               >
-                From flights, stays, to sights, just count on our complete
-                products.
+                {t[language].payment_p}
               </p>
             </div>
           </div>

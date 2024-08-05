@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
-
 import "./Header.css";
+import t from "../../Translation/translation"
+import  useLanguage  from "../../context/useLanguage";
+
 export default function Header() {
+  const { language, setLanguage } = useLanguage();
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -14,7 +17,7 @@ export default function Header() {
   };
 
   const handleLanguageChange = (language) => {
-    setSelectedLanguage(language);
+    setLanguage(language);
     setIsDropdownOpen(false);
   };
 
@@ -54,10 +57,7 @@ export default function Header() {
     }
   }, [location]);
 
-  const handleScrollToAbout = (e) => {
-    e.preventDefault();
-    navigate("/#about");
-  };
+ 
 
   return (
     <nav
@@ -124,7 +124,7 @@ export default function Header() {
               onClick={toggleDropdown}
               style={{ padding: 0 }}
             >
-              {selectedLanguage}
+              {t[language].language}
               <i
                 className={`${
                   isDropdownOpen
@@ -142,7 +142,7 @@ export default function Header() {
                 <button
                   className="dropdown-item text-white p-2"
                   type="button"
-                  onClick={() => handleLanguageChange("English")}
+                  onClick={() => handleLanguageChange("en")}
                 >
                   English
                 </button>
@@ -151,7 +151,7 @@ export default function Header() {
                 <button
                   className="dropdown-item text-white p-2"
                   type="button"
-                  onClick={() => handleLanguageChange("Arabic")}
+                  onClick={() => handleLanguageChange("ar")}
                 >
                   Arabic
                 </button>
@@ -160,9 +160,9 @@ export default function Header() {
                 <button
                   className="dropdown-item text-white p-2"
                   type="button"
-                  onClick={() => handleLanguageChange("French")}
+                  onClick={() => handleLanguageChange("it")}
                 >
-                  French
+                  Italian
                 </button>
               </li>
             </ul>
@@ -178,17 +178,17 @@ export default function Header() {
           >
             <li className="nav-item">
               <Link className="nav-link active" to="/home">
-                Home
+                {t[language].home}
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/hotels">
-                Hotels
+              {t[language].hotels}
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/travels">
-                Travels
+              {t[language].travels}
               </Link>
             </li>
             <li className="nav-item">
@@ -197,7 +197,7 @@ export default function Header() {
                 to="/about"
                 //  onClick={handleScrollToAbout}
               >
-                About Us
+               {t[language].aboutUs}
               </Link>
             </li>
           </ul>
@@ -205,7 +205,7 @@ export default function Header() {
           <ul className="navbar-nav m-2 mb-lg-0">
             <li className="m-auto">
               <Link className="btn m-2 order-lg-last nav-btn" to="/login">
-                Contact Us
+              {t[language].contactUs}
               </Link>
             </li>
           </ul>

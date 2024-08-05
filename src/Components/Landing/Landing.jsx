@@ -6,12 +6,19 @@ import Header from "../Header/Header";
 import transfer from "../../assets/transfer.svg";
 import ticket from "../../assets/ticket.svg";
 import tour from "../../assets/tour.svg";
+// translation
+import t from "../../Translation/translation";
+import  useLanguage  from "../../context/useLanguage";
 
 export default function Landing() {
+  // translation
+  const { language, setLanguage } = useLanguage();
+
   const [selectedCity, setSelectedCity] = useState("Dubai");
   const [animationClass, setAnimationClass] = useState("show-from-bottom");
   const videoRef1 = useRef(null);
   const videoRef2 = useRef(null);
+  console.log(language);
 
   useEffect(() => {
     if (selectedCity === "Dubai" && videoRef1.current) {
@@ -57,7 +64,7 @@ export default function Landing() {
           }}
         >
           <source src={video} type="video/mp4" />
-          Your browser does not support the video tag.
+          {t[language].videoSupport}
         </video>
         <video
           ref={videoRef2}
@@ -77,7 +84,7 @@ export default function Landing() {
           }}
         >
           <source src={video2} type="video/mp4" />
-          Your browser does not support the video tag.
+          {t[language].videoSupport}
         </video>
 
         <Header />
@@ -112,7 +119,7 @@ export default function Landing() {
                 }}
                 onClick={() => handleCityChange("Abu Dhabi")}
               >
-                Abu Dhabi
+                {t[language].city1}
               </li>
               <li
                 className={`fs-5 ${
@@ -126,7 +133,7 @@ export default function Landing() {
                 }}
                 onClick={() => handleCityChange("Dubai")}
               >
-                Dubai
+                {t[language].city2}
               </li>
             </ul>
           </div>
@@ -150,7 +157,7 @@ export default function Landing() {
                   lineHeight: "1",
                 }}
               >
-                Start your journey now! <br /> and claim all you want
+                {t[language].h1_part1} <br /> {t[language].h1_part2}
               </h1>
               <div className="icons my-2 d-flex p-3 justify-content-around ">
                 <div
@@ -162,7 +169,7 @@ export default function Landing() {
                   }}
                 >
                   <img src={transfer} alt="icon" />
-                  <p>Transfer</p>
+                  <p>{t[language].Transfer}</p>
                 </div>
                 <div
                   className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
@@ -173,7 +180,7 @@ export default function Landing() {
                   }}
                 >
                   <img src={ticket} alt="icon" />
-                  <p>Ticket</p>
+                  <p>{t[language].Ticket}</p>
                 </div>
                 <div
                   className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
@@ -184,14 +191,14 @@ export default function Landing() {
                   }}
                 >
                   <img src={tour} alt="icon" />
-                  <p>Tour</p>
+                  <p>{t[language].Tour}</p>
                 </div>
               </div>
 
               <div className="form d-flex align-items-center justify-content-center gap-3 px-4">
                 <input
                   type="text"
-                  placeholder="Search"
+                  placeholder={t[language].Search}
                   className="w-50 rounded p-2 border-0 outline-0"
                   style={{
                     backgroundColor: "#F8F9F9",
@@ -207,7 +214,7 @@ export default function Landing() {
                     borderRadius: "5px",
                   }}
                 >
-                  Book Now
+                  {t[language].BookNow}
                 </button>
               </div>
             </div>
@@ -224,7 +231,7 @@ export default function Landing() {
                   lineHeight: "1",
                 }}
               >
-                Start your journey now! <br /> and claim all you want
+                {t[language].h2_part1} <br /> {t[language].h2_part2} 
               </h1>
               <div className="icons my-2 d-flex p-3 justify-content-around ">
                 <div
@@ -236,7 +243,7 @@ export default function Landing() {
                   }}
                 >
                   <img src={transfer} alt="icon" />
-                  <p>Transfer</p>
+                  <p> {t[language].Transfer}</p>
                 </div>
                 <div
                   className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
@@ -247,7 +254,7 @@ export default function Landing() {
                   }}
                 >
                   <img src={ticket} alt="icon" />
-                  <p>Ticket</p>
+                  <p>{t[language].Ticket}</p>
                 </div>
                 <div
                   className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
@@ -258,7 +265,7 @@ export default function Landing() {
                   }}
                 >
                   <img src={tour} alt="icon" />
-                  <p>Tour</p>
+                  <p>{t[language].Tour}</p>
                 </div>
               </div>
 
@@ -271,7 +278,7 @@ export default function Landing() {
               >
                 <input
                   type="text"
-                  placeholder="Search"
+                  placeholder={t[language].Search}
                   className="w-50 rounded p-2 border-0 outline-0 flex-grow-1"
                   style={{
                     backgroundColor: "#F8F9F9",
@@ -287,7 +294,7 @@ export default function Landing() {
                     borderRadius: "5px",
                   }}
                 >
-                  Book Now
+                  {t[language].BookNow}
                 </button>
               </div>
             </div>
