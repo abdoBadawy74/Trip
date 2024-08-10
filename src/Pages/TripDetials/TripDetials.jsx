@@ -6,8 +6,13 @@ import { useParams } from "react-router-dom";
 import TripsContext from "../../context/TripsContext";
 import Header from "../../Components/Header/Header";
 import Calendar from "../../Components/Calendar/Calendar";
+// translation
+import t from "../../Translation/translation";
+import useLanguage from "../../context/useLanguage";
 
 export default function TripDetials() {
+  // translation
+  const { language, setLanguage } = useLanguage();
   const { travelId } = useParams();
   const { trips } = useContext(TripsContext);
   const trip = trips.find((trip) => trip.id === parseInt(travelId));
@@ -16,14 +21,14 @@ export default function TripDetials() {
   const [backgroundImage, setBackgroundImage] = useState();
 
   useEffect(() => {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     if (trip) {
       setBackgroundImage(trip.images[0].url);
       setDiscoveredTrips(trips.filter((h) => h.id !== trips.id));
     }
   }, [trips, trips]);
-  
-console.log(discoveredTrips);
+
+  console.log(discoveredTrips);
   if (!trip) {
     return (
       <div className="bg-orange">
@@ -122,11 +127,11 @@ console.log(discoveredTrips);
                       </div>
 
                       <div className="d-flex">
-                        <p style={{ color: "#6B7A85" }}>Duration: </p>
+                        <p style={{ color: "#6B7A85" }}>{t[language].Duration} : </p>
                         <p className="card-text-price">{trip.duration}</p>
                       </div>
                       <div className="d-flex one ">
-                        <p style={{ color: "#6B7A85" }}>Ticket Price: </p>
+                        <p style={{ color: "#6B7A85" }}>{t[language].TicketPrice} : </p>
                         <p className="card-text-price mb-4">
                           {trip.ticket_price_from} HD - {trip.ticket_price_to}{" "}
                           HD
@@ -144,7 +149,7 @@ console.log(discoveredTrips);
 
                       <div className="d-flex">
                         <h3 className="mb-4" style={{ fontWeight: "600" }}>
-                          About this travel
+                        {t[language].aboutThisTravel}
                         </h3>
                         <img
                           src={tripdet}
@@ -188,7 +193,7 @@ console.log(discoveredTrips);
                   margin: "1rem 0 ",
                 }}
               >
-                Discover more trips
+                {t[language].discoverMoreTravels}
               </p>
 
               <div className="d-flex gap-3">

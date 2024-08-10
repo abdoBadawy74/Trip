@@ -9,8 +9,13 @@ import Footer from "../../Components/Footer/Footer";
 import { Link, Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import TripsContext from "../../context/TripsContext";
+// translation
+import t from "../../Translation/translation";
+import useLanguage from "../../context/useLanguage";
 
 export default function Travels() {
+  // translation
+  const { language, setLanguage } = useLanguage();
   const { trips } = useContext(TripsContext);
 
   const location = useLocation();
@@ -67,7 +72,7 @@ export default function Travels() {
                     color: " #42A7C3",
                   }}
                 >
-                  All trips
+                  {t[language].allTrips}
                 </h2>
               </div>
               <div>
@@ -77,7 +82,7 @@ export default function Travels() {
                   } mx-2`}
                   onClick={() => setState("Abu Dhabi")}
                 >
-                  Abu Dhabi
+                  {t[language].city1}
                 </button>
                 <button
                   className={`btn ${
@@ -85,7 +90,7 @@ export default function Travels() {
                   } mx-2`}
                   onClick={() => setState("Dubai")}
                 >
-                  Dubai
+                  {t[language].city2}
                 </button>
               </div>
             </div>
@@ -97,14 +102,14 @@ export default function Travels() {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option value="tour">tour</option>
-                <option value="transfer">transfer</option>
-                <option value="ticket">ticket</option>
+                <option value="tour">{t[language].Tour}</option>
+                <option value="transfer">{t[language].Transfer}</option>
+                <option value="ticket">{t[language].Ticket}</option>
               </select>
               <input
                 type="text"
                 className="form-control m-2"
-                placeholder="Search by state"
+                placeholder={t[language].Search}
                 style={{
                   backgroundColor: " #F8F9F9",
                 }}
@@ -116,7 +121,7 @@ export default function Travels() {
                 style={{ backgroundColor: "#42A7C3", color: "#ffff" }}
                 onClick={handleSearch}
               >
-                Search
+                {t[language].Search}
               </button>
             </div>
             <div className="content my-3">
@@ -189,7 +194,9 @@ export default function Travels() {
                   </Link>
                 ))
               ) : (
-                <h1 className="text-center p-5 fw-bold">No trips found !</h1>
+                <h1 className="text-center p-5 fw-bold">
+                  {t[language].noTrips}
+                </h1>
               )}
             </div>
           </div>

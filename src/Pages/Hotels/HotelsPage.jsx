@@ -6,8 +6,13 @@ import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import locationIcon from "../../assets/location-icon.svg";
 import "./HotelsPage.css";
+// translation
+import t from "../../Translation/translation";
+import useLanguage from "../../context/useLanguage";
 
 function Hotels() {
+  // translation
+  const { language, setLanguage } = useLanguage();
   const { hotels } = useContext(HotelsContext);
   console.log("Hotels from Context:", hotels);
 
@@ -69,7 +74,7 @@ function Hotels() {
                     color: " #42A7C3",
                   }}
                 >
-                  All Hotels
+                  {t[language].allHotels}
                 </h2>
               </div>
               <div>
@@ -79,7 +84,7 @@ function Hotels() {
                   } mx-2`}
                   onClick={() => setState("Abu Dhabi")}
                 >
-                  Abu Dhabi
+                  {t[language].city1}
                 </button>
                 <button
                   className={`btn ${
@@ -87,7 +92,7 @@ function Hotels() {
                   } mx-2`}
                   onClick={() => setState("Dubai")}
                 >
-                  Dubai
+                  {t[language].city2}
                 </button>
               </div>
             </div>
@@ -96,7 +101,7 @@ function Hotels() {
               <input
                 type="text"
                 className="form-control m-2"
-                placeholder="Search by state"
+                placeholder={t[language].Search}
                 style={{
                   backgroundColor: " #F8F9F9",
                 }}
@@ -108,7 +113,7 @@ function Hotels() {
                 style={{ backgroundColor: "#42A7C3", color: "#ffff" }}
                 onClick={handleSearch}
               >
-                Search
+                {t[language].Search}
               </button>
             </div>
 
@@ -118,7 +123,7 @@ function Hotels() {
                 animate={{ transform: "scale(1)" }}
                 initial={{ transform: "scale(0)" }}
                 transition={{ type: "spring", damping: 8 }}
-                className="col-md-4 pt-4"
+                className="col-md-4 pt-4 mb-5"
                 key={index}
               >
                 <Link

@@ -8,8 +8,13 @@ import HotelsContext from "../../context/HotelsContext";
 import "./HotelDetails.css";
 import Header from "../../Components/Header/Header";
 import Calendar from "../../Components/Calendar/Calendar";
+// translation
+import t from "../../Translation/translation";
+import useLanguage from "../../context/useLanguage";
 
 function HotelDetails() {
+  // translation
+  const { language, setLanguage } = useLanguage();
   const { hotelId } = useParams();
   const { hotels } = useContext(HotelsContext);
   const hotel = hotels.find((hotel) => hotel.id === parseInt(hotelId));
@@ -150,7 +155,7 @@ function HotelDetails() {
                         {hotel.location}
                       </p>
                       <div className="d-flex">
-                        <p style={{ color: "#6B7A85" }}>Services: </p>
+                        <p style={{ color: "#6B7A85" }}>{t[language].Services} : </p>
                         <p className="card-text-price">
                           {hotel.services.map((s, i) =>
                             i === hotel.services.length - 1 ? s : s + " - "
@@ -158,7 +163,7 @@ function HotelDetails() {
                         </p>
                       </div>
                       <div className="d-flex one ">
-                        <p style={{ color: "#6B7A85" }}>Ticket Price: </p>
+                        <p style={{ color: "#6B7A85" }}>{t[language].TicketPrice} : </p>
                         <p className="card-text-price mb-4">
                           {hotel.ticket_price_from} HD - {hotel.ticket_price_to}{" "}
                           HD
@@ -176,7 +181,7 @@ function HotelDetails() {
 
                       <div className="d-flex">
                         <h3 className="mb-4" style={{ fontWeight: "600" }}>
-                          About this travel
+                        {t[language].aboutThisHotel}
                         </h3>
                         <img
                           src={hoteldet}
@@ -220,7 +225,7 @@ function HotelDetails() {
                   margin: "1rem 0 ",
                 }}
               >
-                Discover more hotels
+                {t[language].discoverMoreHotels}
               </p>
 
               <div className="d-flex gap-3">

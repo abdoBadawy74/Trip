@@ -6,8 +6,13 @@ import vila from "../../assets/vila.svg";
 import "./Contact.css";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
+// translation
+import t from "../../Translation/translation";
+import useLanguage from "../../context/useLanguage";
 
 function Contact() {
+  // translation
+  const { language, setLanguage } = useLanguage();
   return (
     <div className="contact-detials">
       <div className="contact position-relative">
@@ -28,7 +33,9 @@ function Contact() {
               borderRadius: "15px",
             }}
           >
-            <h3 style={{ paddingBottom: "3.2rem" }}>Contact Information</h3>
+            <h3 style={{ paddingBottom: "3.2rem" }}>
+              {t[language].contactInformation}
+            </h3>
 
             <div className="onetop" style={{ paddingBottom: "3rem" }}>
               <div className="one1 d-flex">
@@ -79,7 +86,7 @@ function Contact() {
           <form id="registerForm" className="flex  m-5 position-relative ">
             <div className="name d-flex">
               <div className="d-flex pb" style={{ flexDirection: "column" }}>
-                <label className="namelabel"> FirstName</label>
+                <label className="namelabel"> {t[language].F_name}</label>
                 <input
                   type="text"
                   id="username"
@@ -90,7 +97,7 @@ function Contact() {
               </div>
 
               <div className="d-flex pb" style={{ flexDirection: "column" }}>
-                <label className="namelabel"> LastName</label>
+                <label className="namelabel"> {t[language].L_name}</label>
                 <input
                   type="text"
                   id="username"
@@ -103,7 +110,7 @@ function Contact() {
 
             <div className="name d-flex ">
               <div className="d-flex pb" style={{ flexDirection: "column" }}>
-                <label className="namelabel"> Email</label>
+                <label className="namelabel"> {t[language].Email}</label>
                 <input
                   type="email"
                   id="emil"
@@ -114,7 +121,7 @@ function Contact() {
               </div>
 
               <div className="d-flex pb" style={{ flexDirection: "column" }}>
-                <label className="namelabel"> Phone Number</label>
+                <label className="namelabel">{t[language].Phone}</label>
                 <input
                   type="tel"
                   id="tel"
@@ -127,19 +134,19 @@ function Contact() {
 
             <div>
               <div className="d-flex" style={{ flexDirection: "column" }}>
-                <label className="namelabel"> Message</label>
+                <label className="namelabel"> {t[language].Message}</label>
                 <textarea
                   id="message"
                   name="message"
                   rows="1"
-                  placeholder="Write your message.."
+                  placeholder={t[language].write}
                   className="message"
                   required=""
                 ></textarea>
               </div>
 
               <button type="submit" className="sub m-4 ">
-                Send Message
+                {t[language].send}
               </button>
             </div>
           </form>
