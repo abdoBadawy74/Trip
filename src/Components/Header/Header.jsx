@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import "./Header.css";
-import t from "../../Translation/translation"
-import  useLanguage  from "../../context/useLanguage";
+import t from "../../Translation/translation";
+import useLanguage from "../../context/useLanguage";
 
 export default function Header() {
   const { language, setLanguage } = useLanguage();
@@ -57,8 +57,6 @@ export default function Header() {
     }
   }, [location]);
 
- 
-
   return (
     <nav
       className="navbar navbar-expand-lg b-orange bg-transparent p-0  m-0 position-relative"
@@ -110,7 +108,7 @@ export default function Header() {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <li
-            className="nav-item dropdown align-self-center"
+            className="nav-item dropdown align-self-center mx-2"
             style={{
               listStyleType: "none",
             }}
@@ -183,12 +181,12 @@ export default function Header() {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/hotels">
-              {t[language].hotels}
+                {t[language].hotels}
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/travels">
-              {t[language].travels}
+                {t[language].travels}
               </Link>
             </li>
             <li className="nav-item">
@@ -197,7 +195,7 @@ export default function Header() {
                 to="/about"
                 //  onClick={handleScrollToAbout}
               >
-               {t[language].aboutUs}
+                {t[language].aboutUs}
               </Link>
             </li>
           </ul>
@@ -205,7 +203,7 @@ export default function Header() {
           <ul className="navbar-nav m-2 mb-lg-0">
             <li className="m-auto">
               <Link className="btn m-2 order-lg-last nav-btn" to="/login">
-              {t[language].contactUs}
+                {t[language].contactUs}
               </Link>
             </li>
           </ul>
