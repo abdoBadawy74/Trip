@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { Link, useLocation } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 import "./Header.css";
 import t from "../../Translation/translation";
 import useLanguage from "../../context/useLanguage";
 
 export default function Header() {
   const { language, setLanguage } = useLanguage();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(true);
-  const [selectedLanguage, setSelectedLanguage] = useState("en");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Default to false
   const location = useLocation();
-  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -18,8 +16,16 @@ export default function Header() {
 
   const handleLanguageChange = (language) => {
     setLanguage(language);
+    localStorage.setItem("language", language); // Save language to local storage
     setIsDropdownOpen(false);
   };
+
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      setLanguage(savedLanguage); // Load language from local storage
+    }
+  }, [setLanguage]);
 
   useEffect(() => {
     const updateActiveLink = () => {
