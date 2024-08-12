@@ -34,7 +34,7 @@ function AppContent() {
   const { language } = useLanguage();
 
   return (
-    <div className="App" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="App" dir={language === "ar" ? "rtl" : "ltr"}>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<LandingPage />} />

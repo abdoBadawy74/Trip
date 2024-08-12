@@ -12,8 +12,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import reviewIcon from "../../assets/Receipt.svg";
 import successIcon from "../../assets/Success.svg";
 import { Toast } from "react-bootstrap";
+// translation
+import t from "../../Translation/translation";
+import useLanguage from "../../context/useLanguage";
 
 export default function Payment() {
+  // translation
+  const { language, setLanguage } = useLanguage();
   const { travelId, hotelId } = useParams();
   const [show1, setShow1] = useState(true);
   const [show2, setShow2] = useState(false);
@@ -179,7 +184,7 @@ export default function Payment() {
           setShow3(false);
         } else {
           // If response is not 201, show an error toast
-          setToastMessage("An error occurred during booking submission.");
+          setToastMessage(t[language].toastMsg);
           setShowToast(true);
         }
       } else if (window.location.href.includes("/hotels/")) {
@@ -200,13 +205,13 @@ export default function Payment() {
           setShow3(false);
         } else {
           // If response is not 201, show an error toast
-          setToastMessage("An error occurred during booking submission.");
+          setToastMessage(t[language].toastMsg);
           setShowToast(true);
         }
       }
     } catch (error) {
       console.error("Error during booking submission:", error);
-      setToastMessage("An error occurred during booking submission.");
+      setToastMessage(t[language].toastMsg);
       setShowToast(true);
     } finally {
       setLoading(false); // Hide loading overlay
@@ -349,7 +354,7 @@ export default function Payment() {
       {loading && (
         <div className="overlay">
           <div className="spinner"></div>
-          <p>Loading...</p>
+          <p>{t[language].Loading}</p>
         </div>
       )}
 
@@ -395,7 +400,7 @@ export default function Payment() {
                 fontSize: "20px",
               }}
             >
-              Date and Time
+              {t[language].Date_Time}
             </p>
           </div>
           <span
@@ -428,7 +433,7 @@ export default function Payment() {
                 fontSize: "20px",
               }}
             >
-              Required Information
+              {t[language].requiredInformation}
             </p>
           </div>
           <span
@@ -461,7 +466,7 @@ export default function Payment() {
                 fontSize: "20px",
               }}
             >
-              Required Information
+              {t[language].paymentMethod}
             </p>
           </div>
         </div>
@@ -509,7 +514,7 @@ export default function Payment() {
                   setShow2(true);
                 }}
               >
-                Next
+                {t[language].next}
               </button>
             </div>
           </div>
@@ -528,7 +533,7 @@ export default function Payment() {
                       marginBottom: "5px",
                     }}
                   >
-                    First Name
+                    {t[language].F_name}
                   </label>
                   <input
                     type="text"
@@ -554,7 +559,7 @@ export default function Payment() {
                       marginBottom: "5px",
                     }}
                   >
-                    Last Name
+                    {t[language].L_name}
                   </label>
                   <input
                     type="text"
@@ -582,7 +587,7 @@ export default function Payment() {
                       marginBottom: "5px",
                     }}
                   >
-                    Email
+                    {t[language].Email}
                   </label>
                   <input
                     type="email"
@@ -607,7 +612,7 @@ export default function Payment() {
                       marginBottom: "5px",
                     }}
                   >
-                    Phone
+                    {t[language].Phone}
                   </label>
                   <PhoneInput
                     placeholder={"Enter Phone Number"}
@@ -634,7 +639,7 @@ export default function Payment() {
                       marginBottom: "5px",
                     }}
                   >
-                    number of people
+                    {t[language].NoPeople}
                   </span>
                   <div
                     className="mb-3 border-0 outline-0 p-2 d-flex justify-content-between"
@@ -650,7 +655,7 @@ export default function Payment() {
                         fontSize: "16px",
                       }}
                     >
-                      Adults
+                      {t[language].adults}
                     </span>
                     <div className="d-flex align-items-center">
                       <button
@@ -719,7 +724,7 @@ export default function Payment() {
                       color: "#42A7C3",
                     }}
                   >
-                    less than 12 years old
+                    {t[language].children}
                   </span>
                   <div
                     className="mb-3 border-0 outline-0 p-2 d-flex justify-content-between"
@@ -735,7 +740,7 @@ export default function Payment() {
                         fontSize: "16px",
                       }}
                     >
-                      minor
+                      {t[language].minor}
                     </span>
                     <div className="d-flex align-items-center ">
                       <button
@@ -817,7 +822,7 @@ export default function Payment() {
                   textAlign: "center",
                 }}
               >
-                include fees
+                {t[language].includeFees}
               </p>
               <button
                 style={{
@@ -839,7 +844,7 @@ export default function Payment() {
                   } else handleErrors();
                 }}
               >
-                Next
+                {t[language].next}
               </button>
             </div>
           </div>
@@ -857,7 +862,7 @@ export default function Payment() {
                     marginBottom: "5px",
                   }}
                 >
-                  Payment
+                  {t[language].Payment}
                 </label>
                 <select
                   id="payment-method"
@@ -887,7 +892,7 @@ export default function Payment() {
                     marginBottom: "5px",
                   }}
                 >
-                  Promo code
+                  {t[language].promo}
                 </label>
                 <div
                   className="border-0 outline-0 p-2 d-flex gap-3 px-2"
@@ -913,7 +918,7 @@ export default function Payment() {
                       promoCodeToast();
                     }}
                   >
-                    Apply
+                    {t[language].apply}
                   </button>
                 </div>
               </div>
@@ -930,7 +935,7 @@ export default function Payment() {
                         marginBottom: "5px",
                       }}
                     >
-                      Account name
+                      {t[language].accountName}
                     </span>
                     <span
                       style={{
@@ -939,7 +944,7 @@ export default function Payment() {
                       }}
                       id="accountName"
                     >
-                      Commercial international bank of egypt
+                      {t[language].bankName}
                     </span>
                     <i
                       className="fa-regular fa-copy position-absolute end-0"
@@ -965,7 +970,7 @@ export default function Payment() {
                         marginBottom: "5px",
                       }}
                     >
-                      Account number
+                      {t[language].accountNumber}
                     </span>
                     <span
                       style={{
@@ -1000,7 +1005,7 @@ export default function Payment() {
                         marginBottom: "5px",
                       }}
                     >
-                      Company name
+                      {t[language].companyName}
                     </span>
                     <span
                       style={{
@@ -1059,7 +1064,7 @@ export default function Payment() {
                         textAlign: "center",
                       }}
                     >
-                      reviewing the receipt info
+                      {t[language].review}
                     </p>
                     <img src={reviewIcon} alt="reviewIcon" />
                     <button
@@ -1072,7 +1077,7 @@ export default function Payment() {
                         setPreviewSrc(null);
                       }}
                     >
-                      Delete
+                      {t[language].delete}
                     </button>
                   </div>
                   <div>
@@ -1096,13 +1101,13 @@ export default function Payment() {
               )}
 
               <div className="col-12 col-md-4">
-                <h4>Summary</h4>
+                <h4>{t[language].summary}</h4>
                 <div className="border-bottom mt-4 mx-1">
                   <div
                     className="d-flex justify-content-between my-2"
                     style={{ color: "#747688" }}
                   >
-                    <span>Subtotal</span>
+                    <span>{t[language].Subtotal}</span>
                     <span>{getTotalCost()} $</span>
                   </div>
 
@@ -1110,7 +1115,7 @@ export default function Payment() {
                     className="d-flex justify-content-between my-2"
                     style={{ color: "#747688" }}
                   >
-                    <span>Fees</span>
+                    <span>{t[language].fees}</span>
                     <span>00 $</span>
                   </div>
 
@@ -1118,12 +1123,12 @@ export default function Payment() {
                     className="d-flex justify-content-between my-2"
                     style={{ color: "#747688" }}
                   >
-                    <span>Discount</span>
+                    <span>{t[language].discount}</span>
                     <span>{discount} $</span>
                   </div>
                 </div>
                 <div className="total fw-bold d-flex justify-content-between pt-3">
-                  <span>Total</span>
+                  <span>{t[language].total}</span>
                   <span>
                     {discount ? getTotalCost() - discount : getTotalCost()}{" "}
                   </span>
@@ -1147,7 +1152,7 @@ export default function Payment() {
                       submitBookingData();
                     }}
                   >
-                    pay
+                    {t[language].pay}
                   </button>
                 )}
               </div>
@@ -1166,7 +1171,7 @@ export default function Payment() {
                     color: "#1F1F1F",
                   }}
                 >
-                  Payment Success!
+                  {t[language].success}
                 </p>
               </div>
               <div className="col-12 col-md-5 ">
@@ -1203,7 +1208,7 @@ export default function Payment() {
                     >
                       {adults + minors}
                     </span>{" "}
-                    Tickets
+                    {t[language].Tickets}
                   </p>
                 </div>
 
@@ -1215,7 +1220,7 @@ export default function Payment() {
                       fontWeight: "500",
                     }}
                   >
-                    Name
+                    {t[language].name}
                   </p>
                   <p
                     style={{
@@ -1236,7 +1241,7 @@ export default function Payment() {
                       fontWeight: "500",
                     }}
                   >
-                    Email
+                    {t[language].Email}
                   </p>
                   <p
                     style={{
@@ -1256,7 +1261,7 @@ export default function Payment() {
                       fontWeight: "500",
                     }}
                   >
-                    Phone
+                    {t[language].Phone}
                   </p>
                   <p
                     style={{
@@ -1276,7 +1281,7 @@ export default function Payment() {
                       fontWeight: "500",
                     }}
                   >
-                    Number of people
+                    {t[language].NoPeople}
                   </p>
                   <p
                     style={{
@@ -1285,7 +1290,7 @@ export default function Payment() {
                       fontWeight: "600",
                     }}
                   >
-                    {adults} adults, {minors} minors
+                    {adults} {t[language].adults}, {minors} {t[language].minor}
                   </p>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
@@ -1296,7 +1301,7 @@ export default function Payment() {
                       fontWeight: "500",
                     }}
                   >
-                    total price
+                    {t[language].totalPrice}
                   </p>
                   <p
                     style={{
@@ -1310,11 +1315,9 @@ export default function Payment() {
                 </div>
               </div>
             </div>
-          
 
-            {
-              window.location.href.includes("/travels/") &&
-                <button
+            {window.location.href.includes("/travels/") && (
+              <button
                 style={{
                   backgroundColor: "#F77A40",
                   color: "#fff",
@@ -1332,15 +1335,9 @@ export default function Payment() {
                   navigate(-1);
                 }}
               >
-                Done
+                {t[language].done}
               </button>
-              }
-            
-
-
-
-
-
+            )}
           </div>
         )}
       </div>
