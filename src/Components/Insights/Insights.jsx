@@ -7,15 +7,15 @@ import img5 from "../../assets/insight5.jpeg";
 import img6 from "../../assets/insight6.jpeg";
 import img7 from "../../assets/insight7.jpeg";
 // translation
-import t from "../../Translation/translation"
-import  useLanguage  from "../../context/useLanguage";
+import t from "../../Translation/translation";
+import useLanguage from "../../context/useLanguage";
 
 export default function Insights() {
-   // translation
-   const { language, setLanguage } = useLanguage();
+  // translation
+  const { language, setLanguage } = useLanguage();
   return (
-    <div className="insights my-3 position-relative">
-<span className="before">{t[language].Insights}</span>
+    <div className="insights my-3 position-relative" >
+      <span className="before">{t[language].Insights}</span>
       <h2
         className="text-center fw-bold  "
         style={{
@@ -27,7 +27,7 @@ export default function Insights() {
         {t[language].Insights}
       </h2>
 
-       <div
+      <div
         className="m-auto mt-5 insghts-content my-3 row justify-content-center overflow-hidden"
         style={{
           width: "100%",
@@ -242,7 +242,7 @@ export default function Insights() {
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   );
 }
