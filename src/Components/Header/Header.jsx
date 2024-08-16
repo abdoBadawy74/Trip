@@ -7,7 +7,7 @@ import useLanguage from "../../context/useLanguage";
 
 export default function Header() {
   const { language, setLanguage } = useLanguage();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Default to false
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const location = useLocation();
 
   const toggleDropdown = () => {
@@ -16,14 +16,14 @@ export default function Header() {
 
   const handleLanguageChange = (language) => {
     setLanguage(language);
-    localStorage.setItem("language", language); // Save language to local storage
+    localStorage.setItem("language", language);
     setIsDropdownOpen(false);
   };
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language");
     if (savedLanguage) {
-      setLanguage(savedLanguage); // Load language from local storage
+      setLanguage(savedLanguage);
     }
   }, [setLanguage]);
 
@@ -65,7 +65,7 @@ export default function Header() {
 
   return (
     <nav
-      className="navbar navbar-expand-lg b-orange bg-transparent p-0  m-0 position-relative"
+      className="navbar navbar-expand-lg b-orange bg-transparent p-0 m-0 position-relative"
       style={{
         zIndex: 22,
       }}
@@ -100,7 +100,7 @@ export default function Header() {
         </Link>
 
         <button
-          className="navbar-toggler "
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -113,64 +113,61 @@ export default function Header() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <li
-            className="nav-item dropdown align-self-center mx-2"
-            style={{
-              listStyleType: "none",
-            }}
-          >
-            <button
-              className="btn btn-link nav-link text-white p-2"
-              id="navbarDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded={isDropdownOpen}
-              onClick={toggleDropdown}
-              style={{ padding: 0 }}
-            >
-              {t[language].language}
-              <i
-                className={`${
-                  isDropdownOpen
-                    ? "fa-solid fa-chevron-down"
-                    : "fa-solid fa-chevron-up"
-                } ms-1`}
-              ></i>
-            </button>
-            <ul
-              className="dropdown-menu"
-              aria-labelledby="navbarDropdown"
-              style={{ backgroundColor: "transparent", border: "none" }}
-            >
-              <li>
-                <button
-                  className="dropdown-item text-white p-2"
-                  type="button"
-                  onClick={() => handleLanguageChange("en")}
-                >
-                  English
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item text-white p-2"
-                  type="button"
-                  onClick={() => handleLanguageChange("ar")}
-                >
-                  Arabic
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item text-white p-2"
-                  type="button"
-                  onClick={() => handleLanguageChange("it")}
-                >
-                  Italian
-                </button>
-              </li>
-            </ul>
-          </li>
+          <ul className="navbar-nav m-2 mb-lg-0">
+            <li className=" dropdown align-self-center mx-2">
+              <button
+                className="btn btn-link nav-link text-white p-2"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded={isDropdownOpen}
+                onClick={toggleDropdown}
+                style={{ padding: 0 }}
+              >
+                {t[language].language}
+                <i
+                  className={`${
+                    isDropdownOpen
+                      ? "fa-solid fa-chevron-down"
+                      : "fa-solid fa-chevron-up"
+                  } ms-1`}
+                ></i>
+              </button>
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="navbarDropdown"
+                style={{ backgroundColor: "transparent", border: "none" }}
+              >
+                <li>
+                  <button
+                    className="dropdown-item  p-2"
+                    type="button"
+                    onClick={() => handleLanguageChange("en")}
+                  >
+                    English
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item  p-2"
+                    type="button"
+                    onClick={() => handleLanguageChange("ar")}
+                  >
+                    Arabic
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item  p-2"
+                    type="button"
+                    onClick={() => handleLanguageChange("it")}
+                  >
+                    Italian
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </ul>
 
           <ul
             className="navbar-nav mx-auto m-2 mb-lg-0"
@@ -196,11 +193,7 @@ export default function Header() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link
-                className="nav-link"
-                to="/about"
-                //  onClick={handleScrollToAbout}
-              >
+              <Link className="nav-link" to="/about">
                 {t[language].aboutUs}
               </Link>
             </li>
