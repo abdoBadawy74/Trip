@@ -10,10 +10,45 @@ import t from "../../Translation/translation";
 import useLanguage from "../../context/useLanguage";
 
 import "./Footer.css";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { BASE } from "../../API/Api";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
   // translation
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
+  // console.log(email)
+  const validate = () => {
+
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log(email);
+
+
+    // Check for empty fields
+    if (!email) {
+      toast.error("Please enter your email.");
+      return; // Exit the function if validation fails
+    }
+
+
+    try {
+      const res = await axios.post(`${BASE}/subscribe`, { email });
+      console.log(res);
+      if (res.status === 201) {
+        toast.success("Subscribed successfully");
+        setEmail("");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+
   return (
     <div
       style={{
@@ -45,16 +80,18 @@ export default function Footer() {
             {t[language].need}
           </h3>
         </div>
-        <div className="d-flex flex-column gap-3  justify-self-end col-12 col-lg-3 ">
+        <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 p-0 justify-self-end col-12 col-lg-3 ">
           <input
             type="email"
             placeholder={t[language].email}
             className="text-muted p-2 rounded border-0 outline-0 w-100"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <button className="btn btn-dark p-2 w-100">
             {t[language].subscribe}
           </button>
-        </div>
+        </form>
       </div>
       <div className="container my-3">
         <h2

@@ -120,6 +120,9 @@ textarea {
   .contact-detials .pb {
     padding-bottom: 60px;
   }
+  .contact-detials form {
+    padding-top: 0;
+  }
   .contact-detials input {
     width: 100%;
   }
