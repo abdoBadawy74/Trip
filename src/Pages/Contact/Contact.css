@@ -1,132 +1,129 @@
-.contact-detials .onetop img{
-    width: 25px;
-    height: 25px;
+.contact-detials .onetop img {
+  width: 25px;
+  height: 25px;
 }
 
 img.imagesvila {
-    top: -116px;
-    left: 74px;
-    gap: 0px;
-    opacity: 0.5px;
-    position: relative;
+  top: -116px;
+  left: 74px;
+  gap: 0px;
+  opacity: 0.5px;
+  position: relative;
 }
-.onebottom{
-    position: relative;
-    top: -200px;
+.onebottom {
+  position: relative;
+  top: -200px;
 }
-.onebottom i{
-    background-color: black;
-    margin: auto;
-    margin: 0 10px;
-    border-radius: 20px;
-    padding: 8px;
+.onebottom i {
+  background-color: black;
+  margin: auto;
+  margin: 0 10px;
+  border-radius: 20px;
+  padding: 8px;
 }
-.onebottom i:hover{
-    background-color: #fff;
-    color:  #42A7C3;
+.onebottom i:hover {
+  background-color: #fff;
+  color: #42a7c3;
 }
 
-.contact-detials form{
-    padding-top: 6rem;
-    
+.contact-detials form {
+  padding-top: 6rem;
 }
-.contact-detials .name{
-    padding-bottom: 40px;
+.contact-detials .name {
+  padding-bottom: 40px;
 }
-.contact-detials input{
-    border: none;
-    width: 300px;
-  
+.contact-detials input {
+  border: none;
+  width: 300px;
 }
-.contact-detials .firstname ,
-.contact-detials .lastname{ border-bottom:  1px solid 
-    #A5A5A5;
+.contact-detials .firstname,
+.contact-detials .lastname {
+  border-bottom: 1px solid #a5a5a5;
   margin-left: 20px;
-    margin-top: 10px;
+  margin-top: 10px;
 }
-.contact-detials input::placeholder{
-    padding-bottom: 20px;
+.contact-detials input::placeholder {
+  padding-bottom: 20px;
 }
 .contact-detials label {
-    display: inline-block;
-    margin-left: 18px;
-    color:   #A5A5A5;
-    font-size: 12px;
+  display: inline-block;
+  margin-left: 18px;
+  color: #a5a5a5;
+  font-size: 12px;
 }
-.contact-detials  textarea{
-    width: 600px;
-    margin-left: 20px;
-    margin-top: 10px;
-    border: none;
-    outline: none;
+.contact-detials textarea {
+  width: 600px;
+  
+  height: 50px;
+  margin-left: 20px;
+  margin-top: 10px;
+  border: none;
+  outline: none;
 }
-.contact-detials .message{
-    border-bottom:  1px solid 
-    #A5A5A5;
+.contact-detials .message {
+  border-bottom: 1px solid #a5a5a5;
 }
-.contact-detials textarea::placeholder{
-    font-size: 14px;
-    color: #A5A5A5;
+.contact-detials textarea::placeholder {
+  font-size: 14px;
+  color: #a5a5a5;
 }
-.contact-detials .sub{
-    position: relative;
-    left: 75%;
-    background-color: 
-    #42A7C3;
-    color: white;
-    font-size: 14px;
-    outline: none;
-    border: none;
-    padding: 1rem 3rem;
-    border-radius: 5px;
+.contact-detials .sub {
+  position: relative;
+  left: 75%;
+  background-color: #42a7c3;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 5px;
 }
 /* .firstname:focus label{
     color: #42A7C3;
 } */
-.contact-detials input, textarea {
-    color:#A5A5A5;
-  }
-  
-  .contact-detials  input:focus, .contact-detials  textarea:focus {
-    color: #A5A5A5;
-  }
-  
-  .contact-detials   #tel:focus,.contact-detials   #tel:not(:placeholder-shown) {
-    color:#42A7C3;
-  }
-  
-  .contact-detials  label {
-    transition: color 0.3s;
-  }
-  
-  .contact-detials   label.focused {
-    color: #42A7C3;
-  }
-  
-  .contact-detials  input.input-focused + label, .contact-detials  textarea.input-focused + label {
-    color: #42A7C3;
-  }
+.contact-detials input,
+textarea {
+  color: #101010;
+}
+
+.contact-detials #tel:focus,
+.contact-detials #tel:not(:placeholder-shown) {
+  color: #42a7c3;
+}
+
+.contact-detials label {
+  transition: color 0.3s;
+}
+
+.contact-detials label.focused {
+  color: #42a7c3;
+}
+
+.contact-detials input.input-focused + label,
+.contact-detials textarea.input-focused + label {
+  color: #42a7c3;
+}
 @media (max-width: 992px) {
-    .container-contact{
-flex-direction: column;
-    }
-    .contact-detials  img.imagesvila {
-        width: 250px;
-    }
-    .contact-detials .name{
-       flex-direction: column;
-       padding-bottom: 20px;
-    }
-    .contact-detials .sub{
-        left: 0%;
-    }
-    .contact-detials  .pb{
-        padding-bottom: 60px;
-    }
-    .contact-detials   input{
-      width: 100%;
-    }
-    .contact-detials  textarea{
-        width: 100%;
-    }
+  .container-contact {
+    flex-direction: column;
+  }
+  .contact-detials img.imagesvila {
+    width: 250px;
+  }
+  .contact-detials .name {
+    flex-direction: column;
+    padding-bottom: 20px;
+  }
+  .contact-detials .sub {
+    left: 0%;
+  }
+  .contact-detials .pb {
+    padding-bottom: 60px;
+  }
+  .contact-detials input {
+    width: 100%;
+  }
+  .contact-detials textarea {
+    width: 100%;
+  }
 }

@@ -9,13 +9,68 @@ import Footer from "../../Components/Footer/Footer";
 // translation
 import t from "../../Translation/translation";
 import useLanguage from "../../context/useLanguage";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE } from "../../API/Api";
+import { toast, ToastContainer } from "react-toastify";
 
 function Contact() {
   // translation
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
+
+  const [data, setData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  }
+
+
+const validate = () => {
+    // Check for empty fields
+    const { first_name, last_name, email, phone, message } = data;
+
+    if (!first_name || !last_name || !email || !phone || !message) {
+      toast.error("Please fill in all fields.");
+      return; // Exit the function if validation fails
+    }
+  }
+
+
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+
+
+    try {
+      const res = await axios.post(`${BASE}/contact`, data);
+      if (res.status === 201) {
+        toast.success("Message sent successfully");
+        // Reset form only if the request is successful
+        setData({
+          first_name: "",
+          last_name: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to send the message. Please try again.");
+    }
+  }
+
   return (
     <div className="contact-detials">
       <div className="contact position-relative">
+        <ToastContainer />
         <div className="bg-orange">
           <Header />
         </div>
@@ -83,16 +138,17 @@ function Contact() {
             </div>
           </div>
 
-          <form id="registerForm" className="flex  m-5 position-relative ">
+          <form onSubmit={handleSubmit} id="registerForm" className="flex m-5 position-relative ">
             <div className="name d-flex">
               <div className="d-flex pb" style={{ flexDirection: "column" }}>
                 <label className="namelabel"> {t[language].F_name}</label>
                 <input
                   type="text"
-                  id="username"
-                  name="username"
+                  id="first_name"
+                  name="first_name"
                   className="firstname "
                   required=""
+                  onChange={handleChange}
                 />
               </div>
 
@@ -100,10 +156,11 @@ function Contact() {
                 <label className="namelabel"> {t[language].L_name}</label>
                 <input
                   type="text"
-                  id="username"
-                  name="username"
+                  id="last_name"
+                  name="last_name"
                   className="lastname"
-                  required=""
+                  required
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -113,10 +170,11 @@ function Contact() {
                 <label className="namelabel"> {t[language].Email}</label>
                 <input
                   type="email"
-                  id="emil"
-                  name="emil"
+                  id="email"
+                  name="email"
                   className="firstname "
-                  required=""
+                  required
+                  onChange={handleChange}
                 />
               </div>
 
@@ -125,9 +183,10 @@ function Contact() {
                 <input
                   type="tel"
                   id="tel"
-                  name="tel"
+                  name="phone"
                   className="lastname"
-                  required=""
+                  required
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -141,11 +200,12 @@ function Contact() {
                   rows="1"
                   placeholder={t[language].write}
                   className="message"
-                  required=""
+                  required
+                  onChange={handleChange}
                 ></textarea>
               </div>
 
-              <button type="submit" className="sub m-4 ">
+              <button type="submit" onClick={validate} className="sub m-4 ">
                 {t[language].send}
               </button>
             </div>
