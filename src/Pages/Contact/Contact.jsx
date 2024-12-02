@@ -31,7 +31,10 @@ function Contact() {
   }
 
 
-const validate = () => {
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
     // Check for empty fields
     const { first_name, last_name, email, phone, message } = data;
 
@@ -39,14 +42,6 @@ const validate = () => {
       toast.error("Please fill in all fields.");
       return; // Exit the function if validation fails
     }
-  }
-
-
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-
 
     try {
       const res = await axios.post(`${BASE}/contact`, data);
@@ -147,8 +142,7 @@ const validate = () => {
                   id="first_name"
                   name="first_name"
                   className="firstname "
-                  required=""
-                  onChange={handleChange}
+                onChange={handleChange}
                 />
               </div>
 
@@ -159,7 +153,6 @@ const validate = () => {
                   id="last_name"
                   name="last_name"
                   className="lastname"
-                  required
                   onChange={handleChange}
                 />
               </div>
@@ -173,7 +166,6 @@ const validate = () => {
                   id="email"
                   name="email"
                   className="firstname "
-                  required
                   onChange={handleChange}
                 />
               </div>
@@ -185,7 +177,6 @@ const validate = () => {
                   id="tel"
                   name="phone"
                   className="lastname"
-                  required
                   onChange={handleChange}
                 />
               </div>
@@ -200,12 +191,11 @@ const validate = () => {
                   rows="1"
                   placeholder={t[language].write}
                   className="message"
-                  required
                   onChange={handleChange}
                 ></textarea>
               </div>
 
-              <button type="submit" onClick={validate} className="sub m-4 ">
+              <button type="submit" className="sub m-4 ">
                 {t[language].send}
               </button>
             </div>
