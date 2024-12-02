@@ -1,11 +1,4 @@
 import "./Insights.css";
-import img1 from "../../assets/insight1.jpeg";
-import img2 from "../../assets/insight2.jpeg";
-import img3 from "../../assets/insight3.jpeg";
-import img4 from "../../assets/insight4.jpeg";
-import img5 from "../../assets/insight5.jpeg";
-import img6 from "../../assets/insight6.jpeg";
-import img7 from "../../assets/insight7.jpeg";
 // translation
 import t from "../../Translation/translation";
 import useLanguage from "../../context/useLanguage";
@@ -24,9 +17,6 @@ export default function Insights() {
       console.log(res.data)
     })
   }, []);
-
-
-
   return (
     <div className="insights my-3 position-relative" >
       <span className="before">{t[language].Insights}</span>
