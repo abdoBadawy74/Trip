@@ -8,41 +8,14 @@ import useLanguage from "../../context/useLanguage";
 import axios from "axios";
 import { BASE } from "../../API/Api";
 
-// const testimonialsData = [
-//   {
-//     quote:
-//       "“On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.”",
-//     name: "Sherif Mohamed",
-//     location: "Suhaj, Egypt",
-//     img: person,
-//   },
-//   {
-//     quote: "“Another testimonial text here. It can be longer or shorter2.”",
-//     name: "Jane Doe",
-//     location: "beni suef, Egypt",
-//     img: person,
-//   },
-//   {
-//     quote: "“Another testimonial text here. It can be longer or shorter3.”",
-//     name: "Jane Doe",
-//     location: "Qana, Egypt",
-//     img: person,
-//   },
-//   {
-//     quote: "“Another testimonial text here. It can be longer or shorter4.”",
-//     name: "Jane Doe",
-//     location: "location, Egypt",
-//     img: person,
-//   },
-// ];
 
 export default function Testimonials() {
   const [testimonials, setTestimonials] = useState([]);
   // translation
   const { language, setLanguage } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
-  console.log(activeIndex)
-  console.log(testimonials)
+  // console.log(activeIndex)
+  // console.log(testimonials)
 
   // fetch testimonials from the server
   useEffect(() => {
