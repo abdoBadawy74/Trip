@@ -15,14 +15,22 @@ import HotelsContext from './../../context/HotelsContext';
 export default function Landing() {
   // translation
   const { language } = useLanguage();
+
+  // context for trips and hotels 
   const { trips } = useContext(TripsContext);
   const { hotels } = useContext(HotelsContext);
 
+  // states
   const [selectedCity, setSelectedCity] = useState("Dubai");
   const [animationClass, setAnimationClass] = useState("show-from-bottom");
+  const [searchState, setSearchState] = useState("travels");
+  const [filteredtrips, setFilteredTrips] = useState([]);
+  const [search, setSearch] = useState("");
+
+
+  // refs for videos
   const videoRef1 = useRef(null);
   const videoRef2 = useRef(null);
-  console.log(language);
 
   useEffect(() => {
     if (selectedCity === "Dubai" && videoRef1.current) {
@@ -40,6 +48,31 @@ export default function Landing() {
     setSelectedCity(city);
     setAnimationClass(city === "Dubai" ? "show-from-bottom" : "show-from-top");
   };
+
+  // handle search change
+  const handleChange = (e) => {
+    setSearchState(e.target.value);
+  };
+
+  // handle search
+  console.log(searchState)
+
+  const handleSearch = () => {
+    if (searchState === "") {
+      const filtered = searchState === "travels" ? trips : hotels;
+      setFilteredTrips(filtered);
+    } else {
+      const filtered = searchState === "travels" ? trips.filter((trip) =>
+        trip.place.name.toLowerCase().includes(search.toLowerCase())
+      ) : hotels.filter((hotel) =>
+        hotel.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredTrips(filtered);
+    }
+  }
+
+  console.log("filteredtrips", filteredtrips);
+
 
   return (
     <>
@@ -203,14 +236,16 @@ export default function Landing() {
                   backgroundColor: "#fff",
                 }}
               >
-                <select className="border-0" style={{ outline: "none" }}>
-                  <option value="hotels">Hotels</option>
+                <select className="border-0" value={searchState} onChange={handleChange} style={{ outline: "none" }}>
                   <option value="travels">Travels</option>
+                  <option value="hotels">Hotels</option>
                 </select>
                 <input
                   type="text"
                   placeholder={t[language].Search}
                   className="w-50 rounded p-2 border-0 outline-0 flex-grow-1"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                   style={{
                     backgroundColor: "#F8F9F9",
                     outline: "none",
@@ -224,6 +259,7 @@ export default function Landing() {
                     padding: "8px 18px",
                     borderRadius: "5px",
                   }}
+                  onClick={handleSearch}
                 >
                   {t[language].Search}
                 </button>
@@ -286,14 +322,16 @@ export default function Landing() {
                   backgroundColor: "#fff",
                 }}
               >
-                <select className="border-0" style={{ outline: "none" }}>
-                  <option value="hotels">Hotels</option>
+                <select className="border-0" value={searchState} onChange={handleChange} style={{ outline: "none" }}>
                   <option value="travels">Travels</option>
+                  <option value="hotels">Hotels</option>
                 </select>
                 <input
                   type="text"
                   placeholder={t[language].Search}
                   className="w-50 rounded p-2 border-0 outline-0 flex-grow-1"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                   style={{
                     backgroundColor: "#F8F9F9",
                     outline: "none",
@@ -307,6 +345,7 @@ export default function Landing() {
                     padding: "8px 18px",
                     borderRadius: "5px",
                   }}
+                  onClick={handleSearch}
                 >
                   {t[language].Search}
                 </button>
