@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE } from "../API/Api";
@@ -8,22 +8,13 @@ import elipse2 from "../assets/hotel-elipse2.svg";
 // translation
 import t from "../Translation/translation";
 import useLanguage from "../context/useLanguage";
+import HotelsContext from "../context/HotelsContext";
 
 export default function Hotels() {
   // translation
-  const { language, setLanguage } = useLanguage();
-  const [hotels, setHotels] = useState([]);
+  const { language } = useLanguage();
+  const { hotels } = useContext(HotelsContext);
 
-  useEffect(() => {
-    axios
-      .get(`${BASE}/hotels`)
-      .then((res) => {
-        setHotels(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   const renderStars = (rating) => {
     const stars = [];

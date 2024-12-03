@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import "./Landing.css";
 import video from "../../assets/landing-video1.mp4";
 import video2 from "../../assets/landing-video2.mp4";
@@ -8,11 +8,15 @@ import ticket from "../../assets/ticket.svg";
 import tour from "../../assets/tour.svg";
 // translation
 import t from "../../Translation/translation";
-import  useLanguage  from "../../context/useLanguage";
+import useLanguage from "../../context/useLanguage";
+import TripsContext from './../../context/TripsContext';
+import HotelsContext from './../../context/HotelsContext';
 
 export default function Landing() {
   // translation
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
+  const { trips } = useContext(TripsContext);
+  const { hotels } = useContext(HotelsContext);
 
   const [selectedCity, setSelectedCity] = useState("Dubai");
   const [animationClass, setAnimationClass] = useState("show-from-bottom");
@@ -108,9 +112,8 @@ export default function Landing() {
           >
             <ul className="p-0 d-flex  ">
               <li
-                className={`flex-grow-1 fs-5 ${
-                  selectedCity === "Abu Dhabi" ? "AbuDhabi-active" : ""
-                }`}
+                className={`flex-grow-1 fs-5 ${selectedCity === "Abu Dhabi" ? "AbuDhabi-active" : ""
+                  }`}
                 style={{
                   cursor: "pointer",
                   fontWeight: "600",
@@ -122,9 +125,8 @@ export default function Landing() {
                 {t[language].city1}
               </li>
               <li
-                className={`fs-5 ${
-                  selectedCity === "Dubai" ? "Dubai-active" : ""
-                }`}
+                className={`fs-5 ${selectedCity === "Dubai" ? "Dubai-active" : ""
+                  }`}
                 style={{
                   cursor: "pointer",
                   fontWeight: "600",
@@ -146,9 +148,8 @@ export default function Landing() {
             }}
           >
             <div
-              className={`dubai-content ${
-                selectedCity === "Dubai" ? animationClass : "hide"
-              }`}
+              className={`dubai-content ${selectedCity === "Dubai" ? animationClass : "hide"
+                }`}
             >
               <h1
                 className="bebas-neue-bold text-center"
@@ -195,11 +196,21 @@ export default function Landing() {
                 </div>
               </div>
 
-              <div className="form d-flex align-items-center justify-content-center gap-3 px-4">
+              <div
+                className="form m-auto d-flex align-items-center gap-3 p-4  rounded"
+                style={{
+                  width: "70%",
+                  backgroundColor: "#fff",
+                }}
+              >
+                <select className="border-0" style={{ outline: "none" }}>
+                  <option value="hotels">Hotels</option>
+                  <option value="travels">Travels</option>
+                </select>
                 <input
                   type="text"
                   placeholder={t[language].Search}
-                  className="w-50 rounded p-2 border-0 outline-0"
+                  className="w-50 rounded p-2 border-0 outline-0 flex-grow-1"
                   style={{
                     backgroundColor: "#F8F9F9",
                     outline: "none",
@@ -214,15 +225,14 @@ export default function Landing() {
                     borderRadius: "5px",
                   }}
                 >
-                  {t[language].BookNow}
+                  {t[language].Search}
                 </button>
               </div>
             </div>
 
             <div
-              className={`abuDhabi-content ${
-                selectedCity === "Abu Dhabi" ? animationClass : "hide"
-              }`}
+              className={`abuDhabi-content ${selectedCity === "Abu Dhabi" ? animationClass : "hide"
+                }`}
             >
               <h1
                 className="bebas-neue-bold text-center"
@@ -231,7 +241,7 @@ export default function Landing() {
                   lineHeight: "1",
                 }}
               >
-                {t[language].h2_part1} <br /> {t[language].h2_part2} 
+                {t[language].h2_part1} <br /> {t[language].h2_part2}
               </h1>
               <div className="icons my-2 d-flex p-3 justify-content-around ">
                 <div
@@ -276,6 +286,10 @@ export default function Landing() {
                   backgroundColor: "#fff",
                 }}
               >
+                <select className="border-0" style={{ outline: "none" }}>
+                  <option value="hotels">Hotels</option>
+                  <option value="travels">Travels</option>
+                </select>
                 <input
                   type="text"
                   placeholder={t[language].Search}
@@ -294,7 +308,7 @@ export default function Landing() {
                     borderRadius: "5px",
                   }}
                 >
-                  {t[language].BookNow}
+                  {t[language].Search}
                 </button>
               </div>
             </div>

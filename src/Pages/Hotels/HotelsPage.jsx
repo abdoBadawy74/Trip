@@ -12,7 +12,7 @@ import useLanguage from "../../context/useLanguage";
 
 function Hotels() {
   // translation
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const { hotels } = useContext(HotelsContext);
   console.log("Hotels from Context:", hotels);
 
