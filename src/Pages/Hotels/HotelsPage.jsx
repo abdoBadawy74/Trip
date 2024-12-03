@@ -39,7 +39,7 @@ function Hotels() {
       setFilteredHotels(filtered);
     }
   };
-
+console.log(filteredHotels.length)
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -117,7 +117,7 @@ function Hotels() {
               </button>
             </div>
 
-            {filteredHotels.lenght > 0 ? (
+            {filteredHotels.length > 0 ? (
               filteredHotels.map((hotel, index) => (
                 <motion.div
                   layout
@@ -138,6 +138,7 @@ function Hotels() {
                             src={hotel.images[0].url}
                             alt={hotel.name}
                             className="w-100 rounded"
+                            style={{ height: "250px",objectFit: "cover", }}
                           />
                         )}
                       </div>

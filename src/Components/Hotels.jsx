@@ -126,6 +126,10 @@ export default function Hotels() {
                   src={hotel.images[0].url}
                   className="w-100 rounded"
                   alt="hotel"
+                  style={{
+                    height: "250px",
+                    objectFit: "cover",
+                  }}
                 />
               </div>
               <div className="text px-2">
