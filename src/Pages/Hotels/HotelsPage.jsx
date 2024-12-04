@@ -12,7 +12,7 @@ import useLanguage from "../../context/useLanguage";
 
 function Hotels() {
   // translation
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const { hotels } = useContext(HotelsContext);
   console.log("Hotels from Context:", hotels);
 
@@ -39,16 +39,15 @@ function Hotels() {
       setFilteredHotels(filtered);
     }
   };
-
+  console.log(filteredHotels.length)
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       stars.push(
         <i
           key={i}
-          className={`fa-solid fa-star mx-1 ${
-            i <= rating ? "text-warning" : "text-secondary"
-          }`}
+          className={`fa-solid fa-star mx-1 ${i <= rating ? "text-warning" : "text-secondary"
+            }`}
         ></i>
       );
     }
@@ -79,17 +78,15 @@ function Hotels() {
               </div>
               <div>
                 <button
-                  className={`btn ${
-                    state === "Abu Dhabi" ? "bg-dark text-white" : "btn-light"
-                  } mx-2`}
+                  className={`btn ${state === "Abu Dhabi" ? "bg-dark text-white" : "btn-light"
+                    } mx-2`}
                   onClick={() => setState("Abu Dhabi")}
                 >
                   {t[language].city1}
                 </button>
                 <button
-                  className={`btn ${
-                    state === "Dubai" ? "bg-dark text-white" : "btn-light"
-                  } mx-2`}
+                  className={`btn ${state === "Dubai" ? "bg-dark text-white" : "btn-light"
+                    } mx-2`}
                   onClick={() => setState("Dubai")}
                 >
                   {t[language].city2}
@@ -117,7 +114,7 @@ function Hotels() {
               </button>
             </div>
 
-            {filteredHotels.lenght > 0 ? (
+            {filteredHotels.length > 0 ? (
               filteredHotels.map((hotel, index) => (
                 <motion.div
                   layout
@@ -138,6 +135,7 @@ function Hotels() {
                             src={hotel.images[0].url}
                             alt={hotel.name}
                             className="w-100 rounded"
+                            style={{ height: "250px", objectFit: "cover", }}
                           />
                         )}
                       </div>

@@ -28,9 +28,7 @@ function Contact() {
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-  }
-
-
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -45,6 +43,7 @@ function Contact() {
 
     try {
       const res = await axios.post(`${BASE}/contact`, data);
+      console.log(res)
       if (res.status === 201) {
         toast.success("Message sent successfully");
         // Reset form only if the request is successful
@@ -142,7 +141,8 @@ function Contact() {
                   id="first_name"
                   name="first_name"
                   className="firstname "
-                onChange={handleChange}
+                  value={data.first_name}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -153,6 +153,7 @@ function Contact() {
                   id="last_name"
                   name="last_name"
                   className="lastname"
+                  value={data.last_name}
                   onChange={handleChange}
                 />
               </div>
@@ -166,6 +167,7 @@ function Contact() {
                   id="email"
                   name="email"
                   className="firstname "
+                  value={data.email}
                   onChange={handleChange}
                 />
               </div>
@@ -177,6 +179,7 @@ function Contact() {
                   id="tel"
                   name="phone"
                   className="lastname"
+                  value={data.phone}
                   onChange={handleChange}
                 />
               </div>
@@ -191,6 +194,7 @@ function Contact() {
                   rows="1"
                   placeholder={t[language].write}
                   className="message"
+                  value={data.message}
                   onChange={handleChange}
                 ></textarea>
               </div>

@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { BASE } from "../API/Api";
 import locationIcon from "../assets/location-icon.svg";
 import elipse1 from "../assets/hotel-elipse1.svg";
 import elipse2 from "../assets/hotel-elipse2.svg";
 // translation
 import t from "../Translation/translation";
 import useLanguage from "../context/useLanguage";
+import HotelsContext from "../context/HotelsContext";
 
 export default function Hotels() {
   // translation
-  const { language, setLanguage } = useLanguage();
-  const [hotels, setHotels] = useState([]);
+  const { language } = useLanguage();
+  const { hotels } = useContext(HotelsContext);
 
-  useEffect(() => {
-    axios
-      .get(`${BASE}/hotels`)
-      .then((res) => {
-        setHotels(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   const renderStars = (rating) => {
     const stars = [];
@@ -31,9 +20,8 @@ export default function Hotels() {
       stars.push(
         <i
           key={i}
-          className={`fa-solid fa-star mx-1 ${
-            i <= rating ? "text-warning" : "text-secondary"
-          }`}
+          className={`fa-solid fa-star mx-1 ${i <= rating ? "text-warning" : "text-secondary"
+            }`}
         ></i>
       );
     }
@@ -126,6 +114,10 @@ export default function Hotels() {
                   src={hotel.images[0].url}
                   className="w-100 rounded"
                   alt="hotel"
+                  style={{
+                    height: "250px",
+                    objectFit: "cover",
+                  }}
                 />
               </div>
               <div className="text px-2">
