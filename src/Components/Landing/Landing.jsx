@@ -264,6 +264,48 @@ export default function Landing() {
                   {t[language].Search}
                 </button>
               </div>
+              <div
+                className="search-results m-auto mb-5  flex-column align-items-center gap-3 rounded"
+                style={{
+                  width: "70%",
+                  backgroundColor: "#fff",
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                  maxHeight: "300px",
+                  overflowY: "auto",
+                  display: search.length > 0 ? "flex" : "none",
+                }}
+              >
+                {filteredtrips.length > 0 ? (
+                  filteredtrips.map((item, index) => (
+                    <div
+                      key={index}
+                      className="result-item p-3 d-flex  justify-content-between gap-3"
+                      style={{
+                        borderBottom: "1px solid #ddd",
+                        cursor: "pointer",
+                        color: "#000"
+                      }}
+                      onClick={() => console.log("Selected Item:", item)}
+                    >
+                      <img src={item.images[0].url} alt="image" className="rounded shadow" width="100px" height="50px" />
+                      <div>
+                        <h4 className="m-0">{item.place.name}</h4>
+                        <small className="text-secondary">{item.description.slice(0, 25)}...</small>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div
+                    className="no-results p-3 text-center"
+                    style={{
+                      color: "#888",
+                    }}
+                  >
+                    {t[language].noResults || "No results found"}
+                  </div>
+                )}
+              </div>
             </div>
 
             <div
@@ -350,6 +392,49 @@ export default function Landing() {
                   {t[language].Search}
                 </button>
               </div>
+              <div
+                className="search-results m-auto mb-5  flex-column align-items-center gap-3 rounded"
+                style={{
+                  width: "70%",
+                  backgroundColor: "#fff",
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                  maxHeight: "300px",
+                  overflowY: "auto",
+                  display: search.length > 0 ? "flex" : "none",
+                }}
+              >
+                {filteredtrips.length > 0 ? (
+                  filteredtrips.map((item, index) => (
+                    <div
+                      key={index}
+                      className="result-item p-3 d-flex  justify-content-between gap-3"
+                      style={{
+                        borderBottom: "1px solid #ddd",
+                        cursor: "pointer",
+                        color: "#000"
+                      }}
+                      onClick={() => console.log("Selected Item:", item)}
+                    >
+                      <img src={item.images[0].url} alt="image" className="rounded shadow" width="100px" height="50px" />
+                      <div>
+                        <h4 className="m-0">{item.place.name}</h4>
+                        <small className="text-secondary">{item.description.slice(0, 25)}...</small>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div
+                    className="no-results p-3 text-center"
+                    style={{
+                      color: "#888",
+                    }}
+                  >
+                    {t[language].noResults || "No results found"}
+                  </div>
+                )}
+              </div>
+
             </div>
           </div>
         </div>

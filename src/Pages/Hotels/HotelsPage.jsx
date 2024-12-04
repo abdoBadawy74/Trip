@@ -39,16 +39,15 @@ function Hotels() {
       setFilteredHotels(filtered);
     }
   };
-console.log(filteredHotels.length)
+  console.log(filteredHotels.length)
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       stars.push(
         <i
           key={i}
-          className={`fa-solid fa-star mx-1 ${
-            i <= rating ? "text-warning" : "text-secondary"
-          }`}
+          className={`fa-solid fa-star mx-1 ${i <= rating ? "text-warning" : "text-secondary"
+            }`}
         ></i>
       );
     }
@@ -79,17 +78,15 @@ console.log(filteredHotels.length)
               </div>
               <div>
                 <button
-                  className={`btn ${
-                    state === "Abu Dhabi" ? "bg-dark text-white" : "btn-light"
-                  } mx-2`}
+                  className={`btn ${state === "Abu Dhabi" ? "bg-dark text-white" : "btn-light"
+                    } mx-2`}
                   onClick={() => setState("Abu Dhabi")}
                 >
                   {t[language].city1}
                 </button>
                 <button
-                  className={`btn ${
-                    state === "Dubai" ? "bg-dark text-white" : "btn-light"
-                  } mx-2`}
+                  className={`btn ${state === "Dubai" ? "bg-dark text-white" : "btn-light"
+                    } mx-2`}
                   onClick={() => setState("Dubai")}
                 >
                   {t[language].city2}
@@ -138,7 +135,7 @@ console.log(filteredHotels.length)
                             src={hotel.images[0].url}
                             alt={hotel.name}
                             className="w-100 rounded"
-                            style={{ height: "250px",objectFit: "cover", }}
+                            style={{ height: "250px", objectFit: "cover", }}
                           />
                         )}
                       </div>

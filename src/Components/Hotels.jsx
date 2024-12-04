@@ -1,7 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { BASE } from "../API/Api";
 import locationIcon from "../assets/location-icon.svg";
 import elipse1 from "../assets/hotel-elipse1.svg";
 import elipse2 from "../assets/hotel-elipse2.svg";
@@ -22,9 +20,8 @@ export default function Hotels() {
       stars.push(
         <i
           key={i}
-          className={`fa-solid fa-star mx-1 ${
-            i <= rating ? "text-warning" : "text-secondary"
-          }`}
+          className={`fa-solid fa-star mx-1 ${i <= rating ? "text-warning" : "text-secondary"
+            }`}
         ></i>
       );
     }
