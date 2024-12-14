@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./TopServices.css";
 import Book from "../../assets/Book.svg";
 import Bookarrow from "../../assets/Bookarrow.svg";
@@ -9,39 +9,25 @@ import axios from "axios";
 import { BASE } from "../../API/Api";
 // translation
 import t from "../../Translation/translation"
-import  useLanguage  from "../../context/useLanguage";
+import useLanguage from "../../context/useLanguage";
+import TripsContext from "../../context/TripsContext";
 
 export default function TopServices() {
   // translation
-  const { language, setLanguage } = useLanguage();
-  const [topServices, setTopServices] = useState([]);
+  const { language } = useLanguage();
+  // const [topServices, setTopServices] = useState([]);
   const [state, setState] = useState("Dubai");
   const [category, setCategory] = useState("tour");
   const [filteredTrips, setFilteredTrips] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // getting data from api
-  function gettingData() {
-    axios
-      .get(`${BASE}/trips/top-booked`)
-      .then((res) => {
-        setTopServices(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  useEffect(() => {
-    gettingData();
-  }, []);
+  const { trips } = useContext(TripsContext);
 
   useEffect(() => {
     filterTrips();
-  }, [state, category, topServices]);
+  }, [state, category, trips]);
 
   const filterTrips = () => {
-    let stateTrips = topServices.filter((trip) => trip.state.name === state);
+    let stateTrips = trips.filter((trip) => trip.state.name === state);
     let categoryTrips = stateTrips.filter(
       (trip) => trip.trip_category.name === category
     );
@@ -103,25 +89,23 @@ export default function TopServices() {
                   fontSize: "2.5em",
                 }}
               >
-                {t[language].slogan} 
+                {t[language].slogan}
               </h2>
             </div>
             <div>
               <button
-                className={`btn ${
-                  state === "Abu Dhabi" ? "bg-dark text-white" : "btn-light"
-                } mx-2`}
+                className={`btn ${state === "Abu Dhabi" ? "bg-dark text-white" : "btn-light"
+                  } mx-2`}
                 onClick={() => setState("Abu Dhabi")}
               >
-                {t[language].city1} 
+                {t[language].city1}
               </button>
               <button
-                className={`btn ${
-                  state === "Dubai" ? "bg-dark text-white" : "btn-light"
-                } mx-2`}
+                className={`btn ${state === "Dubai" ? "bg-dark text-white" : "btn-light"
+                  } mx-2`}
                 onClick={() => setState("Dubai")}
               >
-                {t[language].city2} 
+                {t[language].city2}
               </button>
             </div>
           </div>
@@ -141,7 +125,7 @@ export default function TopServices() {
               }}
               onClick={() => setCategory("tour")}
             >
-              {t[language].Tour} 
+              {t[language].Tour}
             </span>
             <span
               className="cat"
@@ -151,7 +135,7 @@ export default function TopServices() {
               }}
               onClick={() => setCategory("ticket")}
             >
-              {t[language].Ticket} 
+              {t[language].Ticket}
             </span>
             <span
               className="cat"
@@ -161,7 +145,7 @@ export default function TopServices() {
               }}
               onClick={() => setCategory("transfer")}
             >
-              {t[language].Transfer} 
+              {t[language].Transfer}
             </span>
           </div>
 

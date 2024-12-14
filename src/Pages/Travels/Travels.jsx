@@ -15,7 +15,7 @@ import useLanguage from "../../context/useLanguage";
 
 export default function Travels() {
   // translation
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const { trips } = useContext(TripsContext);
 
   const location = useLocation();
