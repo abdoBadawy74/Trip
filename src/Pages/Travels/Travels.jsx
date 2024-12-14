@@ -1,7 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import Header from "../../Components/Header/Header";
-import axios from "axios";
-import { BASE } from "../../API/Api";
 import clock from "../../assets/clock-icon.svg";
 import Book from "../../assets/Book.svg";
 import Bookarrow from "../../assets/Bookarrow.svg";
@@ -19,7 +17,7 @@ export default function Travels() {
   const { trips } = useContext(TripsContext);
 
   const location = useLocation();
-  const [state, setState] = useState("Abu Dhabi");
+  const [state, setState] = useState(["Abu Dhabi", "أبو ظبي",]);
   const [category, setCategory] = useState("tour");
   const [searchState, setSearchState] = useState("");
   const [filteredtrips, setFilteredTrips] = useState([]);
@@ -27,7 +25,7 @@ export default function Travels() {
   useEffect(() => {
     const filtered = trips.filter(
       (trip) =>
-        trip.state.name === state && trip.trip_category.name === category
+        state.includes(trip.state.name) && category.split(",").includes(trip.trip_category.name )
     );
     setFilteredTrips(filtered);
   }, [state, category, trips]);
@@ -37,7 +35,7 @@ export default function Travels() {
       const filtered = trips.filter(
         (service) =>
           service.state.name === state &&
-          service.trip_category.name === category
+        category.split(",").includes(service.trip_category.name )
       );
       setFilteredTrips(filtered);
     } else {
@@ -53,7 +51,7 @@ export default function Travels() {
     width: "100px",
     outline: "0",
   };
-  // console.log(filteredtrips);
+  console.log(category);
   return (
     <div>
       {location.pathname === "/travels" && (
@@ -77,18 +75,16 @@ export default function Travels() {
               </div>
               <div>
                 <button
-                  className={`btn ${
-                    state === "Abu Dhabi" ? "bg-dark text-white" : "btn-light"
-                  } mx-2`}
-                  onClick={() => setState("Abu Dhabi")}
+                  className={`btn ${state.includes("Abu Dhabi") ? "bg-dark text-white" : "btn-light"
+                    } mx-2`}
+                  onClick={() => setState(["Abu Dhabi", "أبو ظبي",])}
                 >
                   {t[language].city1}
                 </button>
                 <button
-                  className={`btn ${
-                    state === "Dubai" ? "bg-dark text-white" : "btn-light"
-                  } mx-2`}
-                  onClick={() => setState("Dubai")}
+                  className={`btn ${state.includes("Dubai") ? "bg-dark text-white" : "btn-light"
+                    } mx-2`}
+                  onClick={() => setState(["Dubai", "دبي",])}
                 >
                   {t[language].city2}
                 </button>
@@ -102,9 +98,9 @@ export default function Travels() {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option value="tour">{t[language].Tour}</option>
-                <option value="transfer">{t[language].Transfer}</option>
-                <option value="ticket">{t[language].Ticket}</option>
+                <option value={["tour", "سفر", "tour"]}>{t[language].Tour}</option>
+                <option value={["transfer", "نقل", "trasferimento"]}>{t[language].Transfer}</option>
+                <option value={["ticket", "تذكرة", "biglietto"]}>{t[language].Ticket}</option>
               </select>
               <input
                 type="text"
@@ -129,9 +125,8 @@ export default function Travels() {
                 filteredtrips.map((service, i) => (
                   <Link
                     to={`/travels/${service.id}`}
-                    className={`d-flex gap-3 flex-wrap justify-content-center justify-content-lg-between my-3 text-decoration-none text-dark ${
-                      i % 2 !== 0 ? "flex-row-reverse" : "flex-row"
-                    }`}
+                    className={`d-flex gap-3 flex-wrap justify-content-center justify-content-lg-between my-3 text-decoration-none text-dark ${i % 2 !== 0 ? "flex-row-reverse" : "flex-row"
+                      }`}
                     key={i}
                   >
                     <img
@@ -145,9 +140,8 @@ export default function Travels() {
                       className="p-0 rounded col-12 col-lg-6"
                     />
                     <div
-                      className={`text text-center text-lg-start col-12 col-lg-6 py-3 ${
-                        i % 2 !== 0 ? "flex-grow-1" : "flex-grow-1"
-                      }`}
+                      className={`text text-center text-lg-start col-12 col-lg-6 py-3 ${i % 2 !== 0 ? "flex-grow-1" : "flex-grow-1"
+                        }`}
                     >
                       <h3 className="fw-bold fs-2">{service.place.name}</h3>
                       <p

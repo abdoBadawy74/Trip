@@ -5,8 +5,6 @@ import Bookarrow from "../../assets/Bookarrow.svg";
 import { Link } from "react-router-dom";
 import ellipse from "../../assets/topelipse1.svg";
 import ellipse2 from "../../assets/topelipse2.svg";
-import axios from "axios";
-import { BASE } from "../../API/Api";
 // translation
 import t from "../../Translation/translation"
 import useLanguage from "../../context/useLanguage";
@@ -15,21 +13,21 @@ import TripsContext from "../../context/TripsContext";
 export default function TopServices() {
   // translation
   const { language } = useLanguage();
-  // const [topServices, setTopServices] = useState([]);
-  const [state, setState] = useState("Dubai");
-  const [category, setCategory] = useState("tour");
+  const [state, setState] = useState(["Dubai", "دبي",]);
+  const [category, setCategory] = useState(["tour", "سفر"]);
   const [filteredTrips, setFilteredTrips] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { trips } = useContext(TripsContext);
 
   useEffect(() => {
     filterTrips();
-  }, [state, category, trips]);
+  }, [state, category, trips, language]);
 
+  console.log(filteredTrips);
   const filterTrips = () => {
-    let stateTrips = trips.filter((trip) => trip.state.name === state);
+    let stateTrips = trips.filter((trip) => state.includes(trip.state.name));
     let categoryTrips = stateTrips.filter(
-      (trip) => trip.trip_category.name === category
+      (trip) => category.includes(trip.trip_category?.name)
     );
     setFilteredTrips(categoryTrips);
     setCurrentImageIndex(0); // Reset the image index when the trips change
@@ -94,16 +92,16 @@ export default function TopServices() {
             </div>
             <div>
               <button
-                className={`btn ${state === "Abu Dhabi" ? "bg-dark text-white" : "btn-light"
+                className={`btn ${state.includes("Abu Dhabi") ? "bg-dark text-white" : "btn-light"
                   } mx-2`}
-                onClick={() => setState("Abu Dhabi")}
+                onClick={() => setState(["Abu Dhabi", "أبو ظبي",])}
               >
                 {t[language].city1}
               </button>
               <button
-                className={`btn ${state === "Dubai" ? "bg-dark text-white" : "btn-light"
+                className={`btn ${state.includes("Dubai") ? "bg-dark text-white" : "btn-light"
                   } mx-2`}
-                onClick={() => setState("Dubai")}
+                onClick={() => setState(["Dubai", "دبي",])}
               >
                 {t[language].city2}
               </button>
@@ -123,7 +121,7 @@ export default function TopServices() {
                 cursor: "pointer",
                 color: category === "tour" ? "#000" : "",
               }}
-              onClick={() => setCategory("tour")}
+              onClick={() => setCategory(["tour", "سفر", "tour"])}
             >
               {t[language].Tour}
             </span>
@@ -133,7 +131,7 @@ export default function TopServices() {
                 cursor: "pointer",
                 color: category === "ticket" ? "#000" : "",
               }}
-              onClick={() => setCategory("ticket")}
+              onClick={() => setCategory(["ticket", "تذكرة", "biglietto"])}
             >
               {t[language].Ticket}
             </span>
@@ -143,7 +141,7 @@ export default function TopServices() {
                 cursor: "pointer",
                 color: category === "transfer" ? "#000" : "",
               }}
-              onClick={() => setCategory("transfer")}
+              onClick={() => setCategory(["transfer", "نقل","trasferimento"])}
             >
               {t[language].Transfer}
             </span>

@@ -13,13 +13,11 @@ const TripsProvider = ({ children }) => {
   useEffect(() => {
     const fetchTrips = async () => {
       try {
-        const response = await axios.get(`${BASE}/trips`,
-          {
-            headers: {
-              lang: language
-            },
+        const response = await axios.get(`${BASE}/trips`, {
+          headers: {
+            "lang": language
           }
-        );
+        });
         setTrips(response.data.data);
         console.log("Fetched Trips:", response.data.data);
       } catch (error) {
@@ -29,9 +27,8 @@ const TripsProvider = ({ children }) => {
 
 
     fetchTrips();
-  }, []);
+  }, [language]);
 
-  console.log(language)
 
   return (
     <TripsContext.Provider value={{ trips }}>

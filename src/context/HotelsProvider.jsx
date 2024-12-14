@@ -14,7 +14,7 @@ const HotelsProvider = ({ children }) => {
       try {
         const response = await axios.get(`${BASE}/hotels`, {
           headers: {
-            lang: language
+            "lang": language
           }
         });
         setHotels(response.data.data);
@@ -25,7 +25,7 @@ const HotelsProvider = ({ children }) => {
     };
 
     fetchHotels();
-  }, []);
+  }, [language]);
 
   return (
     <HotelsContext.Provider value={{ hotels }}>

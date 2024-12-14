@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import icon from "../../assets/calendar-icon.svg";
 import "./Calendar.css";
 import {

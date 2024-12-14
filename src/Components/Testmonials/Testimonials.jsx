@@ -19,13 +19,17 @@ export default function Testimonials() {
 
   // fetch testimonials from the server
   useEffect(() => {
-    axios.get(`${BASE}/testimonials`).then((res) => {
+    axios.get(`${BASE}/testimonials`,{
+      headers: {
+        "lang": language,
+      },
+    }).then((res) => {
       setTestimonials(res.data.data);
     }
     ).catch((err) => {
       console.log(err);
     })
-  }, []);
+  }, [language]);
 
 
   // handle next and prev buttons
