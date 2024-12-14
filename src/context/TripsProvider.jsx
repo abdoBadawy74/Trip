@@ -16,7 +16,7 @@ const TripsProvider = ({ children }) => {
         const response = await axios.get(`${BASE}/trips`,
           {
             headers: {
-              language: language
+              lang: language
             },
           }
         );
@@ -27,8 +27,11 @@ const TripsProvider = ({ children }) => {
       }
     };
 
+
     fetchTrips();
   }, []);
+
+  console.log(language)
 
   return (
     <TripsContext.Provider value={{ trips }}>

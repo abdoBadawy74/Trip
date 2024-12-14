@@ -34,13 +34,19 @@ export default function Footer() {
 
     try {
       const res = await axios.post(`${BASE}/subscribe`, { email });
-      console.log(res);
+      // console.log(res);
       if (res.status === 201) {
         toast.success(language === "en" ? "Subscribed successfully" : language === "ar" ? "تم الاشتراك بنجاح" : "Abonné avec succès");
         setEmail("");
       }
     } catch (error) {
-      console.log(error);
+      if (error.response && error.response.status == 442) {
+        toast.error(language === "en" ? "Email already exists" : language === "ar" ? "البريد الإلكتروني موجود بالفعل" : "L'email existe déjà");
+        setEmail("");
+      } else {
+        toast.error(language === "en" ? "Email already exists" : language === "ar" ? "البريد الإلكتروني موجود بالفعل" : "L'email existe déjà");
+      }
+      console.log(error.response);
     }
 
   }

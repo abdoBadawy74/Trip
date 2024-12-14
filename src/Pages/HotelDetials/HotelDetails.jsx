@@ -14,7 +14,7 @@ import useLanguage from "../../context/useLanguage";
 
 function HotelDetails() {
   // translation
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const { hotelId } = useParams();
   const { hotels } = useContext(HotelsContext);
   const hotel = hotels.find((hotel) => hotel.id === parseInt(hotelId));
@@ -36,9 +36,8 @@ function HotelDetails() {
       stars.push(
         <i
           key={i}
-          className={`fa-solid fa-star mx-1 ${
-            i <= rating ? "text-warning" : "text-secondary"
-          }`}
+          className={`fa-solid fa-star mx-1 ${i <= rating ? "text-warning" : "text-secondary"
+            }`}
         ></i>
       );
     }
@@ -181,7 +180,7 @@ function HotelDetails() {
 
                       <div className="d-flex">
                         <h3 className="mb-4" style={{ fontWeight: "600" }}>
-                        {t[language].aboutThisHotel}
+                          {t[language].aboutThisHotel}
                         </h3>
                         <img
                           src={hoteldet}

@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import Calendar from "./../../Components/Calendar/Calendar";
 import SelectedRangeContext from "../../context/SelectedRange";
 import Header from "../../Components/Header/Header";
-import { format, parseISO, set } from "date-fns";
+import { format, parseISO } from "date-fns";
 import PhoneInput from "react-phone-number-input";
 import "./Payment.css";
 import axios from "axios";
@@ -11,14 +11,14 @@ import img from "../../assets/recipt.jpg";
 import { useNavigate, useParams } from "react-router-dom";
 import reviewIcon from "../../assets/Receipt.svg";
 import successIcon from "../../assets/Success.svg";
-import { Toast } from "react-bootstrap";
 // translation
 import t from "../../Translation/translation";
 import useLanguage from "../../context/useLanguage";
+import { toast } from "react-toastify";
 
 export default function Payment() {
   // translation
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const { travelId, hotelId } = useParams();
   const [show1, setShow1] = useState(true);
   const [show2, setShow2] = useState(false);
@@ -47,11 +47,9 @@ export default function Payment() {
   const [isValidPromo, setIsValidPromo] = useState(false);
   const [promoId, setPromoId] = useState(null);
   const [discount, setDiscount] = useState(0);
-  const [status, setStatus] = useState(false);
 
   const [loading, setLoading] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
+
 
   console.log(selectedRange);
 
@@ -184,8 +182,7 @@ export default function Payment() {
           setShow3(false);
         } else {
           // If response is not 201, show an error toast
-          setToastMessage(t[language].toastMsg);
-          setShowToast(true);
+          toast.error(t[language].toastMsg);
         }
       } else if (window.location.href.includes("/hotels/")) {
         // Post to hotel booking API
@@ -205,14 +202,12 @@ export default function Payment() {
           setShow3(false);
         } else {
           // If response is not 201, show an error toast
-          setToastMessage(t[language].toastMsg);
-          setShowToast(true);
+          toast.error(t[language].toastMsg);
         }
       }
     } catch (error) {
       console.error("Error during booking submission:", error);
-      setToastMessage(t[language].toastMsg);
-      setShowToast(true);
+      toast.error(t[language].toastMsg);
     } finally {
       setLoading(false); // Hide loading overlay
     }
@@ -280,24 +275,7 @@ export default function Payment() {
   //   handle error msg for required fields
   const handleErrors = () => {
     if (!firstName || !lastName || !email || !phone || adults <= 0) {
-      console.log("handleErrors called");
-      let toastBox = document.querySelector("#toastBox");
-      if (!toastBox) {
-        console.error("#toastBox not found in DOM.");
-        return;
-      }
-      let errorMsg =
-        '<i class="fas fa-times-circle"></i> Please fill all required fields';
-      let toast = document.createElement("div");
-      toast.classList.add("toast");
-      toast.innerHTML = errorMsg;
-      toastBox.appendChild(toast);
-      console.log("Error message appended to #toastBox");
-
-      setTimeout(() => {
-        toast.remove();
-        console.log("Toast removed");
-      }, 3000);
+      toast.error(language === "en" ? "Please fill all required fields" : language === "ar" ? "يرجى ملء جميع الحقول المطلوبة" : "Veuillez remplir tous les champs obligatoires");
     }
   };
 
@@ -358,25 +336,14 @@ export default function Payment() {
         </div>
       )}
 
-      <Toast
-        onClose={() => setShowToast(false)}
-        show={showToast}
-        delay={3000}
-        autohide
-        style={{ position: "absolute", top: 20, right: 20 }}
-      >
-        <Toast.Body>{toastMessage}</Toast.Body>
-      </Toast>
-
       <div id="toastBox"></div>
       <div className="bg-orange">
         <Header />
       </div>
       <div className="container py-4">
         <div
-          className={`gap-1 align-items-md-center flex-column flex-md-row ${
-            show4 ? "d-none" : "d-flex"
-          }`}
+          className={`gap-1 align-items-md-center flex-column flex-md-row ${show4 ? "d-none" : "d-flex"
+            }`}
         >
           <div className="d-flex gap-2 align-items-center">
             <p

@@ -9,7 +9,7 @@ import Footer from "../../Components/Footer/Footer";
 // translation
 import t from "../../Translation/translation";
 import useLanguage from "../../context/useLanguage";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { BASE } from "../../API/Api";
 import { toast, ToastContainer } from "react-toastify";
