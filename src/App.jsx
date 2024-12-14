@@ -14,7 +14,6 @@ import Contact from "./Pages/Contact/Contact";
 import { SelectedRangeProvider } from "./context/SelectedRange";
 import LanguageProvider from "./context/LanguageProvider";
 import useLanguage from "./context/useLanguage";
-import t from "./Translation/translation";
 
 function App() {
   return (

@@ -11,7 +11,7 @@ import useLanguage from "../../context/useLanguage";
 
 import "./Footer.css";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { BASE } from "../../API/Api";
 
@@ -19,10 +19,7 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   // translation
   const { language } = useLanguage();
-  // console.log(email)
-  const validate = () => {
-
-  }
+  
   async function handleSubmit(e) {
     e.preventDefault();
     console.log(email);
@@ -57,6 +54,7 @@ export default function Footer() {
       }}
       className="position-relative overflow-hidden footer"
     >
+      <ToastContainer theme="colored" />
       <img
         src={arrowPlane}
         alt="arrowPlane"
