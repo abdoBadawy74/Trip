@@ -19,7 +19,7 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   // translation
   const { language } = useLanguage();
-  
+
   async function handleSubmit(e) {
     e.preventDefault();
     console.log(email);
@@ -27,7 +27,7 @@ export default function Footer() {
 
     // Check for empty fields
     if (!email) {
-      toast.error("Please enter your email.");
+      toast.error(language === "en" ? "Please enter your email" : language === "ar" ? "الرجاء إدخال البريد الإلكتروني" : "Veuillez entrer votre adresse e-mail");
       return; // Exit the function if validation fails
     }
 
@@ -36,7 +36,7 @@ export default function Footer() {
       const res = await axios.post(`${BASE}/subscribe`, { email });
       console.log(res);
       if (res.status === 201) {
-        toast.success("Subscribed successfully");
+        toast.success(language === "en" ? "Subscribed successfully" : language === "ar" ? "تم الاشتراك بنجاح" : "Abonné avec succès");
         setEmail("");
       }
     } catch (error) {
