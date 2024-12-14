@@ -39,7 +39,7 @@ function AppContent() {
         <Route path="/home" element={<LandingPage />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Contact />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/hotels" element={<Hotels />}>
           <Route path=":hotelId" element={<HotelDetails />}>
             <Route path="payment" element={<Payment />} />

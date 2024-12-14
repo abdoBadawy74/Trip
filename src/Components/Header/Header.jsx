@@ -201,7 +201,7 @@ export default function Header() {
 
           <ul className="navbar-nav m-2 mb-lg-0">
             <li className="m-auto">
-              <Link className="btn m-2 order-lg-last nav-btn" to="/login">
+              <Link className="btn m-2 order-lg-last nav-btn" to="/contact">
                 {t[language].contactUs}
               </Link>
             </li>

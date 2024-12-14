@@ -45,7 +45,7 @@ function Contact() {
       const res = await axios.post(`${BASE}/contact`, data);
       console.log(res)
       if (res.status === 201) {
-        toast.success("Message sent successfully");
+        toast.success(language === "en" ? "Message sent successfully." : language === "ar" ? "تم إرسال الرسالة بنجاح." : "Messaggio inviato con successo.");
         // Reset form only if the request is successful
         setData({
           first_name: "",
@@ -57,7 +57,7 @@ function Contact() {
       }
     } catch (err) {
       console.error(err);
-      toast.error("Failed to send the message. Please try again.");
+      toast.error(language === "en" ? "Failed to send message." : language === "ar" ? "فشل في إرسال الرسالة." : "Impossibile inviare il messaggio.");
     }
   }
 
