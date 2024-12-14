@@ -12,7 +12,7 @@ import { BASE } from "../../API/Api";
 export default function Testimonials() {
   const [testimonials, setTestimonials] = useState([]);
   // translation
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   // console.log(activeIndex)
   // console.log(testimonials)
@@ -125,6 +125,7 @@ export default function Testimonials() {
             right: "-50px",
             top: "50%",
             transform: "translateY(-50%)",
+            zIndex: "100",
           }}
         >
           <i
