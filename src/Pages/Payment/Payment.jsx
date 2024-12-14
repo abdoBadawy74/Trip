@@ -240,6 +240,9 @@ export default function Payment() {
       setEndDay(format(endDate, "d"));
       setEndMonthYear(format(endDate, "MMMM, yyyy"));
     }
+    if (!selectedRange.end) {
+      setSelectedRange({ ...selectedRange, end: selectedRange.start });
+    }
   }, [selectedRange]);
 
   //   function to copy text to clipboard
@@ -283,41 +286,9 @@ export default function Payment() {
 
   function promoCodeToast() {
     if (isValidPromo) {
-      let toastBox = document.querySelector("#toastBox");
-      if (!toastBox) {
-        console.error("#toastBox not found in DOM.");
-        return;
-      }
-      let errorMsg =
-        '<i class="fas fa-check-circle"></i> Promo code applied successfully';
-      let toast = document.createElement("div");
-      toast.classList.add("toast", "success");
-      toast.innerHTML = errorMsg;
-      toastBox.appendChild(toast);
-      console.log("Success message appended to #toastBox");
-
-      setTimeout(() => {
-        toast.remove();
-        console.log("Toast removed");
-      }, 3000);
+      toast.success(language === "en" ? "Promo code is valid" : language === "ar" ? "الرمز الترويجي صالح" : "Le code promo est valide");
     } else {
-      let toastBox = document.querySelector("#toastBox");
-      if (!toastBox) {
-        console.error("#toastBox not found in DOM.");
-        return;
-      }
-      let errorMsg =
-        '<i class="fas fa-times-circle"></i> Promo code is not valid';
-      let toast = document.createElement("div");
-      toast.classList.add("toast");
-      toast.innerHTML = errorMsg;
-      toastBox.appendChild(toast);
-      console.log("Error message appended to #toastBox");
-
-      setTimeout(() => {
-        toast.remove();
-        console.log("Toast removed");
-      }, 3000);
+      toast.error(language === "en" ? "Promo code is invalid" : language === "ar" ? "الرمز الترويجي غير صالح" : "Le code promo n'est pas valide");
     }
   }
 
@@ -1119,7 +1090,7 @@ export default function Payment() {
                       submitBookingData();
                     }}
                   >
-                    {t[language].pay}
+                    {t[language].done}
                   </button>
                 )}
               </div>
@@ -1129,7 +1100,7 @@ export default function Payment() {
 
         {show4 && (
           <div>
-            <div className="d-flex justify-content-around p-4 align-items-center">
+            <div className="d-flex justify-content-around p-4 align-items-center flex-wrap">
               <div className="d-flex flex-column align-items-center gap-3">
                 <img src={successIcon} alt="successIcon" />
                 <p
@@ -1299,12 +1270,37 @@ export default function Payment() {
                   width: "100%",
                 }}
                 onClick={() => {
-                  navigate(-1);
+                  navigate("/travels");
                 }}
               >
                 {t[language].done}
               </button>
             )}
+
+
+            {window.location.href.includes("/hotels/") && (
+              <button
+                style={{
+                  backgroundColor: "#F77A40",
+                  color: "#fff",
+                  fontSize: "20px",
+                  fontWeight: "500",
+                  padding: "10px 50px",
+                  borderRadius: "8px",
+                  border: "none",
+                  outline: "none",
+                  display: "block",
+                  margin: "50px auto",
+                  width: "100%",
+                }}
+                onClick={() => {
+                  navigate("/hotels");
+                }}
+              >
+                {t[language].done}
+              </button>
+            )}
+
           </div>
         )}
       </div>
