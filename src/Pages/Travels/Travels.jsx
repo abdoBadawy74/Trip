@@ -130,7 +130,7 @@ export default function Travels() {
                     key={i}
                   >
                     <img
-                      src={service.images[0].url}
+                      src={service.images[0]?.url}
                       alt="image"
                       style={{
                         width: "400px",
