@@ -11,6 +11,7 @@ import t from "../../Translation/translation";
 import useLanguage from "../../context/useLanguage";
 import TripsContext from './../../context/TripsContext';
 import HotelsContext from './../../context/HotelsContext';
+import { toast } from "react-toastify";
 
 export default function Landing() {
   // translation
@@ -56,23 +57,26 @@ export default function Landing() {
 
   // handle search
   console.log(searchState)
+  // reset filtered trips when search state changes
+  useEffect(() => {
+    setFilteredTrips("")
+  }, [searchState])
 
   const handleSearch = () => {
-    if (searchState === "") {
-      const filtered = searchState === "travels" ? trips : hotels;
-      setFilteredTrips(filtered);
-    } else {
-      const filtered = searchState === "travels" ? trips.filter((trip) =>
-        trip.place.name.toLowerCase().includes(search.toLowerCase())
-      ) : hotels.filter((hotel) =>
-        hotel.name.toLowerCase().includes(search.toLowerCase())
-      );
-      setFilteredTrips(filtered);
-    }
+    // if (searchState === "") {
+    //   const filtered = searchState === "travels" ? trips : hotels;
+    //   setFilteredTrips(filtered);
+    // } else {
+    const filtered = searchState === "travels" ? trips.filter((trip) =>
+      trip.place.name.toLowerCase().includes(search.toLowerCase())
+    ) : hotels.filter((hotel) =>
+      hotel.name.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredTrips(filtered);
   }
+  // }
 
-  console.log("filteredtrips", filteredtrips);
-
+  console.log(filteredtrips)
 
   return (
     <>
@@ -288,9 +292,13 @@ export default function Landing() {
                       }}
                       onClick={() => console.log("Selected Item:", item)}
                     >
-                      <img src={item.images[0].url} alt="image" className="rounded shadow" width="100px" height="50px" />
+                      <img src={item.images[0]?.url} alt="image" className="rounded shadow" width="100px" height="50px" />
                       <div>
-                        <h4 className="m-0">{item.place.name}</h4>
+                        {
+                          searchState === "travels" ?
+                            (<h4 className="m-0">{item.place?.name}</h4>) :
+                            (<h4 className="m-0">{item.name}</h4>)
+                        }
                         <small className="text-secondary">{item.description.slice(0, 25)}...</small>
                       </div>
                     </div>
@@ -416,9 +424,14 @@ export default function Landing() {
                       }}
                       onClick={() => console.log("Selected Item:", item)}
                     >
-                      <img src={item.images[0].url} alt="image" className="rounded shadow" width="100px" height="50px" />
+                      <img src={item.images[0]?.url} alt="image" className="rounded shadow" width="100px" height="50px" />
                       <div>
-                        <h4 className="m-0">{item.place.name}</h4>
+                        {
+                          searchState === "travels" ?
+                            (<h4 className="m-0">{item.place?.name}</h4>) :
+                            (<h4 className="m-0">{item.name}</h4>)
+                        }
+                        <h4 className="m-0">{item.place?.name}</h4>
                         <small className="text-secondary">{item.description.slice(0, 25)}...</small>
                       </div>
                     </div>
