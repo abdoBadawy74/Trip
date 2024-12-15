@@ -18,14 +18,14 @@ export default function Travels() {
 
   const location = useLocation();
   const [state, setState] = useState(["Abu Dhabi", "أبو ظبي",]);
-  const [category, setCategory] = useState("tour");
+  const [category, setCategory] = useState(["tour", "سفر"]);
   const [searchState, setSearchState] = useState("");
   const [filteredtrips, setFilteredTrips] = useState([]);
 
   useEffect(() => {
     const filtered = trips.filter(
       (trip) =>
-        state.includes(trip.state.name) && category.split(",").includes(trip.trip_category.name )
+        state.includes(trip.state.name) && category.includes(trip.trip_category.name )
     );
     setFilteredTrips(filtered);
   }, [state, category, trips]);
