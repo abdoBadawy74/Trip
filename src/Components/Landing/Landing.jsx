@@ -12,6 +12,8 @@ import useLanguage from "../../context/useLanguage";
 import TripsContext from './../../context/TripsContext';
 import HotelsContext from './../../context/HotelsContext';
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { set } from "date-fns";
 
 export default function Landing() {
   // translation
@@ -27,6 +29,9 @@ export default function Landing() {
   const [searchState, setSearchState] = useState("travels");
   const [filteredtrips, setFilteredTrips] = useState([]);
   const [search, setSearch] = useState("");
+
+  // navigation
+  const navigate = useNavigate();
 
 
   // refs for videos
@@ -60,22 +65,23 @@ export default function Landing() {
   // reset filtered trips when search state changes
   useEffect(() => {
     setFilteredTrips("")
+    setSearch("")
   }, [searchState])
 
   const handleSearch = () => {
-    // if (searchState === "") {
-    //   const filtered = searchState === "travels" ? trips : hotels;
-    //   setFilteredTrips(filtered);
-    // } else {
-    const filtered = searchState === "travels" ? trips.filter((trip) =>
-      trip.place.name.toLowerCase().includes(search.toLowerCase())
-    ) : hotels.filter((hotel) =>
-      hotel.name.toLowerCase().includes(search.toLowerCase())
-    );
-    setFilteredTrips(filtered);
+    if (searchState === "travels") {
+      const filtered = trips.filter((trip) =>
+        trip.place.name.toLowerCase().includes(search.toLowerCase())
+      )
+      console.log("filtered", filtered)
+      setFilteredTrips(filtered);
+    } else {
+      const filtered = hotels.filter((hotel) =>
+        hotel.name.toLowerCase().includes(search.toLowerCase())
+      )
+      setFilteredTrips(filtered);
+    }
   }
-  // }
-
   console.log(filteredtrips)
 
   return (
@@ -249,7 +255,10 @@ export default function Landing() {
                   placeholder={t[language].Search}
                   className="w-50 rounded p-2 border-0 outline-0 flex-grow-1"
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={(e) => {
+                    setSearch(e.target.value)
+                    handleSearch()
+                  }}
                   style={{
                     backgroundColor: "#F8F9F9",
                     outline: "none",
@@ -263,7 +272,7 @@ export default function Landing() {
                     padding: "8px 18px",
                     borderRadius: "5px",
                   }}
-                  onClick={handleSearch}
+                // onClick={handleSearch}
                 >
                   {t[language].Search}
                 </button>
@@ -284,13 +293,15 @@ export default function Landing() {
                   filteredtrips.map((item, index) => (
                     <div
                       key={index}
-                      className="result-item p-3 d-flex  justify-content-between gap-3"
+                      className="result-item p-3 d-flex  justify-content-between gap-3 w-100"
                       style={{
                         borderBottom: "1px solid #ddd",
                         cursor: "pointer",
                         color: "#000"
                       }}
-                      onClick={() => console.log("Selected Item:", item)}
+                      onClick={() => {
+                        searchState === "travels" ? navigate(`/travels/${item.id}`) : navigate(`/hotels/${item.id}`)
+                      }}
                     >
                       <img src={item.images[0]?.url} alt="image" className="rounded shadow" width="100px" height="50px" />
                       <div>
@@ -381,7 +392,10 @@ export default function Landing() {
                   placeholder={t[language].Search}
                   className="w-50 rounded p-2 border-0 outline-0 flex-grow-1"
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={(e) => {
+                    setSearch(e.target.value)
+                    handleSearch()
+                  }}
                   style={{
                     backgroundColor: "#F8F9F9",
                     outline: "none",
@@ -395,7 +409,7 @@ export default function Landing() {
                     padding: "8px 18px",
                     borderRadius: "5px",
                   }}
-                  onClick={handleSearch}
+                // onClick={handleSearch}
                 >
                   {t[language].Search}
                 </button>
@@ -416,13 +430,15 @@ export default function Landing() {
                   filteredtrips.map((item, index) => (
                     <div
                       key={index}
-                      className="result-item p-3 d-flex  justify-content-between gap-3"
+                      className="result-item p-3 d-flex  justify-content-between gap-3 w-100"
                       style={{
                         borderBottom: "1px solid #ddd",
                         cursor: "pointer",
                         color: "#000"
                       }}
-                      onClick={() => console.log("Selected Item:", item)}
+                      onClick={() => {
+                        searchState === "travels" ? navigate(`/travels/${item.id}`) : navigate(`/hotels/${item.id}`)
+                      }}
                     >
                       <img src={item.images[0]?.url} alt="image" className="rounded shadow" width="100px" height="50px" />
                       <div>

@@ -23,10 +23,6 @@ const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const isPaymentPage = location.hash.slice(-7) === "payment";
 
-  useEffect(() => {
-    setSelectedRange({});
-  }, [window.location.hash]);
-
   const nextMonth = () => {
     setCurrentMonth(addMonths(currentMonth, 1));
   };
