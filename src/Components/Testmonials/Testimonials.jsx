@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import quote from "../../assets/quote.svg";
-import person from "../../assets/person.png";
 import "./Testimonials.css";
 // translation
 import t from "../../Translation/translation";
@@ -52,6 +51,8 @@ export default function Testimonials() {
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [testimonials.length]);
+
+  console.log(testimonials)
 
   return (
     <div className="testimonials container p-4 d-flex justify-content-center justify-content-md-between flex-wrap gap-4 ">

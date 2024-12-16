@@ -206,6 +206,11 @@ export default function Header() {
                 {t[language].aboutUs}
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/feedback">
+                {t[language].feedBack}
+              </Link>
+            </li>
           </ul>
 
           <ul className="navbar-nav m-2 mb-lg-0">

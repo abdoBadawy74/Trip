@@ -104,6 +104,7 @@ const t = {
     name: "Name",
     totalPrice: "Total Price",
     done: "Done",
+    feedBack: "FeedBack",
   },
   ar: {
     language: "العربية",
@@ -208,6 +209,7 @@ const t = {
     name: "الاسم",
     totalPrice: "السعر الكلي",
     done: "تم",
+    feedBack: "التقييم",
   },
   it: {
     language: "Italiano",
@@ -314,6 +316,7 @@ const t = {
     name: "Nome",
     totalPrice: "Prezzo totale",
     done: "Fatto",
+    feedBack: "Feedback",
   },
   de: {
     language: "Deutsch",
@@ -419,6 +422,7 @@ const t = {
     name: "Name",
     totalPrice: "Gesamtpreis",
     done: "Fertig",
+    feedBack: "Feedback",
   },
 };
 export default t;

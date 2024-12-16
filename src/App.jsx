@@ -14,6 +14,7 @@ import Contact from "./Pages/Contact/Contact";
 import { SelectedRangeProvider } from "./context/SelectedRange";
 import LanguageProvider from "./context/LanguageProvider";
 import useLanguage from "./context/useLanguage";
+import FeedBack from "./Pages/FeedBack/FeedBack";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function AppContent() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/feedback" element={<FeedBack />} />
         <Route path="/hotels" element={<Hotels />}>
           <Route path=":hotelId" element={<HotelDetails />}>
             <Route path="payment" element={<Payment />} />
