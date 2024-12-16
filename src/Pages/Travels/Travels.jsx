@@ -10,6 +10,7 @@ import TripsContext from "../../context/TripsContext";
 // translation
 import t from "../../Translation/translation";
 import useLanguage from "../../context/useLanguage";
+import "./Travels.css"
 
 export default function Travels() {
   // translation
@@ -130,22 +131,34 @@ export default function Travels() {
                 filteredtrips.map((service, i) => (
                   <Link
                     to={`/travels/${service.id}`}
-                    className={`d-flex gap-3 flex-wrap justify-content-center justify-content-lg-between my-3 text-decoration-none text-dark ${i % 2 !== 0 ? "flex-row-reverse" : "flex-row"
+                    className={` trip-item rounded d-flex gap-3 flex-wrap justify-content-center justify-content-lg-between my-3 text-decoration-none text-dark ${i % 2 !== 0 ? "flex-row-reverse" : "flex-row"
                       }`}
                     key={i}
                   >
-                    <img
-                      src={service.images[0]?.url}
-                      alt="image"
-                      style={{
+                    {service.images[0]?.url ?
+
+                      <img
+                        src={service.images[0]?.url}
+                        alt="image"
+                        style={{
+                          width: "400px",
+                          height: "300px",
+                          objectFit: "cover",
+                        }}
+                        className="p-0 rounded col-12 col-lg-6"
+                      />
+                      : <div style={{
+                        backgroundColor: "#eee",
                         width: "400px",
                         height: "300px",
                         objectFit: "cover",
-                      }}
-                      className="p-0 rounded col-12 col-lg-6"
-                    />
+                      }} className="p-0 rounded col-12 col-lg-6 d-flex justify-content-center align-items-center">
+
+                        <h1 className="text-center text-danger">No Image</h1>
+                      </div>
+                    }
                     <div
-                      className={`text text-center text-lg-start col-12 col-lg-6 py-3 ${i % 2 !== 0 ? "flex-grow-1" : "flex-grow-1"
+                      className={`text text-center col-12 col-lg-6 py-3 ${i % 2 !== 0 ? "flex-grow-1 text-lg-end" : "flex-grow-1 text-lg-start"
                         }`}
                     >
                       <h3 className="fw-bold fs-2">{service.place.name}</h3>
@@ -167,13 +180,13 @@ export default function Travels() {
                         {service.ticket_price_from} DH -{" "}
                         {service.ticket_price_to} DH
                       </p>
-                      <div className="d-flex gap-2 fw-bold justify-content-center justify-content-lg-start  my-3">
+                      <div className={`d-flex gap-2 fw-bold justify-content-center ${i % 2 !== 0 ? "justify-content-lg-end" : "justify-content-lg-start"}  my-3`}>
                         <img src={clock} alt="clock" />
                         <p className="m-0">{service.duration}</p>
                       </div>
-                      <div className="d-flex gap-3 py-4 justify-content-center justify-content-lg-start">
+                      <div className={`d-flex gap-3 py-4 justify-content-center ${i % 2 !== 0 ? "justify-content-lg-start flex-row-reverse" : "justify-content-lg-start"}`}>
                         <button
-                          className="btn text-white py-2 px-3 d-flex gap-2 align-items-center"
+                          className={`btn text-white py-2 px-3 d-flex gap-2 align-items-center`}
                           style={{
                             backgroundColor: "#FF6B00",
                             cursor: "pointer",
