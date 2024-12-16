@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import icon from "../../assets/calendar-icon.svg";
 import "./Calendar.css";
 import {
@@ -16,6 +16,7 @@ import {
 } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import SelectedRangeContext from "../../context/SelectedRange";
+import { toast } from "react-toastify";
 
 const Calendar = () => {
   const navigate = useNavigate();
@@ -33,15 +34,26 @@ const Calendar = () => {
 
   const onDateClick = (day) => {
     if (isPaymentPage) return;
-
+  
     const formattedDay = format(day, "yyyy-MM-dd");
+    const today = new Date();
+    const tomorrow = new Date(today.setDate(today.getDate() + 1));
+  
+    // check if the selected date is not before today
+    if (day < tomorrow) {
+      toast.error("Date Selected Not Right.");
+      return;
+    } 
 
+    // check if the selected date is not more than 30 days from today
     if (!selectedRange?.start || (selectedRange?.start && selectedRange?.end)) {
       setSelectedRange({ start: formattedDay, end: null });
-    } else if (selectedRange.start && !selectedRange.end) {
+    }
+      // check if the selected date is not more than 30 days from today
+     else if (selectedRange.start && !selectedRange.end) {
       const formattedStart = selectedRange.start;
       const parsedStart = new Date(formattedStart);
-
+  
       if (day < parsedStart) {
         setSelectedRange({ start: formattedDay, end: formattedStart });
       } else {
@@ -49,6 +61,7 @@ const Calendar = () => {
       }
     }
   };
+  
 
   const renderHeader = () => {
     return (
