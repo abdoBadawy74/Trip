@@ -21,11 +21,16 @@ export default function Travels() {
   const [category, setCategory] = useState(["tour", "سفر"]);
   const [searchState, setSearchState] = useState("");
   const [filteredtrips, setFilteredTrips] = useState([]);
+  console.log("trips", filteredtrips);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   useEffect(() => {
     const filtered = trips.filter(
       (trip) =>
-        state.includes(trip.state.name) && category.includes(trip.trip_category.name )
+        state.includes(trip.state.name) && category.includes(trip.trip_category.name)
     );
     setFilteredTrips(filtered);
   }, [state, category, trips]);
@@ -35,7 +40,7 @@ export default function Travels() {
       const filtered = trips.filter(
         (service) =>
           service.state.name === state &&
-        category.split(",").includes(service.trip_category.name )
+          category.split(",").includes(service.trip_category.name)
       );
       setFilteredTrips(filtered);
     } else {

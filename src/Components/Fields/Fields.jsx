@@ -5,13 +5,14 @@ import "./Fields.css";
 // translation
 import t from "../../Translation/translation";
 import useLanguage from "../../context/useLanguage";
+import { Link } from "react-router-dom";
 
 export default function Fields() {
   // translation
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
 
   return (
-    <div>
+    <div >
       <div
         className="d-flex p-5 flex-wrap justify-content-center justify-content-md-between align-items-center position-relative fields"
         style={{
@@ -19,6 +20,7 @@ export default function Fields() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          height: "42vh",
         }}
       >
         <div
@@ -52,31 +54,13 @@ export default function Fields() {
             </span>{" "}
             {t[language].now}
           </h2>
-          <p
-            style={{
-              marginTop: "20px",
-              fontSize: "24px",
-              fontWeight: "500",
-              textTransform: "capitalize",
-            }}
-          >
-            {t[language].specilOffers}{" "}
-            <span
-              className="btn"
-              style={{
-                backgroundColor: "#F77A40",
-                color: "#fff",
-                padding: "2px 5px",
-              }}
-            >
-              10% {t[language].off}
-            </span>
-          </p>
         </div>
-        <div
+        <Link
+          to="/travels"
           className="mx-5 d-flex flex-column align-items-center justify-content-center"
           style={{
             zIndex: "1",
+            textDecoration: "none",
           }}
         >
           <img
@@ -87,8 +71,10 @@ export default function Fields() {
               cursor: "pointer",
             }}
           />
-          <p className="text-white text-uppercase">{t[language].BookNow} </p>
-        </div>
+          <p className="text-white text-uppercase" style={{
+
+          }}>{t[language].BookNow} </p>
+        </Link>
       </div>
     </div>
   );
