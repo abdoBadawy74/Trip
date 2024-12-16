@@ -89,7 +89,7 @@ export default function Landing() {
       <div
         className="landing-section position-relative w-100"
         style={{
-          height: "100vh",
+          minHeight: "100vh",
           overflow: "hidden",
         }}
       >

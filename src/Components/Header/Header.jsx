@@ -165,6 +165,15 @@ export default function Header() {
                     Italian
                   </button>
                 </li>
+                <li>
+                  <button
+                    className="dropdown-item  p-2"
+                    type="button"
+                    onClick={() => handleLanguageChange("de")}
+                  >
+                    German
+                  </button>
+                </li>
               </ul>
             </li>
           </ul>
