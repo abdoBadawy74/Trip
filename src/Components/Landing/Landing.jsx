@@ -206,7 +206,7 @@ export default function Landing() {
               <div className="icons my-2 d-flex p-3 justify-content-center gap-4 ">
                 <Link
                   to="/travels"
-                  
+                  state={{ category: "transfer", city: "Dubai" }}
                   className="icon text-white p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
                   style={{
                     height: "120px",
@@ -218,28 +218,34 @@ export default function Landing() {
                   <img src={transfer} alt="icon" />
                   <p>{t[language].Transfer}</p>
                 </Link>
-                <div
-                  className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
+                <Link
+                  to={"/travels"}
+                  state={{ category: "ticket", city: "Dubai" }}
+                  className="icon text-white p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
                   style={{
                     height: "120px",
                     width: "120px",
                     backgroundColor: "rgba(255,255,255,0.4)",
+                    textDecoration: "none",
                   }}
                 >
                   <img src={ticket} alt="icon" />
                   <p>{t[language].Ticket}</p>
-                </div>
-                <div
-                  className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
+                </Link>
+                <Link
+                  to={"/travels"}
+                  state={{ category: "tour", city: "Dubai" }}
+                  className="icon text-white p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
                   style={{
                     height: "120px",
                     width: "120px",
                     backgroundColor: "rgba(255,255,255,0.4)",
+                    textDecoration: "none",
                   }}
                 >
                   <img src={tour} alt="icon" />
                   <p>{t[language].Tour}</p>
-                </div>
+                </Link>
               </div>
 
               <div
@@ -344,39 +350,48 @@ export default function Landing() {
                 {t[language].h2_part1} <br /> {t[language].h2_part2}
               </h1>
               <div className="icons my-2 d-flex p-3 justify-content-center gap-4 ">
-                <div
-                  className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
+                <Link
+                  to="/travels"
+                  state={{ category: "transfer", city: "Abu Dhabi" }}
+                  className="icon text-white p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
                   style={{
                     height: "120px",
                     width: "120px",
                     backgroundColor: "rgba(255,255,255,0.4)",
+                    textDecoration: "none",
                   }}
                 >
                   <img src={transfer} alt="icon" />
                   <p> {t[language].Transfer}</p>
-                </div>
-                <div
-                  className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
+                </Link>
+                <Link
+                  to="/travels"
+                  state={{ category: "ticket", city: "Abu Dhabi" }}
+                  className="icon text-white p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
                   style={{
                     height: "120px",
                     width: "120px",
                     backgroundColor: "rgba(255,255,255,0.4)",
+                    textDecoration: "none",
                   }}
                 >
                   <img src={ticket} alt="icon" />
                   <p>{t[language].Ticket}</p>
-                </div>
-                <div
-                  className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
+                </Link>
+                <Link
+                  to="/travels"
+                  state={{ category: "tour", city: "Abu Dhabi" }}
+                  className="icon text-white p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
                   style={{
                     height: "120px",
                     width: "120px",
                     backgroundColor: "rgba(255,255,255,0.4)",
+                    textDecoration: "none",
                   }}
                 >
                   <img src={tour} alt="icon" />
                   <p>{t[language].Tour}</p>
-                </div>
+                </Link>
               </div>
 
               <div
@@ -470,7 +485,7 @@ export default function Landing() {
             </div>
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 }

@@ -29,6 +29,25 @@ export default function Travels() {
   }, [])
 
   useEffect(() => {
+    if (location.state?.category === "transfer") {
+      setCategory(["transfer", "نقل", "trasferimento"])
+    } else if (location.state?.category === "ticket") {
+      setCategory(["ticket", "تذكرة", "biglietto"])
+    } else {
+      setCategory(["tour", "سفر"])
+    }
+
+    if (location.state?.city === "Abu Dhabi") {
+      setState(["Abu Dhabi", "أبو ظبي"])
+    } else {
+      setState(["Dubai", "دبي"])
+    }
+
+
+  }, [location.state?.category, location.state?.city])
+
+  console.log("location", location)
+  useEffect(() => {
     const filtered = trips.filter(
       (trip) =>
         state.includes(trip.state.name) && category.includes(trip.trip_category.name)
