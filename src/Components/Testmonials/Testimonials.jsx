@@ -19,7 +19,7 @@ export default function Testimonials() {
 
   // fetch testimonials from the server
   useEffect(() => {
-    axios.get(`${BASE}/testimonials`,{
+    axios.get(`${BASE}/testimonials`, {
       headers: {
         "lang": language,
       },
@@ -44,7 +44,14 @@ export default function Testimonials() {
     setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
   };
 
+  // Automatically slide every 1 second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 1500);
 
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [testimonials.length]);
 
   return (
     <div className="testimonials container p-4 d-flex justify-content-center justify-content-md-between flex-wrap gap-4 ">

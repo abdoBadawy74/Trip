@@ -12,7 +12,7 @@ import useLanguage from "../../context/useLanguage";
 import TripsContext from './../../context/TripsContext';
 import HotelsContext from './../../context/HotelsContext';
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { set } from "date-fns";
 
 export default function Landing() {
@@ -203,18 +203,21 @@ export default function Landing() {
               >
                 {t[language].h1_part1} <br /> {t[language].h1_part2}
               </h1>
-              <div className="icons my-2 d-flex p-3 justify-content-around ">
-                <div
-                  className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
+              <div className="icons my-2 d-flex p-3 justify-content-center gap-4 ">
+                <Link
+                  to="/travels"
+                  
+                  className="icon text-white p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
                   style={{
                     height: "120px",
                     width: "120px",
                     backgroundColor: "rgba(255,255,255,0.4)",
+                    textDecoration: "none",
                   }}
                 >
                   <img src={transfer} alt="icon" />
                   <p>{t[language].Transfer}</p>
-                </div>
+                </Link>
                 <div
                   className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
                   style={{
@@ -340,7 +343,7 @@ export default function Landing() {
               >
                 {t[language].h2_part1} <br /> {t[language].h2_part2}
               </h1>
-              <div className="icons my-2 d-flex p-3 justify-content-around ">
+              <div className="icons my-2 d-flex p-3 justify-content-center gap-4 ">
                 <div
                   className="icon p-3 rounded-circle d-flex flex-column justify-content-around align-items-center"
                   style={{
