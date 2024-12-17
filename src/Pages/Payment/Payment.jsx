@@ -31,9 +31,11 @@ export default function Payment() {
   const [endMonthYear, setEndMonthYear] = useState("");
   const [adults, setAdults] = useState(0);
   const [minors, setMinors] = useState(0);
+  const [children, setChildren] = useState(0);
 
   const [adultCost, setAdultCost] = useState(0);
   const [minorCost, setMinorCost] = useState(0);
+
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
   const [paymentId, setPaymentId] = useState("");
@@ -47,9 +49,11 @@ export default function Payment() {
   const [isValidPromo, setIsValidPromo] = useState(false);
   const [promoId, setPromoId] = useState(null);
   const [discount, setDiscount] = useState(0);
-
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   console.log(selectedRange);
 
@@ -151,24 +155,23 @@ export default function Payment() {
     const peopleNumbers = [
       { people_category_id: 1, number_of_people: adults },
       { people_category_id: 2, number_of_people: minors },
+      { people_category_id: 3, number_of_people: children },
     ];
 
-    peopleNumbers.forEach((person, index) => {
-      formData.append(
-        `people_numbers[${index}][people_category_id]`,
-        person.people_category_id
-      );
-      formData.append(
-        `people_numbers[${index}][number_of_people]`,
-        person.number_of_people
-      );
-    });
+    formData.append("people_numbers", JSON.stringify(peopleNumbers));
+
+    console.log("form data entries:");
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
 
     try {
       setLoading(true); // Show loading overlay
       await new Promise((resolve) => setTimeout(resolve, 3000)); // Delay for 3 seconds
 
       if (window.location.href.includes("/travels/")) {
+
+        console.log("form data", formData);
         // Post to trip booking API
         const response = await axios.post(`${BASE}/trips/booking`, formData, {
           headers: {
@@ -221,6 +224,9 @@ export default function Payment() {
   //   handle number of minors
   const handleMinorChange = (delta) => {
     setMinors((prev) => Math.max(0, prev + delta));
+  };
+  const handleChildChange = (delta) => {
+    setChildren((prev) => Math.max(0, prev + delta));
   };
 
   //   get total cost
@@ -283,7 +289,6 @@ export default function Payment() {
   };
 
   //   toast for Promo code
-
   function promoCodeToast() {
     if (isValidPromo) {
       toast.success(language === "en" ? "Promo code is valid" : language === "ar" ? "الرمز الترويجي صالح" : "Le code promo est valide");
@@ -298,6 +303,8 @@ export default function Payment() {
       setSelectedRange(null);
     };
   }, [setSelectedRange]);
+
+
   return (
     <div className="payment">
       {loading && (
@@ -371,7 +378,7 @@ export default function Payment() {
                 fontSize: "20px",
               }}
             >
-              {t[language].requiredInformation}
+              {t[language].RequiredInformation}
             </p>
           </div>
           <span
@@ -554,7 +561,7 @@ export default function Payment() {
                   </label>
                   <PhoneInput
                     placeholder={"Enter Phone Number"}
-                    defaultCountry="EG" // Set the default country code
+                    defaultCountry="IT" // Set the default country code
                     name="PhoneNumber"
                     className="mb-3 border-0 outline-0 p-2"
                     style={{
@@ -735,6 +742,92 @@ export default function Payment() {
                       }}
                     >
                       {minors * minorCost}$
+                    </span>
+                  </div>
+                </div>
+                <div className="d-flex flex-column col-12 col-md-4">
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: "600",
+                      marginBottom: "5px",
+                      color: "#42A7C3",
+                    }}
+                  >
+                    {t[language].children2}
+                  </span>
+
+                  <div
+                    className="mb-3 border-0 outline-0 p-2 d-flex justify-content-between"
+                    style={{
+                      borderRadius: "8px",
+                      backgroundColor: "#F8F9F9",
+                      width: "100%",
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: "#8A8A8A",
+                        fontSize: "16px",
+                      }}
+                    >
+                      {t[language].child}
+                    </span>
+                    <div className="d-flex align-items-center ">
+                      <button
+                        onClick={() => handleChildChange(1)}
+                        style={{
+                          border: "none",
+                          background: "#F77A40",
+                          width: "20px",
+                          height: "20px",
+                          color: "white",
+                          borderRadius: "5px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        +
+                      </button>
+                      <input
+                        type="number"
+                        id="numberofminors"
+                        value={children}
+                        readOnly
+                        style={{
+                          width: "50px",
+                          textAlign: "center",
+                          border: "none",
+                          background: "transparent",
+                        }}
+                      />
+
+                      <button
+                        onClick={() => handleChildChange(-1)}
+                        style={{
+                          border: "none",
+                          background: children === 0 ? "#D9D9D9" : "#F77A40",
+                          width: "20px",
+                          height: "20px",
+                          color: "white",
+                          borderRadius: "5px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        -
+                      </button>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: "20px",
+                        fontWeight: "600",
+                        fontFamily: "Montserrat",
+                      }}
+                    >
+                      0$
                     </span>
                   </div>
                 </div>
@@ -1228,7 +1321,7 @@ export default function Payment() {
                       fontWeight: "600",
                     }}
                   >
-                    {adults} {t[language].adults}, {minors} {t[language].minor}
+                    {adults} {t[language].adults}, {minors} {t[language].minor}, {children} {t[language].child}
                   </p>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
