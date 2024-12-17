@@ -47,7 +47,7 @@ export default function Testimonials() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 1500);
+    }, 2500);
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [testimonials.length]);

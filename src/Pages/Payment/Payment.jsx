@@ -29,7 +29,7 @@ export default function Payment() {
   const [startMonthYear, setStartMonthYear] = useState("");
   const [endDay, setEndDay] = useState("");
   const [endMonthYear, setEndMonthYear] = useState("");
-  const [adults, setAdults] = useState(0);
+  const [adults, setAdults] = useState(1);
   const [minors, setMinors] = useState(0);
   const [children, setChildren] = useState(0);
 
@@ -93,7 +93,7 @@ export default function Payment() {
       .then((res) => {
         setPaymentMethods(res.data);
         console.log(res.data);
-        setSelectedPaymentMethod(res.data[0].name);
+        setSelectedPaymentMethod(res.data[1].name);
       })
       .catch((err) => {
         console.log(err);

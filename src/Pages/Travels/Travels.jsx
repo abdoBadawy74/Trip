@@ -173,7 +173,7 @@ export default function Travels() {
                         objectFit: "cover",
                       }} className="p-0 rounded col-12 col-lg-6 d-flex justify-content-center align-items-center">
 
-                        <h1 className="text-center text-danger">No Image</h1>
+                        <h1 className="text-center text-secondary">No Image</h1>
                       </div>
                     }
                     <div
@@ -199,7 +199,7 @@ export default function Travels() {
                         {service.ticket_price_from} DH -{" "}
                         {service.ticket_price_to} DH
                       </p>
-                      <div className={`d-flex gap-2 fw-bold justify-content-center ${i % 2 !== 0 ? "justify-content-lg-end" : "justify-content-lg-start"}  my-3`}>
+                      <div className={`d-flex gap-2 fw-bold justify-content-center ${i % 2 !== 0 ? "justify-content-lg-start  flex-row-reverse" : "justify-content-lg-start "}  my-3`}>
                         <img src={clock} alt="clock" />
                         <p className="m-0">{service.duration}</p>
                       </div>

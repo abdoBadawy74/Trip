@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import LanguageContext from "./LanguageContext";
 
 const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState("en"); // Default language
+  const [language, setLanguage] = useState("it"); // Default language
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
 import "./Header.css";
@@ -126,11 +126,10 @@ export default function Header() {
               >
                 {t[language].language}
                 <i
-                  className={`${
-                    isDropdownOpen
+                  className={`${isDropdownOpen
                       ? "fa-solid fa-chevron-down"
                       : "fa-solid fa-chevron-up"
-                  } ms-1`}
+                    } ms-1`}
                 ></i>
               </button>
               <ul
