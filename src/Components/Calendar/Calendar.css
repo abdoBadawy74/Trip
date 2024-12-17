@@ -54,6 +54,9 @@
 
 .disabled {
   background-color: #f9f9f9;
+  color: #d3d3d3;
+  pointer-events: none; /* Prevent user interaction */
+  cursor: not-allowed;
 }
 
 .selected {
