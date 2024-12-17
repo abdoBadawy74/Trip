@@ -196,10 +196,10 @@ export default function TripDetials() {
                 {t[language].discoverMoreTravels}
               </p>
 
-              <div className="d-flex gap-3">
+              <div className="d-flex gap-2 mb-3">
                 {discoveredTrips.slice(0, 4).map((trip) => (
                   <div className="col-md-2 pt-4" key={trip.id}>
-                    <div className="box bg-white rounded ">
+                    <div className="box bg-white rounded border ">
                       <div className="text px-2">
                         <div className="align-items-center">
                           <h4 style={{ fontWeight: "600" }}>

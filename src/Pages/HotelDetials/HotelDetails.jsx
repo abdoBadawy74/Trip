@@ -227,9 +227,9 @@ function HotelDetails() {
                 {t[language].discoverMoreHotels}
               </p>
 
-              <div className="d-flex gap-3">
+              <div className="d-flex gap-2 mb-3">
                 {discoveredHotels.slice(0, 4).map((hotel) => (
-                  <div className="col-md-2 pt-4" key={hotel.id}>
+                  <div className="col-md-2 pt-4 border rounded" key={hotel.id}>
                     <div className="box bg-white rounded ">
                       <div className="text px-2">
                         <div className="align-items-center">

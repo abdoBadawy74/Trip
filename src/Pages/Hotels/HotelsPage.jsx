@@ -20,6 +20,11 @@ function Hotels() {
   const [searchState, setSearchState] = useState("");
   const [filteredHotels, setFilteredHotels] = useState([]);
   const location = useLocation();
+  // scroll to top when the page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
 
   useEffect(() => {
     const initialFiltered = hotels.filter(
