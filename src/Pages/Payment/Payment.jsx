@@ -15,6 +15,8 @@ import successIcon from "../../assets/Success.svg";
 import t from "../../Translation/translation";
 import useLanguage from "../../context/useLanguage";
 import { toast } from "react-toastify";
+import TripsContext from './../../context/TripsContext';
+import HotelsContext from "../../context/HotelsContext";
 
 export default function Payment() {
   // translation
@@ -38,7 +40,7 @@ export default function Payment() {
 
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
-  const [paymentId, setPaymentId] = useState("");
+  const [paymentId, setPaymentId] = useState(0);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [previewSrc, setPreviewSrc] = useState(null);
   const [firstName, setFirstName] = useState();
@@ -72,18 +74,31 @@ export default function Payment() {
   const handlePromoCodeChange = (e) => setPromoCode(e.target.value);
 
   //   get price for age categories
+
+  const { trips } = useContext(TripsContext);
+  const { hotels } = useContext(HotelsContext);
+
+  const trip = trips.find((trip) => trip.id === parseInt(travelId));
+  const hotel = hotels.find((hotel) => hotel.id === parseInt(hotelId));
+  console.log("trip", trip);
+
   useEffect(() => {
-    axios.get(`${BASE}/booking-age-categories`).then((res) => {
-      //   console.log(res.data);
-      res.data.map((category) => {
-        if (category.title === "Adult") {
-          setAdultCost(category.price);
-        }
-        if (category.title === "Child") {
-          setMinorCost(category.price);
-        }
-      });
+    trip?.age_category_prices.map((price) => {
+      if (price.age_category_id === 1) {
+        setAdultCost(price.price);
+      } else if (price.age_category_id === 2) {
+        setMinorCost(price.price);
+      }
     });
+
+    hotel?.age_category_prices.map((price) => {
+      if (price.age_category_id === 1) {
+        setAdultCost(price.price);
+      } else if (price.age_category_id === 2) {
+        setMinorCost(price.price);
+      }
+    });
+
   }, []);
 
   //   get payment methods
@@ -94,6 +109,7 @@ export default function Payment() {
         setPaymentMethods(res.data);
         console.log(res.data);
         setSelectedPaymentMethod(res.data[1].name);
+        setPaymentId(res.data[1].id);
       })
       .catch((err) => {
         console.log(err);
@@ -143,7 +159,7 @@ export default function Payment() {
     formData.append("last_name", lastName);
     formData.append("email", email);
     formData.append("phone", phone);
-    formData.append("total_amount", getTotalCost());
+    formData.append("total_amount", parseInt(getTotalCost()) + parseInt(trip ? trip.ticket_price : hotel.ticket_price));
     formData.append("payment_type_id", paymentId);
     formData.append("payment_method", selectedPaymentMethod);
     formData.append("payment_status", "pending");
@@ -231,7 +247,7 @@ export default function Payment() {
 
   //   get total cost
   const getTotalCost = () => {
-    return adults * adultCost + minors * minorCost;
+    return adults * adultCost + minors * minorCost - adultCost
   };
 
   //   update the selected range to show it in the payment page
@@ -1139,7 +1155,7 @@ export default function Payment() {
                     style={{ color: "#747688" }}
                   >
                     <span>{t[language].Subtotal}</span>
-                    <span>{getTotalCost()} $</span>
+                    <span>{trip ? trip.ticket_price : hotel.ticket_price} $</span>
                   </div>
 
                   <div
@@ -1147,7 +1163,7 @@ export default function Payment() {
                     style={{ color: "#747688" }}
                   >
                     <span>{t[language].fees}</span>
-                    <span>00 $</span>
+                    <span>{getTotalCost()} $</span>
                   </div>
 
                   <div
@@ -1161,7 +1177,7 @@ export default function Payment() {
                 <div className="total fw-bold d-flex justify-content-between pt-3">
                   <span>{t[language].total}</span>
                   <span>
-                    {discount ? getTotalCost() - discount : getTotalCost()}{" "}
+                    {discount ? (parseInt(trip ? trip.ticket_price : hotel.ticket_price) + parseInt(getTotalCost()) - discount) : parseInt(trip ? trip.ticket_price : hotel.ticket_price) + parseInt(getTotalCost())}{" "}
                   </span>
                 </div>
                 {previewSrc && (
@@ -1237,7 +1253,7 @@ export default function Payment() {
                         fontSize: "64px",
                       }}
                     >
-                      {adults + minors}
+                      {adults + minors + children}
                     </span>{" "}
                     {t[language].Tickets}
                   </p>
@@ -1341,7 +1357,7 @@ export default function Payment() {
                       fontWeight: "600",
                     }}
                   >
-                    {getTotalCost() - discount}$
+                    {discount ? (parseInt(trip.ticket_price) + parseInt(getTotalCost()) - discount) : parseInt(trip.ticket_price) + parseInt(getTotalCost())} $
                   </p>
                 </div>
               </div>

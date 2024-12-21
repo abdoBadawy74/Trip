@@ -178,9 +178,9 @@ export default function Travels() {
                     }
                     <div
                       className={`text text-center col-12 col-lg-6 py-3 ${i % 2 !== 0 ? "flex-grow-1 text-lg-end" : "flex-grow-1 text-lg-start"
-                        }`}
+                        } ${language === "ar" ? "text-lg-end" : "text-lg-start"}`}
                     >
-                      <h3 className="fw-bold fs-2">{service.place.name}</h3>
+                      <h3 className="fw-bold fs-2">{service.name}</h3>
                       <p
                         style={{
                           color: "#1F1F1F",
@@ -196,8 +196,7 @@ export default function Travels() {
                           fontWeight: "700",
                         }}
                       >
-                        {service.ticket_price_from} DH -{" "}
-                        {service.ticket_price_to} DH
+                        {service.ticket_price} {t[language].DH}
                       </p>
                       <div className={`d-flex gap-2 fw-bold justify-content-center ${i % 2 !== 0 ? "justify-content-lg-start  flex-row-reverse" : "justify-content-lg-start "}  my-3`}>
                         <img src={clock} alt="clock" />

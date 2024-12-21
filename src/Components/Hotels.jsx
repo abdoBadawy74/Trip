@@ -129,7 +129,7 @@ export default function Hotels() {
                       color: "#F77A40",
                     }}
                   >
-                    {Math.round(hotel.ticket_price_from)} {t[language].DH}
+                    {Math.round(hotel.ticket_price)} {t[language].DH}
                   </p>
                 </div>
                 <p

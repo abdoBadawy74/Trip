@@ -12,9 +12,10 @@ import useLanguage from "../../context/useLanguage";
 
 export default function TripDetials() {
   // translation
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const { travelId } = useParams();
   const { trips } = useContext(TripsContext);
+  console.log(trips);
   const trip = trips.find((trip) => trip.id === parseInt(travelId));
 
   const [discoveredTrips, setDiscoveredTrips] = useState([]);
@@ -122,7 +123,7 @@ export default function TripDetials() {
                         }}
                       >
                         <h1 className="card-title-details fw-bold">
-                          {trip.place.name}
+                          {trip.name}
                         </h1>
                       </div>
 
@@ -133,8 +134,7 @@ export default function TripDetials() {
                       <div className="d-flex one ">
                         <p style={{ color: "#6B7A85" }}>{t[language].TicketPrice} : </p>
                         <p className="card-text-price mb-4">
-                          {trip.ticket_price_from} HD - {trip.ticket_price_to}{" "}
-                          HD
+                          {trip.ticket_price} {t[language].DH}
                         </p>
                       </div>
                       <span
@@ -149,7 +149,7 @@ export default function TripDetials() {
 
                       <div className="d-flex">
                         <h3 className="mb-4" style={{ fontWeight: "600" }}>
-                        {t[language].aboutThisTravel}
+                          {t[language].aboutThisTravel}
                         </h3>
                         <img
                           src={tripdet}
@@ -203,7 +203,7 @@ export default function TripDetials() {
                       <div className="text px-2">
                         <div className="align-items-center">
                           <h4 style={{ fontWeight: "600" }}>
-                            <a>{trip.place.name}</a>
+                            <a>{trip.name}</a>
                           </h4>
                           <p
                             style={{
@@ -213,8 +213,7 @@ export default function TripDetials() {
                               marginBottom: "20px",
                             }}
                           >
-                            {trip.ticket_price_from} HD - {trip.ticket_price_to}{" "}
-                            HD
+                            {trip.age_category_prices[0].price} {t[language].DH}
                           </p>
 
                           <Link

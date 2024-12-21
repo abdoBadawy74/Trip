@@ -30,6 +30,8 @@ function HotelDetails() {
     }
   }, [hotel, hotels]);
 
+  console.log(hotels);
+
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -164,8 +166,7 @@ function HotelDetails() {
                       <div className="d-flex one ">
                         <p style={{ color: "#6B7A85" }}>{t[language].TicketPrice} : </p>
                         <p className="card-text-price mb-4">
-                          {hotel.ticket_price_from} HD - {hotel.ticket_price_to}{" "}
-                          HD
+                          {hotel.ticket_price} {t[language].DH}
                         </p>
                       </div>
                       <span
@@ -215,7 +216,7 @@ function HotelDetails() {
                 <Calendar />
               </div>
 
-              <p
+              {discoveredHotels.length > 0 && <p
                 className=""
                 style={{
                   color: "#42A7C3",
@@ -225,7 +226,7 @@ function HotelDetails() {
                 }}
               >
                 {t[language].discoverMoreHotels}
-              </p>
+              </p>}
 
               <div className="d-flex gap-2 mb-3">
                 {discoveredHotels.slice(0, 4).map((hotel) => (
@@ -244,8 +245,7 @@ function HotelDetails() {
                               marginBottom: "20px",
                             }}
                           >
-                            {hotel.ticket_price_from} HD -{" "}
-                            {hotel.ticket_price_to} HD
+                            {hotel.ticket_price} HD
                           </p>
 
                           <Link

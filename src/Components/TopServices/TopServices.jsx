@@ -158,7 +158,7 @@ export default function TopServices() {
                 >
                   <div>
                     <h2 className="fw-bolder mb-3 fs-1">
-                      {filteredTrips[0].place.name}
+                      {filteredTrips[0].name}
                     </h2>
                     <p
                       className="w-75 desc"
@@ -174,8 +174,7 @@ export default function TopServices() {
                         color: "#FF6B00",
                       }}
                     >
-                      {filteredTrips[0].ticket_price_from} {t[language].DH} -{" "}
-                      {filteredTrips[0].ticket_price_to} {t[language].DH}
+                      {filteredTrips[0].ticket_price} {t[language].DH}
                     </p>
                     <p className="fs-5">
                       <i className="fa-regular fa-clock text-secondary"></i>{" "}
